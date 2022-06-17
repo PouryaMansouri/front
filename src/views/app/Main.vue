@@ -321,137 +321,24 @@
                 <li class="active">
                   <a href="demo2.html">Home</a>
                 </li>
-                <li>
-                  <a href="demo2-shop.html">Men</a>
+
+                <li v-for="item in navbarMenuList" :key="item.id">
+                  <a :href="item.slug">{{ item.name }}</a>
                   <div class="megamenu">
                     <div class="row">
                       <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-                        <h4 class="menu-title">Variations 1</h4>
+                        <!-- <h4 class="menu-title">Variations 1</h4> -->
                         <ul>
-                          <li>
-                            <a href="shop-classic-filter.html"
-                              >Classic Filter</a
-                            >
+                          <li
+                            v-for="subItem in item.subcategories"
+                            :key="subItem.id"
+                          >
+                            <a :href="subItem.slug">{{ subItem.name }}</a>
                           </li>
-                          <li>
-                            <a href="shop-left-toggle-sidebar.html"
-                              >Left Toggle Filter</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-right-toggle-sidebar.html"
-                              >Right Toggle Sidebar</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-horizontal-filter.html"
-                              >Horizontal Filter
-                            </a>
-                          </li>
-                          <li>
-                            <a href="shop-navigation-filter.html"
-                              >Navigation Filter</a
-                            >
-                          </li>
+                        </ul>
+                      </div>
 
-                          <li>
-                            <a href="shop-off-canvas-filter.html"
-                              >Off-Canvas Filter
-                            </a>
-                          </li>
-                          <li><a href="shop-top-banner.html">Top Banner</a></li>
-                          <li>
-                            <a href="shop-inner-top-banner.html"
-                              >Inner Top Banner</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-with-bottom-block.html"
-                              >With Bottom Block</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-category-in-page-header.html"
-                              >Category In Page Header</a
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-                        <h4 class="menu-title">Variations 2</h4>
-                        <ul>
-                          <li>
-                            <a href="shop-grid-3cols.html">3 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-4cols.html">4 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-5cols.html">5 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-6cols.html">6 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-7cols.html">7 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-8cols.html">8 Columns Mode</a>
-                          </li>
-                          <li><a href="shop-list-mode.html">List Mode</a></li>
-                          <li><a href="shop-pagination.html">Pagination</a></li>
-                          <li>
-                            <a href="shop-infinite-ajaxscroll.html"
-                              >Infinite Ajaxscroll
-                            </a>
-                          </li>
-                          <li>
-                            <a href="shop-loadmore-button.html"
-                              >Loadmore Button</a
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-                        <h4 class="menu-title">Variations 3</h4>
-                        <ul>
-                          <li>
-                            <a href="shop-category-grid-shop.html"
-                              >Category Grid Shop</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-category+products.html"
-                              >Category + Products</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-default-1.html">Shop Default 1 </a>
-                          </li>
-                          <li>
-                            <a href="shop-default-2.html">Shop Default 2</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-3.html">Shop Default 3</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-4.html">Shop Default 4</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-5.html">Shop Default 5</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-6.html">Shop Default 6</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-7.html">Shop Default 7</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-8.html">Shop Default 8</a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div
+                      <!-- <div
                         class="
                           col-6 col-sm-4 col-md-4 col-lg-3
                           menu-banner menu-banner1
@@ -486,1262 +373,10 @@
                             >shop now<i class="d-icon-arrow-right"></i
                           ></a>
                         </div>
-                      </div>
+                      </div> -->
                       <!-- End Megamenu -->
                     </div>
                   </div>
-                </li>
-
-                <li>
-                  <a href="demo2-shop.html">Women</a>
-                  <div class="megamenu">
-                    <div class="row">
-                      <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-                        <h4 class="menu-title">Variations 1</h4>
-                        <ul>
-                          <li>
-                            <a href="shop-classic-filter.html"
-                              >Classic Filter</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-left-toggle-sidebar.html"
-                              >Left Toggle Filter</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-right-toggle-sidebar.html"
-                              >Right Toggle Sidebar</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-horizontal-filter.html"
-                              >Horizontal Filter
-                            </a>
-                          </li>
-                          <li>
-                            <a href="shop-navigation-filter.html"
-                              >Navigation Filter</a
-                            >
-                          </li>
-
-                          <li>
-                            <a href="shop-off-canvas-filter.html"
-                              >Off-Canvas Filter
-                            </a>
-                          </li>
-                          <li><a href="shop-top-banner.html">Top Banner</a></li>
-                          <li>
-                            <a href="shop-inner-top-banner.html"
-                              >Inner Top Banner</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-with-bottom-block.html"
-                              >With Bottom Block</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-category-in-page-header.html"
-                              >Category In Page Header</a
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-                        <h4 class="menu-title">Variations 2</h4>
-                        <ul>
-                          <li>
-                            <a href="shop-grid-3cols.html">3 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-4cols.html">4 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-5cols.html">5 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-6cols.html">6 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-7cols.html">7 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-8cols.html">8 Columns Mode</a>
-                          </li>
-                          <li><a href="shop-list-mode.html">List Mode</a></li>
-                          <li><a href="shop-pagination.html">Pagination</a></li>
-                          <li>
-                            <a href="shop-infinite-ajaxscroll.html"
-                              >Infinite Ajaxscroll
-                            </a>
-                          </li>
-                          <li>
-                            <a href="shop-loadmore-button.html"
-                              >Loadmore Button</a
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-                        <h4 class="menu-title">Variations 3</h4>
-                        <ul>
-                          <li>
-                            <a href="shop-category-grid-shop.html"
-                              >Category Grid Shop</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-category+products.html"
-                              >Category + Products</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-default-1.html">Shop Default 1 </a>
-                          </li>
-                          <li>
-                            <a href="shop-default-2.html">Shop Default 2</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-3.html">Shop Default 3</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-4.html">Shop Default 4</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-5.html">Shop Default 5</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-6.html">Shop Default 6</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-7.html">Shop Default 7</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-8.html">Shop Default 8</a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div
-                        class="
-                          col-6 col-sm-4 col-md-4 col-lg-3
-                          menu-banner menu-banner1
-                          banner banner-fixed
-                        "
-                      >
-                        <figure>
-                          <img
-                            src="images/menu/banner-1.jpg"
-                            alt="Menu banner"
-                            width="221"
-                            height="330"
-                          />
-                        </figure>
-                        <div class="banner-content y-50">
-                          <h4
-                            class="
-                              banner-subtitle
-                              font-weight-bold
-                              text-primary
-                              ls-m
-                            "
-                          >
-                            Sale.
-                          </h4>
-                          <h3 class="banner-title font-weight-bold">
-                            <span class="text-uppercase">Up to</span>70% Off
-                          </h3>
-                          <a
-                            href="demo2-shop.html"
-                            class="btn btn-link btn-underline"
-                            >shop now<i class="d-icon-arrow-right"></i
-                          ></a>
-                        </div>
-                      </div>
-                      <!-- End Megamenu -->
-                    </div>
-                  </div>
-                </li>
-
-                <li>
-                  <a href="demo2-shop.html">Accessories</a>
-                  <div class="megamenu">
-                    <div class="row">
-                      <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-                        <h4 class="menu-title">Variations 1</h4>
-                        <ul>
-                          <li>
-                            <a href="shop-classic-filter.html"
-                              >Classic Filter</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-left-toggle-sidebar.html"
-                              >Left Toggle Filter</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-right-toggle-sidebar.html"
-                              >Right Toggle Sidebar</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-horizontal-filter.html"
-                              >Horizontal Filter
-                            </a>
-                          </li>
-                          <li>
-                            <a href="shop-navigation-filter.html"
-                              >Navigation Filter</a
-                            >
-                          </li>
-
-                          <li>
-                            <a href="shop-off-canvas-filter.html"
-                              >Off-Canvas Filter
-                            </a>
-                          </li>
-                          <li><a href="shop-top-banner.html">Top Banner</a></li>
-                          <li>
-                            <a href="shop-inner-top-banner.html"
-                              >Inner Top Banner</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-with-bottom-block.html"
-                              >With Bottom Block</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-category-in-page-header.html"
-                              >Category In Page Header</a
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-                        <h4 class="menu-title">Variations 2</h4>
-                        <ul>
-                          <li>
-                            <a href="shop-grid-3cols.html">3 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-4cols.html">4 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-5cols.html">5 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-6cols.html">6 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-7cols.html">7 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-8cols.html">8 Columns Mode</a>
-                          </li>
-                          <li><a href="shop-list-mode.html">List Mode</a></li>
-                          <li><a href="shop-pagination.html">Pagination</a></li>
-                          <li>
-                            <a href="shop-infinite-ajaxscroll.html"
-                              >Infinite Ajaxscroll
-                            </a>
-                          </li>
-                          <li>
-                            <a href="shop-loadmore-button.html"
-                              >Loadmore Button</a
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-                        <h4 class="menu-title">Variations 3</h4>
-                        <ul>
-                          <li>
-                            <a href="shop-category-grid-shop.html"
-                              >Category Grid Shop</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-category+products.html"
-                              >Category + Products</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-default-1.html">Shop Default 1 </a>
-                          </li>
-                          <li>
-                            <a href="shop-default-2.html">Shop Default 2</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-3.html">Shop Default 3</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-4.html">Shop Default 4</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-5.html">Shop Default 5</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-6.html">Shop Default 6</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-7.html">Shop Default 7</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-8.html">Shop Default 8</a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div
-                        class="
-                          col-6 col-sm-4 col-md-4 col-lg-3
-                          menu-banner menu-banner1
-                          banner banner-fixed
-                        "
-                      >
-                        <figure>
-                          <img
-                            src="images/menu/banner-1.jpg"
-                            alt="Menu banner"
-                            width="221"
-                            height="330"
-                          />
-                        </figure>
-                        <div class="banner-content y-50">
-                          <h4
-                            class="
-                              banner-subtitle
-                              font-weight-bold
-                              text-primary
-                              ls-m
-                            "
-                          >
-                            Sale.
-                          </h4>
-                          <h3 class="banner-title font-weight-bold">
-                            <span class="text-uppercase">Up to</span>70% Off
-                          </h3>
-                          <a
-                            href="demo2-shop.html"
-                            class="btn btn-link btn-underline"
-                            >shop now<i class="d-icon-arrow-right"></i
-                          ></a>
-                        </div>
-                      </div>
-                      <!-- End Megamenu -->
-                    </div>
-                  </div>
-                </li>
-
-                <li>
-                  <a href="demo2-shop.html">Scarf</a>
-                  <div class="megamenu">
-                    <div class="row">
-                      <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-                        <h4 class="menu-title">Variations 1</h4>
-                        <ul>
-                          <li>
-                            <a href="shop-classic-filter.html"
-                              >Classic Filter</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-left-toggle-sidebar.html"
-                              >Left Toggle Filter</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-right-toggle-sidebar.html"
-                              >Right Toggle Sidebar</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-horizontal-filter.html"
-                              >Horizontal Filter
-                            </a>
-                          </li>
-                          <li>
-                            <a href="shop-navigation-filter.html"
-                              >Navigation Filter</a
-                            >
-                          </li>
-
-                          <li>
-                            <a href="shop-off-canvas-filter.html"
-                              >Off-Canvas Filter
-                            </a>
-                          </li>
-                          <li><a href="shop-top-banner.html">Top Banner</a></li>
-                          <li>
-                            <a href="shop-inner-top-banner.html"
-                              >Inner Top Banner</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-with-bottom-block.html"
-                              >With Bottom Block</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-category-in-page-header.html"
-                              >Category In Page Header</a
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-                        <h4 class="menu-title">Variations 2</h4>
-                        <ul>
-                          <li>
-                            <a href="shop-grid-3cols.html">3 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-4cols.html">4 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-5cols.html">5 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-6cols.html">6 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-7cols.html">7 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-8cols.html">8 Columns Mode</a>
-                          </li>
-                          <li><a href="shop-list-mode.html">List Mode</a></li>
-                          <li><a href="shop-pagination.html">Pagination</a></li>
-                          <li>
-                            <a href="shop-infinite-ajaxscroll.html"
-                              >Infinite Ajaxscroll
-                            </a>
-                          </li>
-                          <li>
-                            <a href="shop-loadmore-button.html"
-                              >Loadmore Button</a
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-                        <h4 class="menu-title">Variations 3</h4>
-                        <ul>
-                          <li>
-                            <a href="shop-category-grid-shop.html"
-                              >Category Grid Shop</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-category+products.html"
-                              >Category + Products</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-default-1.html">Shop Default 1 </a>
-                          </li>
-                          <li>
-                            <a href="shop-default-2.html">Shop Default 2</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-3.html">Shop Default 3</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-4.html">Shop Default 4</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-5.html">Shop Default 5</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-6.html">Shop Default 6</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-7.html">Shop Default 7</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-8.html">Shop Default 8</a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div
-                        class="
-                          col-6 col-sm-4 col-md-4 col-lg-3
-                          menu-banner menu-banner1
-                          banner banner-fixed
-                        "
-                      >
-                        <figure>
-                          <img
-                            src="images/menu/banner-1.jpg"
-                            alt="Menu banner"
-                            width="221"
-                            height="330"
-                          />
-                        </figure>
-                        <div class="banner-content y-50">
-                          <h4
-                            class="
-                              banner-subtitle
-                              font-weight-bold
-                              text-primary
-                              ls-m
-                            "
-                          >
-                            Sale.
-                          </h4>
-                          <h3 class="banner-title font-weight-bold">
-                            <span class="text-uppercase">Up to</span>70% Off
-                          </h3>
-                          <a
-                            href="demo2-shop.html"
-                            class="btn btn-link btn-underline"
-                            >shop now<i class="d-icon-arrow-right"></i
-                          ></a>
-                        </div>
-                      </div>
-                      <!-- End Megamenu -->
-                    </div>
-                  </div>
-                </li>
-
-                <li>
-                  <a href="demo2-shop.html">Invitations suits</a>
-                  <div class="megamenu">
-                    <div class="row">
-                      <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-                        <h4 class="menu-title">Variations 1</h4>
-                        <ul>
-                          <li>
-                            <a href="shop-classic-filter.html"
-                              >Classic Filter</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-left-toggle-sidebar.html"
-                              >Left Toggle Filter</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-right-toggle-sidebar.html"
-                              >Right Toggle Sidebar</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-horizontal-filter.html"
-                              >Horizontal Filter
-                            </a>
-                          </li>
-                          <li>
-                            <a href="shop-navigation-filter.html"
-                              >Navigation Filter</a
-                            >
-                          </li>
-
-                          <li>
-                            <a href="shop-off-canvas-filter.html"
-                              >Off-Canvas Filter
-                            </a>
-                          </li>
-                          <li><a href="shop-top-banner.html">Top Banner</a></li>
-                          <li>
-                            <a href="shop-inner-top-banner.html"
-                              >Inner Top Banner</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-with-bottom-block.html"
-                              >With Bottom Block</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-category-in-page-header.html"
-                              >Category In Page Header</a
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-                        <h4 class="menu-title">Variations 2</h4>
-                        <ul>
-                          <li>
-                            <a href="shop-grid-3cols.html">3 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-4cols.html">4 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-5cols.html">5 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-6cols.html">6 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-7cols.html">7 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-8cols.html">8 Columns Mode</a>
-                          </li>
-                          <li><a href="shop-list-mode.html">List Mode</a></li>
-                          <li><a href="shop-pagination.html">Pagination</a></li>
-                          <li>
-                            <a href="shop-infinite-ajaxscroll.html"
-                              >Infinite Ajaxscroll
-                            </a>
-                          </li>
-                          <li>
-                            <a href="shop-loadmore-button.html"
-                              >Loadmore Button</a
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-                        <h4 class="menu-title">Variations 3</h4>
-                        <ul>
-                          <li>
-                            <a href="shop-category-grid-shop.html"
-                              >Category Grid Shop</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-category+products.html"
-                              >Category + Products</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-default-1.html">Shop Default 1 </a>
-                          </li>
-                          <li>
-                            <a href="shop-default-2.html">Shop Default 2</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-3.html">Shop Default 3</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-4.html">Shop Default 4</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-5.html">Shop Default 5</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-6.html">Shop Default 6</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-7.html">Shop Default 7</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-8.html">Shop Default 8</a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div
-                        class="
-                          col-6 col-sm-4 col-md-4 col-lg-3
-                          menu-banner menu-banner1
-                          banner banner-fixed
-                        "
-                      >
-                        <figure>
-                          <img
-                            src="images/menu/banner-1.jpg"
-                            alt="Menu banner"
-                            width="221"
-                            height="330"
-                          />
-                        </figure>
-                        <div class="banner-content y-50">
-                          <h4
-                            class="
-                              banner-subtitle
-                              font-weight-bold
-                              text-primary
-                              ls-m
-                            "
-                          >
-                            Sale.
-                          </h4>
-                          <h3 class="banner-title font-weight-bold">
-                            <span class="text-uppercase">Up to</span>70% Off
-                          </h3>
-                          <a
-                            href="demo2-shop.html"
-                            class="btn btn-link btn-underline"
-                            >shop now<i class="d-icon-arrow-right"></i
-                          ></a>
-                        </div>
-                      </div>
-                      <!-- End Megamenu -->
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <a href="demo2-shop.html">Toxedo / Groom Suit</a>
-                  <div class="megamenu">
-                    <div class="row">
-                      <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-                        <h4 class="menu-title">Variations 1</h4>
-                        <ul>
-                          <li>
-                            <a href="shop-classic-filter.html"
-                              >Classic Filter</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-left-toggle-sidebar.html"
-                              >Left Toggle Filter</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-right-toggle-sidebar.html"
-                              >Right Toggle Sidebar</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-horizontal-filter.html"
-                              >Horizontal Filter
-                            </a>
-                          </li>
-                          <li>
-                            <a href="shop-navigation-filter.html"
-                              >Navigation Filter</a
-                            >
-                          </li>
-
-                          <li>
-                            <a href="shop-off-canvas-filter.html"
-                              >Off-Canvas Filter
-                            </a>
-                          </li>
-                          <li><a href="shop-top-banner.html">Top Banner</a></li>
-                          <li>
-                            <a href="shop-inner-top-banner.html"
-                              >Inner Top Banner</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-with-bottom-block.html"
-                              >With Bottom Block</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-category-in-page-header.html"
-                              >Category In Page Header</a
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-                        <h4 class="menu-title">Variations 2</h4>
-                        <ul>
-                          <li>
-                            <a href="shop-grid-3cols.html">3 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-4cols.html">4 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-5cols.html">5 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-6cols.html">6 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-7cols.html">7 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-8cols.html">8 Columns Mode</a>
-                          </li>
-                          <li><a href="shop-list-mode.html">List Mode</a></li>
-                          <li><a href="shop-pagination.html">Pagination</a></li>
-                          <li>
-                            <a href="shop-infinite-ajaxscroll.html"
-                              >Infinite Ajaxscroll
-                            </a>
-                          </li>
-                          <li>
-                            <a href="shop-loadmore-button.html"
-                              >Loadmore Button</a
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-                        <h4 class="menu-title">Variations 3</h4>
-                        <ul>
-                          <li>
-                            <a href="shop-category-grid-shop.html"
-                              >Category Grid Shop</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-category+products.html"
-                              >Category + Products</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-default-1.html">Shop Default 1 </a>
-                          </li>
-                          <li>
-                            <a href="shop-default-2.html">Shop Default 2</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-3.html">Shop Default 3</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-4.html">Shop Default 4</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-5.html">Shop Default 5</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-6.html">Shop Default 6</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-7.html">Shop Default 7</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-8.html">Shop Default 8</a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div
-                        class="
-                          col-6 col-sm-4 col-md-4 col-lg-3
-                          menu-banner menu-banner1
-                          banner banner-fixed
-                        "
-                      >
-                        <figure>
-                          <img
-                            src="images/menu/banner-1.jpg"
-                            alt="Menu banner"
-                            width="221"
-                            height="330"
-                          />
-                        </figure>
-                        <div class="banner-content y-50">
-                          <h4
-                            class="
-                              banner-subtitle
-                              font-weight-bold
-                              text-primary
-                              ls-m
-                            "
-                          >
-                            Sale.
-                          </h4>
-                          <h3 class="banner-title font-weight-bold">
-                            <span class="text-uppercase">Up to</span>70% Off
-                          </h3>
-                          <a
-                            href="demo2-shop.html"
-                            class="btn btn-link btn-underline"
-                            >shop now<i class="d-icon-arrow-right"></i
-                          ></a>
-                        </div>
-                      </div>
-                      <!-- End Megamenu -->
-                    </div>
-                  </div>
-                </li>
-
-                <li>
-                  <a href="demo2-shop.html">Men Beach Group</a>
-                  <div class="megamenu">
-                    <div class="row">
-                      <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-                        <h4 class="menu-title">Variations 1</h4>
-                        <ul>
-                          <li>
-                            <a href="shop-classic-filter.html"
-                              >Classic Filter</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-left-toggle-sidebar.html"
-                              >Left Toggle Filter</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-right-toggle-sidebar.html"
-                              >Right Toggle Sidebar</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-horizontal-filter.html"
-                              >Horizontal Filter
-                            </a>
-                          </li>
-                          <li>
-                            <a href="shop-navigation-filter.html"
-                              >Navigation Filter</a
-                            >
-                          </li>
-
-                          <li>
-                            <a href="shop-off-canvas-filter.html"
-                              >Off-Canvas Filter
-                            </a>
-                          </li>
-                          <li><a href="shop-top-banner.html">Top Banner</a></li>
-                          <li>
-                            <a href="shop-inner-top-banner.html"
-                              >Inner Top Banner</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-with-bottom-block.html"
-                              >With Bottom Block</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-category-in-page-header.html"
-                              >Category In Page Header</a
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-                        <h4 class="menu-title">Variations 2</h4>
-                        <ul>
-                          <li>
-                            <a href="shop-grid-3cols.html">3 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-4cols.html">4 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-5cols.html">5 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-6cols.html">6 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-7cols.html">7 Columns Mode</a>
-                          </li>
-                          <li>
-                            <a href="shop-grid-8cols.html">8 Columns Mode</a>
-                          </li>
-                          <li><a href="shop-list-mode.html">List Mode</a></li>
-                          <li><a href="shop-pagination.html">Pagination</a></li>
-                          <li>
-                            <a href="shop-infinite-ajaxscroll.html"
-                              >Infinite Ajaxscroll
-                            </a>
-                          </li>
-                          <li>
-                            <a href="shop-loadmore-button.html"
-                              >Loadmore Button</a
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-                        <h4 class="menu-title">Variations 3</h4>
-                        <ul>
-                          <li>
-                            <a href="shop-category-grid-shop.html"
-                              >Category Grid Shop</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-category+products.html"
-                              >Category + Products</a
-                            >
-                          </li>
-                          <li>
-                            <a href="shop-default-1.html">Shop Default 1 </a>
-                          </li>
-                          <li>
-                            <a href="shop-default-2.html">Shop Default 2</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-3.html">Shop Default 3</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-4.html">Shop Default 4</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-5.html">Shop Default 5</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-6.html">Shop Default 6</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-7.html">Shop Default 7</a>
-                          </li>
-                          <li>
-                            <a href="shop-default-8.html">Shop Default 8</a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div
-                        class="
-                          col-6 col-sm-4 col-md-4 col-lg-3
-                          menu-banner menu-banner1
-                          banner banner-fixed
-                        "
-                      >
-                        <figure>
-                          <img
-                            src="images/menu/banner-1.jpg"
-                            alt="Menu banner"
-                            width="221"
-                            height="330"
-                          />
-                        </figure>
-                        <div class="banner-content y-50">
-                          <h4
-                            class="
-                              banner-subtitle
-                              font-weight-bold
-                              text-primary
-                              ls-m
-                            "
-                          >
-                            Sale.
-                          </h4>
-                          <h3 class="banner-title font-weight-bold">
-                            <span class="text-uppercase">Up to</span>70% Off
-                          </h3>
-                          <a
-                            href="demo2-shop.html"
-                            class="btn btn-link btn-underline"
-                            >shop now<i class="d-icon-arrow-right"></i
-                          ></a>
-                        </div>
-                      </div>
-                      <!-- End Megamenu -->
-                    </div>
-                  </div>
-                </li>
-
-                <li>
-                  <a href="demo2-product.html">Products</a>
-                  <div class="megamenu">
-                    <div class="row">
-                      <div class="col-6 col-sm-4 col-md-3">
-                        <h4 class="menu-title">Product Pages</h4>
-                        <ul>
-                          <li>
-                            <a href="product-simple.html">Simple Product</a>
-                          </li>
-                          <li>
-                            <a href="product-featured.html"
-                              >Featured &amp; On Sale</a
-                            >
-                          </li>
-                          <li><a href="product.html">Variable Product</a></li>
-                          <li>
-                            <a href="product-variable-swatch.html"
-                              >Variation Swatch Product</a
-                            >
-                          </li>
-                          <li>
-                            <a href="product-grouped.html">Grouped Product </a>
-                          </li>
-                          <li>
-                            <a href="product-external.html">External Product</a>
-                          </li>
-                          <li>
-                            <a href="product-in-stock.html">In Stock Product</a>
-                          </li>
-                          <li>
-                            <a href="product-out-stock.html"
-                              >Out of Stock Product</a
-                            >
-                          </li>
-                          <li>
-                            <a href="product-upsell.html">Upsell Products</a>
-                          </li>
-                          <li>
-                            <a href="product-cross-sell.html"
-                              >Cross Sell Products</a
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="col-6 col-sm-4 col-md-3">
-                        <h4 class="menu-title">Product Layouts</h4>
-                        <ul>
-                          <li>
-                            <a href="product-vertical.html">Vertical Thumb</a>
-                          </li>
-                          <li>
-                            <a href="product-horizontal.html"
-                              >Horizontal Thumb</a
-                            >
-                          </li>
-                          <li>
-                            <a href="product-gallery.html">Gallery Type</a>
-                          </li>
-                          <li><a href="product-grid.html">Grid Images</a></li>
-                          <li>
-                            <a href="product-masonry.html">Masonry Images</a>
-                          </li>
-                          <li><a href="product-sticky.html">Sticky Info</a></li>
-                          <li>
-                            <a href="product-sticky-both.html"
-                              >Left & Right Sticky</a
-                            >
-                          </li>
-                          <li>
-                            <a href="product-left-sidebar.html"
-                              >With Left Sidebar</a
-                            >
-                          </li>
-                          <li>
-                            <a href="product-right-sidebar.html"
-                              >With Right Sidebar</a
-                            >
-                          </li>
-                          <li>
-                            <a href="product-full.html">Full Width Layout </a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="col-6 col-sm-4 col-md-3">
-                        <h4 class="menu-title">Product Features</h4>
-                        <ul>
-                          <li>
-                            <a href="product-sale.html">Sale Countdown</a>
-                          </li>
-                          <li>
-                            <a href="product-hurryup.html"
-                              >Hurry Up Notification
-                            </a>
-                          </li>
-                          <li>
-                            <a href="product-attribute-guide.html"
-                              >Attribute Guide
-                            </a>
-                          </li>
-                          <li>
-                            <a href="product-sticky-cart.html"
-                              >Add Cart Sticky</a
-                            >
-                          </li>
-                          <li>
-                            <a href="product-thumbnail-label.html"
-                              >Labels on Thumbnail</a
-                            >
-                          </li>
-                          <li>
-                            <a href="product-more-description.html"
-                              >More Description Tabs</a
-                            >
-                          </li>
-                          <li>
-                            <a href="product-accordion-data.html"
-                              >Data In Accordion</a
-                            >
-                          </li>
-                          <li>
-                            <a href="product-tabinside.html">Data Inside</a>
-                          </li>
-                          <li>
-                            <a href="product-video.html">Video Thumbnail </a>
-                          </li>
-                          <li>
-                            <a href="product-360-degree.html"
-                              >360 Degree Thumbnail
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div
-                        class="
-                          col-6 col-sm-4 col-md-3
-                          menu-banner menu-banner2
-                          banner banner-fixed
-                        "
-                      >
-                        <figure>
-                          <img
-                            src="images/menu/banner-2.jpg"
-                            alt="Menu banner"
-                            width="221"
-                            height="330"
-                          />
-                        </figure>
-                        <div class="banner-content x-50 text-center">
-                          <h3 class="banner-title text-white text-uppercase">
-                            Sunglasses
-                          </h3>
-                          <h4
-                            class="
-                              banner-subtitle
-                              font-weight-bold
-                              text-white
-                              mb-0
-                            "
-                          >
-                            $23.00 - $120.00
-                          </h4>
-                        </div>
-                      </div>
-                      <!-- End MegaMenu -->
-                    </div>
-                  </div>
-                </li>
-
-                <li>
-                  <a href="blog-classic.html">Blog</a>
-                  <ul>
-                    <li><a href="blog-classic.html">Classic</a></li>
-                    <li><a href="blog-listing.html">Listing</a></li>
-                    <li>
-                      <a href="#">Grid</a>
-                      <ul>
-                        <li>
-                          <a href="blog-grid-2col.html">Grid 2 columns</a>
-                        </li>
-                        <li>
-                          <a href="blog-grid-3col.html">Grid 3 columns</a>
-                        </li>
-                        <li>
-                          <a href="blog-grid-4col.html">Grid 4 columns</a>
-                        </li>
-                        <li>
-                          <a href="blog-grid-sidebar.html">Grid sidebar</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <a href="#">Masonry</a>
-                      <ul>
-                        <li>
-                          <a href="blog-masonry-2col.html">Masonry 2 columns</a>
-                        </li>
-                        <li>
-                          <a href="blog-masonry-3col.html">Masonry 3 columns</a>
-                        </li>
-                        <li>
-                          <a href="blog-masonry-4col.html">Masonry 4 columns</a>
-                        </li>
-                        <li>
-                          <a href="blog-masonry-sidebar.html"
-                            >Masonry sidebar</a
-                          >
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <a href="#">Mask</a>
-                      <ul>
-                        <li>
-                          <a href="blog-mask-grid.html">Blog mask grid</a>
-                        </li>
-                        <li>
-                          <a href="blog-mask-masonry.html">Blog mask masonry</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <a href="post-single.html">Single Post</a>
-                    </li>
-                  </ul>
                 </li>
               </ul>
             </nav>
@@ -1784,7 +419,7 @@
                   >
                     <figure>
                       <img
-                        src="images/demos/demo2/slides/1.jpg"
+                        :src="landingMain.image_1"
                         alt="intro-banner"
                         width="1180"
                         height="600"
@@ -1805,7 +440,7 @@
                         "
                         data-animation-options="{'name': 'fadeInRightShorter', 'duration': '1.2s', 'delay': '.3s'}"
                       >
-                        Men’s wear
+                        {{ landingMain.title_1 }}
                       </h4>
                       <h2
                         class="
@@ -1815,9 +450,9 @@
                         "
                         data-animation-options="{'name': 'fadeInRightShorter', 'duration': '1.2s', 'delay': '.3s'}"
                       >
-                        Collection
+                        {{ landingMain.description_1 }}
                       </h2>
-                      <h5
+                      <!-- <h5
                         class="
                           font-weight-normal
                           text-white
@@ -1833,14 +468,14 @@
                         <span class="text-secondary font-weight-bold"
                           >$19.99</span
                         >
-                      </h5>
+                      </h5> -->
                     </div>
                   </div>
 
                   <div class="intro-slide2 banner banner-fixed">
                     <figure>
                       <img
-                        src="images/demos/demo2/slides/2.jpg"
+                        :src="landingMain.image_2"
                         alt="banner"
                         width="1180"
                         height="600"
@@ -1858,7 +493,7 @@
                         "
                         data-animation-options="{'name': 'fadeInDownShorter', 'duration': '1.2s', 'delay': '.5s'}"
                       >
-                        Lifestyle collection
+                        {{ landingMain.title_2 }}
                       </h4>
                       <h3
                         class="
@@ -1871,9 +506,9 @@
                         "
                         data-animation-options="{'name': 'blurIn', 'duration': '1.4s', 'delay': '.1s'}"
                       >
-                        For Women’s
+                        {{ landingMain.description_2 }}
                       </h3>
-                      <h5
+                      <!-- <h5
                         class="
                           font-weight-normal
                           text-white text-uppercase
@@ -1900,111 +535,65 @@
                         class="btn btn-white btn-rounded slide-animate"
                         data-animation-options="{'name': 'fadeInUpShorter', 'duration': '1.2s', 'delay': '1.1s'}"
                         >Shop now</a
-                      >
+                      > -->
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div class="col-md-6 mb-4">
-                <div
-                  class="
-                    banner banner-fixed
-                    overlay-zoom
-                    intro-banner intro-banner1
-                    content-middle
-                    appear-animate
-                  "
-                  data-animation-options="{
+              <template v-for="(item, index) in topCartList" :key="index">
+                <div class="col-md-6 mb-4">
+                  <div
+                    class="
+                      banner banner-fixed
+                      overlay-zoom
+                      intro-banner intro-banner1
+                      content-middle
+                      appear-animate
+                    "
+                    data-animation-options="{
                                     'name': 'fadeInUpShorter',
                                     'delay': '.3s'
                                 }"
-                >
-                  <figure>
-                    <img
-                      src="images/demos/demo2/banners/1.jpg"
-                      width="580"
-                      height="249"
-                      alt="banner"
-                      style="background-color: #eca5a9"
-                    />
-                  </figure>
-                  <div class="banner-content">
-                    <h4
-                      class="
-                        banner-subtitle
-                        ls-normal
-                        text-white text-uppercase
-                        font-weight-normal
-                        lh-1
-                      "
-                    >
-                      New Arrivals
-                    </h4>
-                    <h3 class="banner-title text-white font-weight-bold ls-md">
-                      Women's Sale
-                    </h3>
-                    <a
-                      href="demo2-shop.html"
-                      class="
-                        btn btn-white btn-link btn-underline
-                        font-weight-semi-bold
-                      "
-                      >Shop Now<i class="d-icon-arrow-right"></i
-                    ></a>
+                  >
+                    <figure>
+                      <img
+                        :src="item.image"
+                        width="580"
+                        height="249"
+                        alt="banner"
+                        style="background-color: #eca5a9"
+                      />
+                    </figure>
+                    <div class="banner-content">
+                      <h4
+                        class="
+                          banner-subtitle
+                          ls-normal
+                          text-white text-uppercase
+                          font-weight-normal
+                          lh-1
+                        "
+                      >
+                        {{ item.title }}
+                      </h4>
+                      <h3
+                        class="banner-title text-white font-weight-bold ls-md"
+                      >
+                        {{ item.description }}
+                      </h3>
+                      <a
+                        :href="item.link"
+                        class="
+                          btn btn-white btn-link btn-underline
+                          font-weight-semi-bold
+                        "
+                        >{{ item.link_text }}<i class="d-icon-arrow-right"></i
+                      ></a>
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              <div class="col-md-6 mb-4">
-                <div
-                  class="
-                    banner banner-fixed
-                    overlay-zoom
-                    intro-banner intro-banner2
-                    content-middle
-                    appear-animate
-                  "
-                  data-animation-options="{
-                                    'name': 'fadeInUpShorter',
-                                    'delay': '.5s'
-                                }"
-                >
-                  <figure>
-                    <img
-                      src="images/demos/demo2/banners/2.jpg"
-                      width="580"
-                      height="249"
-                      alt="banner"
-                      style="background-color: #494442"
-                    />
-                  </figure>
-                  <div class="banner-content">
-                    <h4
-                      class="
-                        banner-subtitle
-                        ls-normal
-                        text-white text-uppercase
-                        font-weight-normal
-                        lh-1
-                      "
-                    >
-                      Trending
-                    </h4>
-                    <h3 class="banner-title text-white font-weight-bold ls-md">
-                      New Sneaker
-                    </h3>
-                    <a
-                      href="demo2-shop.html"
-                      class="
-                        btn btn-white btn-link btn-underline btn-white
-                        font-weight-semi-bold
-                      "
-                      >Shop Now<i class="d-icon-arrow-right"></i
-                    ></a>
-                  </div>
-                </div>
-              </div>
+              </template>
             </div>
           </section>
 
@@ -2012,75 +601,77 @@
             <h2 class="title title-simple title-center ls-m">Best Selling</h2>
 
             <div class="product-wrapper row">
-              <div class="col-lg-3 col-md-4 col-6 mb-4">
-                <div
-                  class="product appear-animate"
-                  data-animation-options="{
+              <template v-for="(item, index) in bestSellingList" :key="index">
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                  <div
+                    class="product appear-animate"
+                    data-animation-options="{
                                     'name': 'fadeInLeftShorter',
                                     'delay': '.4s'
                                 }"
-                >
-                  <figure class="product-media">
-                    <a href="demo2-product.html">
-                      <img
-                        src="images/demos/demo2/products/1.jpg"
-                        alt="Blue Pinafore Denim Dress"
-                        width="280"
-                        height="315"
-                        style="background-color: #f2f3f5"
-                      />
-                    </a>
-                    <div class="product-label-group">
-                      <label class="product-label label-new">new</label>
-                    </div>
-                    <div class="product-action-vertical">
-                      <a
-                        href="#"
-                        class="btn-product-icon btn-cart"
-                        data-toggle="modal"
-                        data-target="#addCartModal"
-                        title="Add to cart"
-                        ><i class="d-icon-bag"></i
-                      ></a>
-                      <a
-                        href="#"
-                        class="btn-product-icon btn-wishlist"
-                        title="Add to wishlist"
-                        ><i class="d-icon-heart"></i
-                      ></a>
-                    </div>
-                    <div class="product-action">
-                      <a
-                        href="#"
-                        class="btn-product btn-quickview"
-                        title="Quick View"
-                        >Quick View</a
-                      >
-                    </div>
-                  </figure>
-                  <div class="product-details">
-                    <div class="product-cat">
-                      <a href="demo2-shop.html">Women</a>
-                    </div>
-                    <h3 class="product-name">
-                      <a href="demo2-product.html">Comfortable Brown Scart</a>
-                    </h3>
-                    <div class="product-price">
-                      <span class="price">$140.00</span>
-                    </div>
-                    <div class="ratings-container">
-                      <div class="ratings-full">
-                        <span class="ratings" style="width: 100%"></span>
-                        <span class="tooltiptext tooltip-top"></span>
+                  >
+                    <figure class="product-media">
+                      <a :href="item.link">
+                        <img
+                          :src="item.image"
+                          :alt="item.title"
+                          width="280"
+                          height="315"
+                          style="background-color: #f2f3f5"
+                        />
+                      </a>
+                      <div class="product-label-group">
+                        <label class="product-label label-new">new</label>
                       </div>
-                      <a href="demo2-product.html" class="rating-reviews"
-                        >( 12 reviews )</a
-                      >
+                      <div class="product-action-vertical">
+                        <a
+                          href="#"
+                          class="btn-product-icon btn-cart"
+                          data-toggle="modal"
+                          data-target="#addCartModal"
+                          title="Add to cart"
+                          ><i class="d-icon-bag"></i
+                        ></a>
+                        <a
+                          href="#"
+                          class="btn-product-icon btn-wishlist"
+                          title="Add to wishlist"
+                          ><i class="d-icon-heart"></i
+                        ></a>
+                      </div>
+                      <div class="product-action">
+                        <a class="btn-product btn-quickview" title="Quick View"
+                          >Quick View</a
+                        >
+                      </div>
+                    </figure>
+                    <div class="product-details">
+                      <div class="product-cat">
+                        <a :href="item.category.slug">{{
+                          item.category.name
+                        }}</a>
+                      </div>
+                      <h3 class="product-name">
+                        <a :href="item.link">{{ item.title }}</a>
+                      </h3>
+                      <div class="product-price">
+                        <span class="price">{{ item.min_price }}</span>
+                      </div>
+                      <div class="ratings-container">
+                        <div class="ratings-full">
+                          <span
+                            class="ratings"
+                            :style="'width: ' + item.star * 20 + '%'"
+                          ></span>
+                          <span class="tooltiptext tooltip-top"></span>
+                        </div>
+                        <a class="rating-reviews">( 12 reviews )</a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-lg-3 col-md-4 col-6 mb-4">
+              </template>
+              <!-- <div class="col-lg-3 col-md-4 col-6 mb-4">
                 <div
                   class="product appear-animate"
                   data-animation-options="{
@@ -2148,409 +739,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-lg-3 col-md-4 col-6 mb-4">
-                <div
-                  class="product appear-animate"
-                  data-animation-options="{
-                                    'name': 'fadeInRightShorter',
-                                    'delay': '.2s'
-                                }"
-                >
-                  <figure class="product-media">
-                    <a href="demo2-product.html">
-                      <img
-                        src="images/demos/demo2/products/3.jpg"
-                        alt="Blue Pinafore Denim Dress"
-                        width="280"
-                        height="315"
-                        style="background-color: #f2f3f5"
-                      />
-                    </a>
-                    <div class="product-action-vertical">
-                      <a
-                        href="#"
-                        class="btn-product-icon btn-cart"
-                        data-toggle="modal"
-                        data-target="#addCartModal"
-                        title="Add to cart"
-                        ><i class="d-icon-bag"></i
-                      ></a>
-                      <a
-                        href="#"
-                        class="btn-product-icon btn-wishlist"
-                        title="Add to wishlist"
-                        ><i class="d-icon-heart"></i
-                      ></a>
-                    </div>
-                    <div class="product-action">
-                      <a
-                        href="#"
-                        class="btn-product btn-quickview"
-                        title="Quick View"
-                        >Quick View</a
-                      >
-                    </div>
-                  </figure>
-                  <div class="product-details">
-                    <div class="product-cat">
-                      <a href="demo2-shop.html">Shoes</a>
-                    </div>
-                    <h3 class="product-name">
-                      <a href="demo2-product.html">Season Sports Sneaker</a>
-                    </h3>
-                    <div class="product-price">
-                      <span class="price">$78.64</span>
-                    </div>
-                    <div class="ratings-container">
-                      <div class="ratings-full">
-                        <span class="ratings" style="width: 40%"></span>
-                        <span class="tooltiptext tooltip-top"></span>
-                      </div>
-                      <a href="demo2-product.html" class="rating-reviews"
-                        >( 2 reviews )</a
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-4 col-6 mb-4">
-                <div
-                  class="product appear-animate"
-                  data-animation-options="{
-                                    'name': 'fadeInRightShorter',
-                                    'delay': '.4s'
-                                }"
-                >
-                  <figure class="product-media">
-                    <a href="demo2-product.html">
-                      <img
-                        src="images/demos/demo2/products/4.jpg"
-                        alt="Blue Pinafore Denim Dress"
-                        width="280"
-                        height="315"
-                        style="background-color: #f2f3f5"
-                      />
-                    </a>
-                    <div class="product-label-group">
-                      <label class="product-label label-new">New</label>
-                    </div>
-                    <div class="product-action-vertical">
-                      <a
-                        href="#"
-                        class="btn-product-icon btn-cart"
-                        data-toggle="modal"
-                        data-target="#addCartModal"
-                        title="Add to cart"
-                        ><i class="d-icon-bag"></i
-                      ></a>
-                      <a
-                        href="#"
-                        class="btn-product-icon btn-wishlist"
-                        title="Add to wishlist"
-                        ><i class="d-icon-heart"></i
-                      ></a>
-                    </div>
-                    <div class="product-action">
-                      <a
-                        href="#"
-                        class="btn-product btn-quickview"
-                        title="Quick View"
-                        >Quick View</a
-                      >
-                    </div>
-                  </figure>
-                  <div class="product-details">
-                    <div class="product-cat">
-                      <a href="demo2-shop.html">Clothing</a>
-                    </div>
-                    <h3 class="product-name">
-                      <a href="demo2-product.html">Women Red Fur Overcoat</a>
-                    </h3>
-                    <div class="product-price">
-                      <span class="price">$184.00</span>
-                    </div>
-                    <div class="ratings-container">
-                      <div class="ratings-full">
-                        <span class="ratings" style="width: 80%"></span>
-                        <span class="tooltiptext tooltip-top"></span>
-                      </div>
-                      <a href="demo2-product.html" class="rating-reviews"
-                        >( 6 reviews )</a
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-4 col-6 mb-4">
-                <div
-                  class="product appear-animate"
-                  data-animation-options="{
-                                    'name': 'fadeInLeftShorter',
-                                    'delay': '.4s'
-                                }"
-                >
-                  <figure class="product-media">
-                    <a href="demo2-product.html">
-                      <img
-                        src="images/demos/demo2/products/5.jpg"
-                        alt="Blue Pinafore Denim Dress"
-                        width="280"
-                        height="315"
-                        style="background-color: #f2f3f5"
-                      />
-                    </a>
-                    <div class="product-action-vertical">
-                      <a
-                        href="#"
-                        class="btn-product-icon btn-cart"
-                        data-toggle="modal"
-                        data-target="#addCartModal"
-                        title="Add to cart"
-                        ><i class="d-icon-bag"></i
-                      ></a>
-                      <a
-                        href="#"
-                        class="btn-product-icon btn-wishlist"
-                        title="Add to wishlist"
-                        ><i class="d-icon-heart"></i
-                      ></a>
-                    </div>
-                    <div class="product-action">
-                      <a
-                        href="#"
-                        class="btn-product btn-quickview"
-                        title="Quick View"
-                        >Quick View</a
-                      >
-                    </div>
-                  </figure>
-                  <div class="product-details">
-                    <div class="product-cat">
-                      <a href="demo2-shop.html">Women</a>
-                    </div>
-                    <h3 class="product-name">
-                      <a href="demo2-product.html">Hempen Hood a Mourner</a>
-                    </h3>
-                    <div class="product-price">
-                      <span class="price">$93.24</span>
-                    </div>
-                    <div class="ratings-container">
-                      <div class="ratings-full">
-                        <span class="ratings" style="width: 40%"></span>
-                        <span class="tooltiptext tooltip-top"></span>
-                      </div>
-                      <a href="demo2-product.html" class="rating-reviews"
-                        >( 9 reviews )</a
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-4 col-6 mb-4">
-                <div
-                  class="product appear-animate"
-                  data-animation-options="{
-                                    'name': 'fadeInLeftShorter',
-                                    'delay': '.2s'
-                                }"
-                >
-                  <figure class="product-media">
-                    <a href="demo2-product.html">
-                      <img
-                        src="images/demos/demo2/products/6.jpg"
-                        alt="Blue Pinafore Denim Dress"
-                        width="280"
-                        height="315"
-                        style="background-color: #f2f3f5"
-                      />
-                    </a>
-                    <div class="product-label-group">
-                      <label class="product-label label-new">New</label>
-                    </div>
-                    <div class="product-action-vertical">
-                      <a
-                        href="#"
-                        class="btn-product-icon btn-cart"
-                        data-toggle="modal"
-                        data-target="#addCartModal"
-                        title="Add to cart"
-                        ><i class="d-icon-bag"></i
-                      ></a>
-                      <a
-                        href="#"
-                        class="btn-product-icon btn-wishlist"
-                        title="Add to wishlist"
-                        ><i class="d-icon-heart"></i
-                      ></a>
-                    </div>
-                    <div class="product-action">
-                      <a
-                        href="#"
-                        class="btn-product btn-quickview"
-                        title="Quick View"
-                        >Quick View</a
-                      >
-                    </div>
-                  </figure>
-                  <div class="product-details">
-                    <div class="product-cat">
-                      <a href="demo2-shop.html">Bags & Backpacks</a>
-                    </div>
-                    <h3 class="product-name">
-                      <a href="demo2-product.html">Women's Season Handbag</a>
-                    </h3>
-                    <div class="product-price">
-                      <span class="price">$61.35</span>
-                    </div>
-                    <div class="ratings-container">
-                      <div class="ratings-full">
-                        <span class="ratings" style="width: 80%"></span>
-                        <span class="tooltiptext tooltip-top"></span>
-                      </div>
-                      <a href="demo2-product.html" class="rating-reviews"
-                        >( 63 reviews )</a
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-4 col-6 mb-4">
-                <div
-                  class="product appear-animate"
-                  data-animation-options="{
-                                    'name': 'fadeInRightShorter',
-                                    'delay': '.2s'
-                                }"
-                >
-                  <figure class="product-media">
-                    <a href="demo2-product.html">
-                      <img
-                        src="images/demos/demo2/products/7.jpg"
-                        alt="Blue Pinafore Denim Dress"
-                        width="280"
-                        height="315"
-                        style="background-color: #f2f3f5"
-                      />
-                    </a>
-                    <div class="product-label-group">
-                      <label class="product-label label-sale">13% off</label>
-                    </div>
-                    <div class="product-action-vertical">
-                      <a
-                        href="#"
-                        class="btn-product-icon btn-cart"
-                        data-toggle="modal"
-                        data-target="#addCartModal"
-                        title="Add to cart"
-                        ><i class="d-icon-bag"></i
-                      ></a>
-                      <a
-                        href="#"
-                        class="btn-product-icon btn-wishlist"
-                        title="Add to wishlist"
-                        ><i class="d-icon-heart"></i
-                      ></a>
-                    </div>
-                    <div class="product-action">
-                      <a
-                        href="#"
-                        class="btn-product btn-quickview"
-                        title="Quick View"
-                        >Quick View</a
-                      >
-                    </div>
-                  </figure>
-                  <div class="product-details">
-                    <div class="product-cat">
-                      <a href="demo2-shop.html">Shoes</a>
-                    </div>
-                    <h3 class="product-name">
-                      <a href="demo2-product.html"
-                        >Converse Blue Trainaing Shoes</a
-                      >
-                    </h3>
-                    <div class="product-price">
-                      <ins class="new-price">$347.23</ins
-                      ><del class="old-price">$386.23</del>
-                    </div>
-                    <div class="ratings-container">
-                      <div class="ratings-full">
-                        <span class="ratings" style="width: 40%"></span>
-                        <span class="tooltiptext tooltip-top"></span>
-                      </div>
-                      <a href="demo2-product.html" class="rating-reviews"
-                        >( 14 reviews )</a
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-4 col-6 mb-4">
-                <div
-                  class="product appear-animate"
-                  data-animation-options="{
-                                    'name': 'fadeInRightShorter',
-                                    'delay': '.4s'
-                                }"
-                >
-                  <figure class="product-media">
-                    <a href="demo2-product.html">
-                      <img
-                        src="images/demos/demo2/products/8.jpg"
-                        alt="Blue Pinafore Denim Dress"
-                        width="280"
-                        height="315"
-                        style="background-color: #f2f3f5"
-                      />
-                    </a>
-                    <div class="product-action-vertical">
-                      <a
-                        href="#"
-                        class="btn-product-icon btn-cart"
-                        data-toggle="modal"
-                        data-target="#addCartModal"
-                        title="Add to cart"
-                        ><i class="d-icon-bag"></i
-                      ></a>
-                      <a
-                        href="#"
-                        class="btn-product-icon btn-wishlist"
-                        title="Add to wishlist"
-                        ><i class="d-icon-heart"></i
-                      ></a>
-                    </div>
-                    <div class="product-action">
-                      <a
-                        href="#"
-                        class="btn-product btn-quickview"
-                        title="Quick View"
-                        >Quick View</a
-                      >
-                    </div>
-                  </figure>
-                  <div class="product-details">
-                    <div class="product-cat">
-                      <a href="demo2-shop.html">Bags & Backpacks</a>
-                    </div>
-                    <h3 class="product-name">
-                      <a href="demo2-product.html">A Dress-Suit Valise</a>
-                    </h3>
-                    <div class="product-price">
-                      <span class="price">$78.23</span>
-                    </div>
-                    <div class="ratings-container">
-                      <div class="ratings-full">
-                        <span class="ratings" style="width: 100%"></span>
-                        <span class="tooltiptext tooltip-top"></span>
-                      </div>
-                      <a href="demo2-product.html" class="rating-reviews"
-                        >( 53 reviews )</a
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
+              </div> -->
             </div>
           </section>
 
@@ -2671,9 +860,10 @@
           <section
             class="banner banner-sale mt-10 mb-10 appear-animate"
             data-animation-options="{'name': 'fadeIn'}"
-            style="
-              background-image: url(images/demos/demo2/banners/3.jpg);
-              background-color: #1f272b;
+            :style="
+              'background-image: url(' +
+              middleBanner.image +
+              '); background-color: #1f272b;'
             "
           >
             <div
@@ -2690,13 +880,13 @@
                   mb-0
                 "
               >
-                End Of Season
+                {{middleBanner.title}}
               </h4>
               <hr class="divider mb-2" />
               <h3 class="banner-title text-uppercase text-white lh-1 mb-0">
-                Sale
+                {{middleBanner.description}}
               </h3>
-              <div class="price-rotated">
+              <!-- <div class="price-rotated">
                 <div
                   class="
                     banner-price-info
@@ -2713,7 +903,7 @@
                     Off
                   </h5>
                 </div>
-              </div>
+              </div> -->
             </div>
           </section>
 
@@ -3783,7 +1973,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import ApiService from "@/core/services/ApiService";
+import { defineComponent, onMounted, ref } from "vue";
 
 export default defineComponent({
   name: "mainPage",
@@ -3792,7 +1983,60 @@ export default defineComponent({
   data: () => ({}),
   props: {},
   setup() {
-    return {};
+    const landingMain = ref({});
+    const middleBanner = ref({});
+    const navbarMenuList = ref([]);
+    const bestSellingList = ref([]);
+    const topCartList = ref([]);
+
+    onMounted(() => {
+      ApiService.get("landing/main/")
+        .then((response) => {
+          landingMain.value = response.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+
+      ApiService.get("categories/navbar/")
+        .then((response) => {
+          navbarMenuList.value = response.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+
+      ApiService.get("landing/main/cart/top/")
+        .then((response) => {
+          topCartList.value = response.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+
+      ApiService.get("landing/main/middle-banner/")
+        .then((response) => {
+          middleBanner.value = response.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+
+      ApiService.get("landing/main/best-selling-product/")
+        .then((response) => {
+          bestSellingList.value = response.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    });
+    return {
+      landingMain,
+      navbarMenuList,
+      bestSellingList,
+      topCartList,
+      middleBanner,
+    };
   },
 });
 </script>
