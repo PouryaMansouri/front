@@ -10,9 +10,19 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/layout/Layout.vue"),
         children: [
             {
+                path: "/main",
+                name: "main",
+                component: () => import("@/views/app/Main.vue"),
+            },
+            {
                 path: "/cart",
                 name: "cart",
                 component: () => import("@/views/app/Cart.vue"),
+            },
+            {
+                path: "/cartEmpty",
+                name: "cartEmpty",
+                component: () => import("@/views/app/CartEmpty.vue"),
             },
             {
                 path: "/product",

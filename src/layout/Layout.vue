@@ -19,9 +19,7 @@ export default defineComponent({
 
     onMounted(() => {
       if (!store.getters.isUserAuthenticated) {
-        console.log('login');
-        
-        router.push({ name: "login1" });
+        // router.push({ name: "login" });
       }
     });
 
@@ -29,9 +27,7 @@ export default defineComponent({
       () => route.path,
       () => {
         if (!store.getters.isUserAuthenticated) {
-                  console.log('login2');
-
-          router.push({ name: "login" });
+          // router.push({ name: "login" });
         }
       }
     );
