@@ -29,6 +29,16 @@ const routes: Array<RouteRecordRaw> = [
                 name: "product",
                 component: () => import("@/views/app/Product.vue"),
             },
+            {
+                path: "/checkout",
+                name: "checkout",
+                component: () => import("@/views/app/Checkout.vue"),
+            },
+            {
+                path: "/shop",
+                name: "shop",
+                component: () => import("@/views/app/Shop.vue"),
+            },
         ],
     },
     {
