@@ -2295,11 +2295,10 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "login",
+  name: "mainPage",
   components: {},
   methods: {},
   data: () => ({}),
-  created() {},
   props: {},
   setup() {
     return {};

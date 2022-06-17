@@ -3,18 +3,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
-import { useStore } from "vuex";
-import { Mutations } from "@/store/enums/StoreEnums";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "app",
   setup() {
-    const store = useStore();
-
-    onMounted(() => {
-      store.commit(Mutations.OVERRIDE_LAYOUT_CONFIG);
-    });
+    return {};
   },
 });
 </script>

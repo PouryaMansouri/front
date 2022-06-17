@@ -1,6 +1,6 @@
-import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from "vue-router";
+import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import store from "@/store";
-import { Mutations, Actions } from "@/store/enums/StoreEnums";
+import { Actions } from "@/store/enums/StoreEnums";
 import JwtService from "@/core/services/JwtService";
 
 const routes: Array<RouteRecordRaw> = [
@@ -30,12 +30,12 @@ const routes: Array<RouteRecordRaw> = [
         // the 404 route, when none of the above matches
         path: "/404",
         name: "404",
-        component: () => import("@/views/Error404.vue"),
+        component: () => import("@/views/constant/Error404.vue"),
     },
     {
         path: "/500",
         name: "500",
-        component: () => import("@/views/Error500.vue"),
+        component: () => import("@/views/constant/Error500.vue"),
     },
     {
         path: "/:pathMatch(.*)*",

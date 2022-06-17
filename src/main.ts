@@ -13,7 +13,6 @@ import ApiService from "@/core/services/ApiService";
 import { initInlineSvg } from "@/core/plugins/inline-svg";
 import { initVeeValidate } from "@/core/plugins/vee-validate";
 
-import "@/core/plugins/prismjs";
 const app = createApp(App);
 
 app.use(store);

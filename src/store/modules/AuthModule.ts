@@ -100,7 +100,9 @@ export default class AuthModule extends VuexModule implements UserAuthInfo {
     @Action
     [Actions.REGISTER](credentials) {
         return ApiService.post("accounts/register/", credentials)
-            .then(({ data }) => {})
+            .then(({ data }) => {
+                console.log(data);
+            })
             .catch(({ response }) => {
                 this.context.commit(Mutations.SET_ERROR, response.data.errors);
             });
@@ -108,6 +110,8 @@ export default class AuthModule extends VuexModule implements UserAuthInfo {
 
     @Action
     [Actions.VERIFY_AUTH](payload) {
+        console.log("auth", payload);
+        
         if (JwtService.getToken()) {
             ApiService.setHeader();
             ApiService.post("api/token/verify/", payload)
