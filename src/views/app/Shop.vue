@@ -1138,95 +1138,104 @@
             </div>
           </div>
           <div class="bottom-block">
-            <section class="mt-10 pt-6">
-              <h4 class="text-center font-weight-bold">Today's New Trending</h4>
-              <div
-                class="owl-carousel owl-theme cols-xl-4 cols-md-3 cols-2"
-                data-owl-options="{
-								'nav': false,
-								'margin': 20,
-								'dots': false,
-								'loop': false,
-								'responsive': {
-									'1200': {
-										'items': 4
-									},
-									'768': {
-										'items': 3
-									},
-									'0': {
-										'items': 2
-									}
-								}
-							}"
-              >
-                <template v-for="(item, index) in newTrendingList" :key="index">
-                  <div class="product">
-                    <router-link :to="'/product/' + item.id">
-                      <figure class="product-media">
-                        <a>
-                          <img
-                            :src="item.image"
-                            alt="product"
-                            width="280"
-                            height="315"
-                          />
-                        </a>
-                        <!-- <div class="product-label-group">
-                          <label class="product-label label-sale"
-                            >25% Off</label
-                          >
-                        </div> -->
-                        <div class="product-action-vertical">
-                          <a
-                            class="btn-product-icon btn-cart"
-                            data-toggle="modal"
-                            data-target="#addCartModal"
-                            title="Add to cart"
-                            ><i class="d-icon-bag"></i
-                          ></a>
-                          <a
-                            class="btn-product-icon btn-wishlist"
-                            title="Add to wishlist"
-                            ><i class="d-icon-heart"></i
-                          ></a>
-                        </div>
-                        <div class="product-action">
-                          <a
-                            class="btn-product btn-quickview"
-                            title="Quick View"
-                            >Quick View</a
-                          >
-                        </div>
-                      </figure>
-                    </router-link>
-                    <div class="product-details">
-                      <div class="product-cat">
-                        <a :href="item.category.slug">{{
-                          item.category.name
-                        }}</a>
+                      <section class="pt-7 pb-1">
+            <h2 class="title title-simple ls-m">Today's New Trending</h2>
+            <div
+              class="
+                owl-carousel owl-theme
+                row
+                owl-nav-full
+                cols-lg-4 cols-md-3 cols-2
+              "
+              data-owl-options="{
+                            'items': 4,
+                            'nav': false,
+                            'dots': true,
+                            'loop': false,
+                            'margin': 20,
+                            'responsive': {
+                                '0': {
+                                    'items': 2
+                                },
+                                '768': {
+                                    'items': 3
+                                },
+                                '992': {
+                                    'items': 4,
+                                    'dots': false,
+                                    'nav': true
+                                }
+                            }
+                        }"
+            >
+              <template v-for="(item, index) in newTrendingList" :key="index">
+                <div
+                  class="product appear-animate"
+                  data-animation-options="{
+                                'name': 'fadeInRightShorter',
+                                'delay': '.2s'
+                            }"
+                >
+                  <router-link :to="'/product/' + item.id">
+                    <figure class="product-media">
+                      <a>
+                        <img
+                          :src="item.image"
+                          alt="Blue Pinafore Denim Dress"
+                          width="280"
+                          height="315"
+                          style="background-color: #f2f3f5"
+                        />
+                      </a>
+                      <!-- <div class="product-label-group">
+                        <label class="product-label label-sale">35% Off</label>
+                      </div> -->
+                      <div class="product-action-vertical">
+                        <a
+                          class="btn-product-icon btn-cart"
+                          data-toggle="modal"
+                          data-target="#addCartModal"
+                          title="Add to cart"
+                          ><i class="d-icon-bag"></i
+                        ></a>
+                        <a
+                          class="btn-product-icon btn-wishlist"
+                          title="Add to wishlist"
+                          ><i class="d-icon-heart"></i
+                        ></a>
                       </div>
-                      <h3 class="product-name">
-                        <a>{{ item.title }}</a>
-                      </h3>
-                      <div class="product-price">
-                        <span class="price">{{ item.min_price }}</span>
+                      <div class="product-action">
+                        <a class="btn-product btn-quickview" title="Quick View"
+                          >Quick View</a
+                        >
                       </div>
-                      <div class="ratings-container">
-                        <div class="ratings-full">
-                          <span
-                            class="ratings"
-                            :style="'width: ' + item.star * 20 + '%'"
-                          ></span>
-                          <span class="tooltiptext tooltip-top"></span>
-                        </div>
-                        <a class="rating-reviews">( 6 reviews )</a>
+                    </figure>
+                  </router-link>
+                  <div class="product-details">
+                    <div class="product-cat">
+                      <a :href="item.category.slug">{{ item.category.name }}</a>
+                    </div>
+                    <h3 class="product-name">
+                      <a>{{ item.title }}</a>
+                    </h3>
+                    <div class="product-price">
+                      <span class="price">{{ item.min_price }}</span>
+                    </div>
+                    <div class="ratings-container">
+                      <div class="ratings-full">
+                        <span
+                          class="ratings"
+                          :style="'width: ' + item.star * 20 + '%'"
+                        ></span>
+                        <span class="tooltiptext tooltip-top"></span>
                       </div>
+                      <a class="rating-reviews">( 6 reviews )</a>
                     </div>
                   </div>
-                </template>
-              </div>
-            </section>
+                </div>
+              </template>
+            </div>
+          </section>
           </div>
         </div>
       </div>

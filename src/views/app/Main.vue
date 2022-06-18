@@ -759,10 +759,10 @@
                     overlay-dark
                   "
                 >
-                  <a href="demo2-shop.html">
+                  <a>
                     <figure>
                       <img
-                        src="images/demos/demo2/category/1.jpg"
+                        :src="topCategories.image_part1"
                         alt="category"
                         width="585"
                         height="397"
@@ -780,9 +780,7 @@
                       flex-column
                     "
                   >
-                    <h3 class="banner-title text-uppercase ls-s mb-0">
-                      Padded Clothes
-                    </h3>
+                    <h3 class="banner-title text-uppercase ls-s mb-0"></h3>
                     <h4
                       class="
                         banner-subtitle
@@ -793,19 +791,15 @@
                         lh-1
                         mb-0
                       "
-                    >
-                      Collection
-                    </h4>
+                    ></h4>
                     <div class="btn-group">
                       <a
-                        href="demo2-shop.html"
                         class="btn btn-white btn-rounded font-weight-semi-bold"
-                        >Women’s</a
+                        >{{ topCategories.category_part1_1.name }}</a
                       >
                       <a
-                        href="demo2-shop.html"
                         class="btn btn-white btn-rounded font-weight-semi-bold"
-                        >Men's</a
+                        >{{ topCategories.category_part1_2.name }}</a
                       >
                     </div>
                   </div>
@@ -815,10 +809,10 @@
                 <div
                   class="category category-light category-absolute overlay-dark"
                 >
-                  <a href="demo2-shop.html">
+                  <a>
                     <figure class="category-media">
                       <img
-                        src="images/demos/demo2/category/2.jpg"
+                        :src="topCategories.image_part2"
                         alt="category"
                         width="585"
                         height="205"
@@ -828,7 +822,7 @@
                   </a>
                   <div class="category-content">
                     <h4 class="category-name">
-                      <a href="demo2-shop.html">Women’s T-Shirt</a>
+                      <a>{{ topCategories.category_part2.name }}</a>
                     </h4>
                   </div>
                 </div>
@@ -837,10 +831,10 @@
                 <div
                   class="category category-light category-absolute overlay-dark"
                 >
-                  <a href="demo2-shop.html">
+                  <a>
                     <figure class="category-media">
                       <img
-                        src="images/demos/demo2/category/3.jpg"
+                        :src="topCategories.image_part3"
                         alt="category"
                         width="585"
                         height="397"
@@ -850,7 +844,7 @@
                   </a>
                   <div class="category-content">
                     <h4 class="category-name">
-                      <a href="demo2-shop.html">Sports & Outdoors</a>
+                      <a>{{ topCategories.category_part3.name }}</a>
                     </h4>
                   </div>
                 </div>
@@ -939,269 +933,72 @@
                             }
                         }"
             >
-              <div
-                class="product appear-animate"
-                data-animation-options="{
+              <template v-for="(item, index) in ourFeaturedList" :key="index">
+                <div
+                  class="product appear-animate"
+                  data-animation-options="{
                                 'name': 'fadeInRightShorter',
                                 'delay': '.2s'
                             }"
-              >
-                <figure class="product-media">
-                  <a href="demo2-product.html">
-                    <img
-                      src="images/demos/demo2/products/9.jpg"
-                      alt="Blue Pinafore Denim Dress"
-                      width="280"
-                      height="315"
-                      style="background-color: #f2f3f5"
-                    />
-                  </a>
-                  <div class="product-label-group">
-                    <label class="product-label label-sale">35% Off</label>
-                  </div>
-                  <div class="product-action-vertical">
-                    <a
-                      href="#"
-                      class="btn-product-icon btn-cart"
-                      data-toggle="modal"
-                      data-target="#addCartModal"
-                      title="Add to cart"
-                      ><i class="d-icon-bag"></i
-                    ></a>
-                    <a
-                      href="#"
-                      class="btn-product-icon btn-wishlist"
-                      title="Add to wishlist"
-                      ><i class="d-icon-heart"></i
-                    ></a>
-                  </div>
-                  <div class="product-action">
-                    <a
-                      href="#"
-                      class="btn-product btn-quickview"
-                      title="Quick View"
-                      >Quick View</a
-                    >
-                  </div>
-                </figure>
-                <div class="product-details">
-                  <div class="product-cat">
-                    <a href="demo2-shop.html">Accessories</a>
-                  </div>
-                  <h3 class="product-name">
-                    <a href="demo2-product.html">Hand Electric Cell</a>
-                  </h3>
-                  <div class="product-price">
-                    <ins class="new-price">$26.00</ins
-                    ><del class="old-price">$38.00</del>
-                  </div>
-                  <div class="ratings-container">
-                    <div class="ratings-full">
-                      <span class="ratings" style="width: 100%"></span>
-                      <span class="tooltiptext tooltip-top"></span>
+                >
+                  <router-link :to="'/product/' + item.id">
+                    <figure class="product-media">
+                      <a>
+                        <img
+                          :src="item.image"
+                          alt="Blue Pinafore Denim Dress"
+                          width="280"
+                          height="315"
+                          style="background-color: #f2f3f5"
+                        />
+                      </a>
+                      <!-- <div class="product-label-group">
+                        <label class="product-label label-sale">35% Off</label>
+                      </div> -->
+                      <div class="product-action-vertical">
+                        <a
+                          class="btn-product-icon btn-cart"
+                          data-toggle="modal"
+                          data-target="#addCartModal"
+                          title="Add to cart"
+                          ><i class="d-icon-bag"></i
+                        ></a>
+                        <a
+                          class="btn-product-icon btn-wishlist"
+                          title="Add to wishlist"
+                          ><i class="d-icon-heart"></i
+                        ></a>
+                      </div>
+                      <div class="product-action">
+                        <a class="btn-product btn-quickview" title="Quick View"
+                          >Quick View</a
+                        >
+                      </div>
+                    </figure>
+                  </router-link>
+                  <div class="product-details">
+                    <div class="product-cat">
+                      <a :href="item.category.slug">{{ item.category.name }}</a>
                     </div>
-                    <a href="demo2-product.html" class="rating-reviews"
-                      >( 6 reviews )</a
-                    >
+                    <h3 class="product-name">
+                      <a>{{ item.title }}</a>
+                    </h3>
+                    <div class="product-price">
+                      <span class="price">{{ item.min_price }}</span>
+                    </div>
+                    <div class="ratings-container">
+                      <div class="ratings-full">
+                        <span
+                          class="ratings"
+                          :style="'width: ' + item.star * 20 + '%'"
+                        ></span>
+                        <span class="tooltiptext tooltip-top"></span>
+                      </div>
+                      <a class="rating-reviews">( 6 reviews )</a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div
-                class="product appear-animate"
-                data-animation-options="{
-                                'name': 'fadeInRightShorter',
-                                'delay': '.3s'
-                            }"
-              >
-                <figure class="product-media">
-                  <a href="demo2-product.html">
-                    <img
-                      src="images/demos/demo2/products/10.jpg"
-                      alt="Blue Pinafore Denim Dress"
-                      width="280"
-                      height="315"
-                      style="background-color: #f2f3f5"
-                    />
-                  </a>
-                  <div class="product-label-group">
-                    <label class="product-label label-new">new</label>
-                  </div>
-                  <div class="product-action-vertical">
-                    <a
-                      href="#"
-                      class="btn-product-icon btn-cart"
-                      data-toggle="modal"
-                      data-target="#addCartModal"
-                      title="Add to cart"
-                      ><i class="d-icon-bag"></i
-                    ></a>
-                    <a
-                      href="#"
-                      class="btn-product-icon btn-wishlist"
-                      title="Add to wishlist"
-                      ><i class="d-icon-heart"></i
-                    ></a>
-                  </div>
-                  <div class="product-action">
-                    <a
-                      href="#"
-                      class="btn-product btn-quickview"
-                      title="Quick View"
-                      >Quick View</a
-                    >
-                  </div>
-                </figure>
-                <div class="product-details">
-                  <div class="product-cat">
-                    <a href="demo2-shop.html">Shoes</a>
-                  </div>
-                  <h3 class="product-name">
-                    <a href="demo2-product.html">Season Sports Blue Sneaker</a>
-                  </h3>
-                  <div class="product-price">
-                    <span class="price">$119.58</span>
-                  </div>
-                  <div class="ratings-container">
-                    <div class="ratings-full">
-                      <span class="ratings" style="width: 80%"></span>
-                      <span class="tooltiptext tooltip-top"></span>
-                    </div>
-                    <a href="demo2-product.html" class="rating-reviews"
-                      >( 52 reviews )</a
-                    >
-                  </div>
-                </div>
-              </div>
-              <div
-                class="product appear-animate"
-                data-animation-options="{
-                                'name': 'fadeInRightShorter',
-                                'delay': '.4s'
-                            }"
-              >
-                <figure class="product-media">
-                  <a href="demo2-product.html">
-                    <img
-                      src="images/demos/demo2/products/11.jpg"
-                      alt="Blue Pinafore Denim Dress"
-                      width="280"
-                      height="315"
-                      style="background-color: #f2f3f5"
-                    />
-                  </a>
-
-                  <div class="product-action-vertical">
-                    <a
-                      href="#"
-                      class="btn-product-icon btn-cart"
-                      data-toggle="modal"
-                      data-target="#addCartModal"
-                      title="Add to cart"
-                      ><i class="d-icon-bag"></i
-                    ></a>
-                    <a
-                      href="#"
-                      class="btn-product-icon btn-wishlist"
-                      title="Add to wishlist"
-                      ><i class="d-icon-heart"></i
-                    ></a>
-                  </div>
-                  <div class="product-action">
-                    <a
-                      href="#"
-                      class="btn-product btn-quickview"
-                      title="Quick View"
-                      >Quick View</a
-                    >
-                  </div>
-                </figure>
-                <div class="product-details">
-                  <div class="product-cat">
-                    <a href="demo2-shop.html">Women</a>
-                  </div>
-                  <h3 class="product-name">
-                    <a href="demo2-product.html">Hempen Hood a Mourner</a>
-                  </h3>
-                  <div class="product-price">
-                    <span class="price">$43.26</span>
-                  </div>
-                  <div class="ratings-container">
-                    <div class="ratings-full">
-                      <span class="ratings" style="width: 40%"></span>
-                      <span class="tooltiptext tooltip-top"></span>
-                    </div>
-                    <a href="demo2-product.html" class="rating-reviews"
-                      >( 62 reviews )</a
-                    >
-                  </div>
-                </div>
-              </div>
-              <div
-                class="product appear-animate"
-                data-animation-options="{
-                                'name': 'fadeInRightShorter',
-                                'delay': '.5s'
-                            }"
-              >
-                <figure class="product-media">
-                  <a href="demo2-product.html">
-                    <img
-                      src="images/demos/demo2/products/12.jpg"
-                      alt="Blue Pinafore Denim Dress"
-                      width="280"
-                      height="315"
-                      style="background-color: #f2f3f5"
-                    />
-                  </a>
-                  <div class="product-label-group">
-                    <label class="product-label label-new">new</label>
-                  </div>
-                  <div class="product-action-vertical">
-                    <a
-                      href="#"
-                      class="btn-product-icon btn-cart"
-                      data-toggle="modal"
-                      data-target="#addCartModal"
-                      title="Add to cart"
-                      ><i class="d-icon-bag"></i
-                    ></a>
-                    <a
-                      href="#"
-                      class="btn-product-icon btn-wishlist"
-                      title="Add to wishlist"
-                      ><i class="d-icon-heart"></i
-                    ></a>
-                  </div>
-                  <div class="product-action">
-                    <a
-                      href="#"
-                      class="btn-product btn-quickview"
-                      title="Quick View"
-                      >Quick View</a
-                    >
-                  </div>
-                </figure>
-                <div class="product-details">
-                  <div class="product-cat">
-                    <a href="demo2-shop.html">Bags & Backpacks</a>
-                  </div>
-                  <h3 class="product-name">
-                    <a href="demo2-product.html">Women’s Fashion Handbag</a>
-                  </h3>
-                  <div class="product-price">
-                    <span class="price">$184.00</span>
-                  </div>
-                  <div class="ratings-container">
-                    <div class="ratings-full">
-                      <span class="ratings" style="width: 80%"></span>
-                      <span class="tooltiptext tooltip-top"></span>
-                    </div>
-                    <a href="demo2-product.html" class="rating-reviews"
-                      >( 23 reviews )</a
-                    >
-                  </div>
-                </div>
-              </div>
+              </template>
             </div>
           </section>
 
@@ -1951,9 +1748,39 @@ export default defineComponent({
   setup() {
     const landingMain = ref({});
     const middleBanner = ref({});
+    const topCategories = ref({
+      title: "Top categories",
+      category_part1_1: {
+        id: 1,
+        name: "",
+        slug: "",
+      },
+      category_part1_2: {
+        id: 1,
+        name: "",
+        slug: "",
+      },
+      image_part1:
+        "",
+      category_part2: {
+        id: 1,
+        name: "",
+        slug: "",
+      },
+      image_part2:
+        "",
+      category_part3: {
+        id: 1,
+        name: "",
+        slug: "",
+      },
+      image_part3:
+        "",
+    });
     const navbarMenuList = ref([]);
     const bestSellingList = ref([]);
     const topCartList = ref([]);
+    const ourFeaturedList = ref([]);
 
     onMounted(() => {
       ApiService.get("landing/main/")
@@ -1995,6 +1822,24 @@ export default defineComponent({
         .catch((e) => {
           console.log(e);
         });
+
+      ApiService.get("landing/new-product/")
+        .then((response) => {
+          ourFeaturedList.value = response.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+
+      ApiService.get("categories/top/")
+        .then((response) => {
+          console.log(topCategories.value);
+
+          topCategories.value = response.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     });
     return {
       landingMain,
@@ -2002,6 +1847,8 @@ export default defineComponent({
       bestSellingList,
       topCartList,
       middleBanner,
+      ourFeaturedList,
+      topCategories,
     };
   },
 });
