@@ -583,7 +583,6 @@
                         {{ item.description }}
                       </h3>
                       <a
-                        :href="item.link"
                         class="
                           btn btn-white btn-link btn-underline
                           font-weight-semi-bold
@@ -610,41 +609,44 @@
                                     'delay': '.4s'
                                 }"
                   >
-                    <figure class="product-media">
-                      <a :href="item.link">
-                        <img
-                          :src="item.image"
-                          :alt="item.title"
-                          width="280"
-                          height="315"
-                          style="background-color: #f2f3f5"
-                        />
-                      </a>
-                      <div class="product-label-group">
-                        <label class="product-label label-new">new</label>
-                      </div>
-                      <div class="product-action-vertical">
-                        <a
-                          href="#"
-                          class="btn-product-icon btn-cart"
-                          data-toggle="modal"
-                          data-target="#addCartModal"
-                          title="Add to cart"
-                          ><i class="d-icon-bag"></i
-                        ></a>
-                        <a
-                          href="#"
-                          class="btn-product-icon btn-wishlist"
-                          title="Add to wishlist"
-                          ><i class="d-icon-heart"></i
-                        ></a>
-                      </div>
-                      <div class="product-action">
-                        <a class="btn-product btn-quickview" title="Quick View"
-                          >Quick View</a
-                        >
-                      </div>
-                    </figure>
+                    <router-link :to="'/product/' + item.id">
+                      <figure class="product-media">
+                        <a>
+                          <img
+                            :src="item.image"
+                            :alt="item.title"
+                            width="280"
+                            height="315"
+                            style="background-color: #f2f3f5"
+                          />
+                        </a>
+                        <div class="product-label-group">
+                          <label class="product-label label-new">new</label>
+                        </div>
+                        <div class="product-action-vertical">
+                          <a
+                            class="btn-product-icon btn-cart"
+                            data-toggle="modal"
+                            data-target="#addCartModal"
+                            title="Add to cart"
+                            ><i class="d-icon-bag"></i
+                          ></a>
+                          <a
+                            class="btn-product-icon btn-wishlist"
+                            title="Add to wishlist"
+                            ><i class="d-icon-heart"></i
+                          ></a>
+                        </div>
+                        <div class="product-action">
+                          <a
+                            class="btn-product btn-quickview"
+                            title="Quick View"
+                            >Quick View</a
+                          >
+                        </div>
+                      </figure>
+                    </router-link>
+
                     <div class="product-details">
                       <div class="product-cat">
                         <a :href="item.category.slug">{{
@@ -652,7 +654,7 @@
                         }}</a>
                       </div>
                       <h3 class="product-name">
-                        <a :href="item.link">{{ item.title }}</a>
+                        <a>{{ item.title }}</a>
                       </h3>
                       <div class="product-price">
                         <span class="price">{{ item.min_price }}</span>
@@ -880,11 +882,11 @@
                   mb-0
                 "
               >
-                {{middleBanner.title}}
+                {{ middleBanner.title }}
               </h4>
               <hr class="divider mb-2" />
               <h3 class="banner-title text-uppercase text-white lh-1 mb-0">
-                {{middleBanner.description}}
+                {{ middleBanner.description }}
               </h3>
               <!-- <div class="price-rotated">
                 <div
@@ -1931,42 +1933,6 @@
           required
         />
         <label for="hide-newsletter-popup">Don't show this popup again</label>
-      </div>
-    </div>
-  </div>
-
-  <!-- sticky icons-->
-  <div class="sticky-icons-wrapper">
-    <div class="sticky-icon-links">
-      <ul>
-        <li>
-          <a href="#" class="demo-toggle"
-            ><i class="fas fa-home"></i><span>Demos</span></a
-          >
-        </li>
-        <li>
-          <a href="documentation.html"
-            ><i class="fas fa-info-circle"></i><span>Documentation</span></a
-          >
-        </li>
-        <li>
-          <a href="https://themeforest.net/downloads/"
-            ><i class="fas fa-star"></i><span>Reviews</span></a
-          >
-        </li>
-        <li>
-          <a href="https://d-themes.com/buynow/riodehtml"
-            ><i class="fas fa-shopping-cart"></i><span>Buy now!</span></a
-          >
-        </li>
-      </ul>
-    </div>
-    <div class="demos-list">
-      <div class="demos-overlay"></div>
-      <a class="demos-close" href="#"><i class="close-icon"></i></a>
-      <div class="demos-content scrollable scrollable-light">
-        <h3 class="demos-title">Demos</h3>
-        <div class="demos"></div>
       </div>
     </div>
   </div>
