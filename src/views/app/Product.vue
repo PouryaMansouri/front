@@ -428,7 +428,7 @@
                       SKU: <span class="product-sku">12345670</span> BRAND:
                       <span class="product-brand">The Northland</span>
                     </div>
-                    <div class="product-price">${{ product.min_price }}</div>
+                    <div class="product-price">${{ productPrice }}</div>
                     <div class="ratings-container">
                       <div class="ratings-full">
                         <span
@@ -476,9 +476,9 @@
                         > -->
                       </div>
                     </div>
-                    <div>
+                    <!-- <div>
                       <span>{{ productPrice }}</span>
-                    </div>
+                    </div> -->
 
                     <hr class="product-divider" />
 
@@ -1138,7 +1138,7 @@ export default defineComponent({
   data: () => ({}),
   props: {},
   setup() {
-    const product = ref({ stock_detail: {} });
+    const product = ref({ stock_detail: {}, min_price: 0 });
     const productId = ref();
     const route = useRoute();
     const productQuantity = ref();
@@ -1151,6 +1151,7 @@ export default defineComponent({
       ApiService.get(`products/${productId.value}`)
         .then((response) => {
           product.value = response.data;
+          productPrice.value = product.value.min_price;
         })
         .catch((e) => {
           console.log(e);
