@@ -1,10 +1,25 @@
 <template>
+  <div>hi</div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue";
 
 export default Vue.extend({
-  name: 'IndexPage'
-})
+  head() {
+    return {
+      title: "main",
+      meta: [
+        {
+          name: "description",
+          hid: "description",
+          content: "description",
+        },
+      ],
+    };
+  },
+  async asyncData() {
+    return;
+  },
+});
 </script>
