@@ -5,8 +5,8 @@ export const actions = {
             commit('auth/setTokens', cookie.auth);
         }
 
-        const { accessToken, refreshToken } = state.auth;
-        if (accessToken && refreshToken) {
+        const { access, refresh } = state.auth;
+        if (access && refresh) {
             try {
                 await dispatch('auth/refresh');
             } catch (e) {

@@ -4,8 +4,8 @@ export default ({ isDev, store, app }) => {
     createPersistedState({
         key: 'auth',
         paths: [
-            'auth.accessToken',
-            'auth.refreshToken'
+            'auth.access',
+            'auth.refresh'
         ],
         storage: {
             getItem: key => app.$cookies.get(key),

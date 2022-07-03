@@ -1,13 +1,15 @@
-export default function({
+export default function ({
     store,
     app: { $axios },
     redirect
 }) {
     $axios.onRequest((config) => {
-        // check if the user is authenticated
-        if (store.state.auth.accessToken) {
-            // set the Authorization header using the access token
-            config.headers.Authorization = 'Bearer ' + store.state.auth.accessToken;
+        if (config.isBasic) {
+            config.headers.Authorization = 'Basic Og==';
+            return config;
+        }
+        if (store.state.auth.access) {
+            config.headers.Authorization = 'Bearer ' + store.state.auth.access;
         }
 
         return config;
@@ -17,8 +19,8 @@ export default function({
         const statusCode = error.response ? error.response.status : -1;
 
         if (statusCode === 401 || statusCode === 422) {
-            const refreshToken = store.state.auth.refreshToken;
-            if (error.response.data.errorCode === 'JWT_TOKEN_EXPIRED' && refreshToken) {
+            const refresh = store.state.auth.refresh;
+            if (error.response.data.errorCode === 'JWT_TOKEN_EXPIRED' && refresh) {
                 if (Object.prototype.hasOwnProperty.call(error.config, 'retryAttempts')) {
                     store.commit('auth/logout');
                     return redirect('/anmelden');
