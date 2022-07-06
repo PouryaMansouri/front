@@ -905,7 +905,7 @@
                                 'delay': '.2s'
                             }"
                 >
-                  <router-link :to="'/product/' + item.id">
+                  <router-link :to="'/product/' + item.slug">
                     <figure class="product-media">
                       <a>
                         <img

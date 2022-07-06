@@ -21,9 +21,7 @@
             </div>
             <div class="header-center">
               <nav class="main-nav ml-0 mr-0">
-                <ul class="menu">
-                  <menu-component></menu-component>
-                </ul>
+                <menu-component :ulclass="'menu'"></menu-component>
               </nav>
               <!-- End of Divider -->
             </div>
@@ -1595,9 +1593,7 @@
           </button>
         </form>
         <!-- End Search Form -->
-        <ul class="mobile-menu mmenu-anim">
-          <menu-component></menu-component>
-        </ul>
+        <menu-component :ulclass="'mobile-menu mmenu-anim'"></menu-component>
         <!-- End MobileMenu -->
       </div>
     </div>
@@ -1684,32 +1680,27 @@ export default {
   },
   async asyncData({ params, $axios }) {
     const responses = await Promise.all([
-      await $axios.get(`products/${params.id}/`, { isBasic: true }),
-      await $axios.get(`products/related/${params.id}/`, { isBasic: true }),
-      await $axios.get(`comments/comments-product/${params.id}/`, {
-        isBasic: true,
-      }),
+      await $axios.get(`products/details/${params.slug}/`),
     ]);
 
-    const comments = responses[2].data;
-    let averageRating = {};
+    // const comments = responses[0].data.comments;
+    // let averageRating = {};
 
-    if (comments != []) {
-      var rateSum = 0;
-      for (let i = 0; i < comments.length; i++) {
-        const element = comments[i];
-        rateSum += element.rate;
-      }
-      averageRating.total = rateSum / comments.length;
-    }
+    // if (comments != []) {
+    //   var rateSum = 0;
+    //   for (let i = 0; i < comments.length; i++) {
+    //     const element = comments[i];
+    //     rateSum += element.rate;
+    //   }
+    //   averageRating.total = rateSum / comments.length;
+    // }
 
     return {
       product: responses[0].data,
       productPrice: responses[0].data.min_price,
-      relatedProductsList: responses[1].data,
-      comments,
-      averageRating,
-      productId: params.id,
+      relatedProductsList: responses[0].data.related_products,
+      // comments,
+      // averageRating,
     };
   },
 };
