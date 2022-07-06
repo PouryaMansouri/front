@@ -322,7 +322,9 @@
             <div class="header-left">
               <nav class="main-nav">
                 <ul class="menu menu-active-underline">
-                  <menu-component></menu-component>
+                  <menu-component
+                    :ulclass="'menu menu-active-underline'"
+                  ></menu-component>
                 </ul>
               </nav>
             </div>
@@ -486,55 +488,57 @@
                   </div>
                 </div>
 
-                <div v-for="(item, index) in topCartList" :key="index">
-                  <div class="col-md-6 mb-4">
-                    <div
-                      class="
-                        banner banner-fixed
-                        overlay-zoom
-                        intro-banner intro-banner1
-                        content-middle
-                        appear-animate
-                      "
-                      data-animation-options="{
+                <div
+                  v-for="(item, index) in topCartList"
+                  :key="index"
+                  class="col-md-6 mb-4"
+                >
+                  <div
+                    class="
+                      banner banner-fixed
+                      overlay-zoom
+                      intro-banner intro-banner1
+                      content-middle
+                      appear-animate
+                    "
+                    data-animation-options="{
                                     'name': 'fadeInUpShorter',
                                     'delay': '.3s'
                                 }"
-                    >
-                      <figure>
-                        <img
-                          :src="item.image"
-                          width="580"
-                          height="249"
-                          alt="banner"
-                          style="background-color: #eca5a9"
-                        />
-                      </figure>
-                      <div class="banner-content">
-                        <h4
-                          class="
-                            banner-subtitle
-                            ls-normal
-                            text-white text-uppercase
-                            font-weight-normal
-                            lh-1
-                          "
-                        >
-                          {{ item.title }}
-                        </h4>
-                        <h3
-                          class="banner-title text-white font-weight-bold ls-md"
-                        >
-                          {{ item.description }}
-                        </h3>
-                        <a
-                          class="
-                            btn btn-white btn-link btn-underline
-                            font-weight-semi-bold
-                          "
-                          >{{ item.link_text }}<i class="d-icon-arrow-right"></i
-                        ></a>
-                      </div>
+                  >
+                    <figure>
+                      <img
+                        :src="item.image"
+                        width="580"
+                        height="249"
+                        alt="banner"
+                        style="background-color: #eca5a9"
+                      />
+                    </figure>
+                    <div class="banner-content">
+                      <h4
+                        class="
+                          banner-subtitle
+                          ls-normal
+                          text-white text-uppercase
+                          font-weight-normal
+                          lh-1
+                        "
+                      >
+                        {{ item.title }}
+                      </h4>
+                      <h3
+                        class="banner-title text-white font-weight-bold ls-md"
+                      >
+                        {{ item.description }}
+                      </h3>
+                      <a
+                        class="
+                          btn btn-white btn-link btn-underline
+                          font-weight-semi-bold
+                        "
+                        >{{ item.link_text }}<i class="d-icon-arrow-right"></i
+                      ></a>
                     </div>
                   </div>
                 </div>
@@ -545,75 +549,77 @@
               <h2 class="title title-simple title-center ls-m">Best Selling</h2>
 
               <div class="product-wrapper row">
-                <div v-for="(item, index) in bestSellingList" :key="index">
-                  <div class="col-lg-3 col-md-4 col-6 mb-4">
-                    <div
-                      class="product appear-animate"
-                      data-animation-options="{
+                <div
+                  v-for="(item, index) in bestSellingList"
+                  :key="index"
+                  class="col-lg-3 col-md-4 col-6 mb-4"
+                >
+                  <div
+                    class="product appear-animate"
+                    data-animation-options="{
                                     'name': 'fadeInLeftShorter',
                                     'delay': '.4s'
                                 }"
-                    >
-                      <router-link :to="'/product/' + item.id">
-                        <figure class="product-media">
-                          <a>
-                            <img
-                              :src="item.image"
-                              :alt="item.title"
-                              width="280"
-                              height="315"
-                              style="background-color: #f2f3f5"
-                            />
-                          </a>
-                          <div class="product-label-group">
-                            <label class="product-label label-new">new</label>
-                          </div>
-                          <div class="product-action-vertical">
-                            <a
-                              class="btn-product-icon btn-cart"
-                              data-toggle="modal"
-                              data-target="#addCartModal"
-                              title="Add to cart"
-                              ><i class="d-icon-bag"></i
-                            ></a>
-                            <a
-                              class="btn-product-icon btn-wishlist"
-                              title="Add to wishlist"
-                              ><i class="d-icon-heart"></i
-                            ></a>
-                          </div>
-                          <div class="product-action">
-                            <a
-                              class="btn-product btn-quickview"
-                              title="Quick View"
-                              >Quick View</a
-                            >
-                          </div>
-                        </figure>
-                      </router-link>
+                  >
+                    <router-link :to="'/product/' + item.id">
+                      <figure class="product-media">
+                        <a>
+                          <img
+                            :src="item.image"
+                            :alt="item.title"
+                            width="280"
+                            height="315"
+                            style="background-color: #f2f3f5"
+                          />
+                        </a>
+                        <div class="product-label-group">
+                          <label class="product-label label-new">new</label>
+                        </div>
+                        <div class="product-action-vertical">
+                          <a
+                            class="btn-product-icon btn-cart"
+                            data-toggle="modal"
+                            data-target="#addCartModal"
+                            title="Add to cart"
+                            ><i class="d-icon-bag"></i
+                          ></a>
+                          <a
+                            class="btn-product-icon btn-wishlist"
+                            title="Add to wishlist"
+                            ><i class="d-icon-heart"></i
+                          ></a>
+                        </div>
+                        <div class="product-action">
+                          <a
+                            class="btn-product btn-quickview"
+                            title="Quick View"
+                            >Quick View</a
+                          >
+                        </div>
+                      </figure>
+                    </router-link>
 
-                      <div class="product-details">
-                        <div class="product-cat">
-                          <a :href="item.category.slug">{{
-                            item.category.name
-                          }}</a>
+                    <div class="product-details">
+                      <div class="product-cat">
+                        <a :href="item.category.slug">{{
+                          item.category.name
+                        }}</a>
+                      </div>
+                      <h3 class="product-name">
+                        <a>{{ item.title }}</a>
+                      </h3>
+                      <div class="product-price">
+                        <span class="price">{{ item.min_price }}</span>
+                      </div>
+                      <div class="ratings-container">
+                        <div class="ratings-full">
+                          <span
+                            class="ratings"
+                            :style="'width: ' + item.star * 20 + '%'"
+                          ></span>
+                          <span class="tooltiptext tooltip-top"></span>
                         </div>
-                        <h3 class="product-name">
-                          <a>{{ item.title }}</a>
-                        </h3>
-                        <div class="product-price">
-                          <span class="price">{{ item.min_price }}</span>
-                        </div>
-                        <div class="ratings-container">
-                          <div class="ratings-full">
-                            <span
-                              class="ratings"
-                              :style="'width: ' + item.star * 20 + '%'"
-                            ></span>
-                            <span class="tooltiptext tooltip-top"></span>
-                          </div>
-                          <a class="rating-reviews">( 12 reviews )</a>
-                        </div>
+                        <a class="rating-reviews">( 12 reviews )</a>
                       </div>
                     </div>
                   </div>
@@ -890,73 +896,69 @@
                             }
                         }"
               >
-                <div v-for="(item, index) in ourFeaturedList" :key="index">
-                  <div
-                    class="product appear-animate"
-                    data-animation-options="{
+                <div
+                  v-for="(item, index) in ourFeaturedList"
+                  :key="index"
+                  class="product appear-animate"
+                  data-animation-options="{
                                 'name': 'fadeInRightShorter',
                                 'delay': '.2s'
                             }"
-                  >
-                    <router-link :to="'/product/' + item.id">
-                      <figure class="product-media">
-                        <a>
-                          <img
-                            :src="item.image"
-                            alt="Blue Pinafore Denim Dress"
-                            width="280"
-                            height="315"
-                            style="background-color: #f2f3f5"
-                          />
-                        </a>
-                        <!-- <div class="product-label-group">
+                >
+                  <router-link :to="'/product/' + item.id">
+                    <figure class="product-media">
+                      <a>
+                        <img
+                          :src="item.image"
+                          alt="Blue Pinafore Denim Dress"
+                          width="280"
+                          height="315"
+                          style="background-color: #f2f3f5"
+                        />
+                      </a>
+                      <!-- <div class="product-label-group">
                         <label class="product-label label-sale">35% Off</label>
                       </div> -->
-                        <div class="product-action-vertical">
-                          <a
-                            class="btn-product-icon btn-cart"
-                            data-toggle="modal"
-                            data-target="#addCartModal"
-                            title="Add to cart"
-                            ><i class="d-icon-bag"></i
-                          ></a>
-                          <a
-                            class="btn-product-icon btn-wishlist"
-                            title="Add to wishlist"
-                            ><i class="d-icon-heart"></i
-                          ></a>
-                        </div>
-                        <div class="product-action">
-                          <a
-                            class="btn-product btn-quickview"
-                            title="Quick View"
-                            >Quick View</a
-                          >
-                        </div>
-                      </figure>
-                    </router-link>
-                    <div class="product-details">
-                      <div class="product-cat">
-                        <a :href="item.category.slug">{{
-                          item.category.name
-                        }}</a>
+                      <div class="product-action-vertical">
+                        <a
+                          class="btn-product-icon btn-cart"
+                          data-toggle="modal"
+                          data-target="#addCartModal"
+                          title="Add to cart"
+                          ><i class="d-icon-bag"></i
+                        ></a>
+                        <a
+                          class="btn-product-icon btn-wishlist"
+                          title="Add to wishlist"
+                          ><i class="d-icon-heart"></i
+                        ></a>
                       </div>
-                      <h3 class="product-name">
-                        <a>{{ item.title }}</a>
-                      </h3>
-                      <div class="product-price">
-                        <span class="price">{{ item.min_price }}</span>
+                      <div class="product-action">
+                        <a class="btn-product btn-quickview" title="Quick View"
+                          >Quick View</a
+                        >
                       </div>
-                      <div class="ratings-container">
-                        <div class="ratings-full">
-                          <span
-                            class="ratings"
-                            :style="'width: ' + item.star * 20 + '%'"
-                          ></span>
-                          <span class="tooltiptext tooltip-top"></span>
-                        </div>
-                        <a class="rating-reviews">( 6 reviews )</a>
+                    </figure>
+                  </router-link>
+                  <div class="product-details">
+                    <div class="product-cat">
+                      <a :href="item.category.slug">{{ item.category.name }}</a>
+                    </div>
+                    <h3 class="product-name">
+                      <a>{{ item.title }}</a>
+                    </h3>
+                    <div class="product-price">
+                      <span class="price">{{ item.min_price }}</span>
+                    </div>
+                    <div class="ratings-container">
+                      <div class="ratings-full">
+                        <span
+                          class="ratings"
+                          :style="'width: ' + item.star * 20 + '%'"
+                        ></span>
+                        <span class="tooltiptext tooltip-top"></span>
                       </div>
+                      <a class="rating-reviews">( 6 reviews )</a>
                     </div>
                   </div>
                 </div>
@@ -1360,9 +1362,7 @@
           </button>
         </form>
         <!-- End of Search Form -->
-        <ul class="mobile-menu mmenu-anim">
-          <menu-component></menu-component>
-        </ul>
+        <menu-component :ulclass="'mobile-menu mmenu-anim'"></menu-component>
         <!-- End of MobileMenu -->
       </div>
     </div>

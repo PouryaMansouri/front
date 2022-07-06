@@ -1,9 +1,8 @@
 <template>
-  <div>
+  <ul :class='ulclass'>
     <li class="active">
       <a href="/">Home</a>
     </li>
-
     <li v-for="item in navbarMenuList" :key="item.id">
       <a :href="item.slug">{{ item.name }}</a>
       <div class="megamenu">
@@ -57,11 +56,12 @@
         </div>
       </div>
     </li>
-  </div>
+  </ul>
 </template>
 
 <script>
 export default {
+  props:['ulclass'],
   data() {
     return {
       navbarMenuList: [],
