@@ -504,7 +504,7 @@
                       <hr class="product-divider mb-3" />
 
                       <div class="product-footer">
-                        <div class="social-links mr-2">
+                        <!-- <div class="social-links mr-2">
                           <a
                             href="#"
                             class="
@@ -525,15 +525,17 @@
                               fa-pinterest-p
                             "
                           ></a>
-                        </div>
+                        </div> -->
                         <div class="product-action">
-                          <a href="#" class="btn-product btn-wishlist"
+                          <a
+                            @click="addToWishlist"
+                            class="btn-product btn-wishlist"
                             ><i class="d-icon-heart"></i>Add To Wishlist</a
                           >
-                          <span class="divider"></span>
+                          <!-- <span class="divider"></span>
                           <a href="#" class="btn-product btn-compare"
                             ><i class="d-icon-random"></i>Add To Compare</a
-                          >
+                          > -->
                         </div>
                       </div>
 
@@ -1683,24 +1685,25 @@ export default {
       await $axios.get(`products/details/${params.slug}/`),
     ]);
 
-    // const comments = responses[0].data.comments;
-    // let averageRating = {};
+    const product = responses[0].data;
+    const comments = product.comments;
+    let averageRating = {};
 
-    // if (comments != []) {
-    //   var rateSum = 0;
-    //   for (let i = 0; i < comments.length; i++) {
-    //     const element = comments[i];
-    //     rateSum += element.rate;
-    //   }
-    //   averageRating.total = rateSum / comments.length;
-    // }
+    if (comments != []) {
+      var rateSum = 0;
+      for (let i = 0; i < comments.length; i++) {
+        const element = comments[i];
+        rateSum += element.rate;
+      }
+      averageRating.total = rateSum / comments.length;
+    }
 
     return {
-      product: responses[0].data,
-      productPrice: responses[0].data.min_price,
-      relatedProductsList: responses[0].data.related_products,
-      // comments,
-      // averageRating,
+      product,
+      productPrice: product.min_price,
+      relatedProductsList: product.related_products,
+      comments,
+      averageRating,
     };
   },
 };

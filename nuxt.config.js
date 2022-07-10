@@ -36,11 +36,7 @@ export default {
     { rel: "stylesheet", type: "text/css", href: "/css/market1.min.css" }
   ],
     script: [
-      
       {
-        src: "/vendor/jquery/jquery.min.js",
-        body: true
-      },{
         src: "/vendor/jquery/jquery.min.js",
         body: true
       },
@@ -106,6 +102,10 @@ export default {
         src: "/vendor/jquery.countdown/jquery.countdown.min.js",
         body: true
       },
+      {
+        src: "/vendor/elevatezoom/jquery.elevatezoom.min.js",
+        body: true
+      },
     ]
   },
 
@@ -115,7 +115,8 @@ css: [
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/vuex-persistedstate',
+    '~/plugins/auth-vuex-persistedstate',
+    '~/plugins/cart-vuex-persistedstate',
     '~/plugins/axios',
   ],
 
