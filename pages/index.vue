@@ -2,150 +2,6 @@
   <div class="home">
     <div class="page-wrapper">
       <h1 class="d-none">Sarar - UAE branch in United Arabic Emirates</h1>
-      <header class="header">
-        <div class="header-top">
-          <div class="container">
-            <div class="header-left">
-              <p class="welcome-msg">Welcome to Sarar From UAE!</p>
-            </div>
-            <div class="header-right">
-              <div class="dropdown">
-                <a href="#currency">USD</a>
-                <ul class="dropdown-box">
-                  <li><a href="#USD">USD</a></li>
-                  <li><a href="#EUR">EUR</a></li>
-                </ul>
-              </div>
-              <!-- End DropDown Menu -->
-              <div class="dropdown ml-5">
-                <a href="#language">ENG</a>
-                <ul class="dropdown-box">
-                  <li>
-                    <a href="#USD">ENG</a>
-                  </li>
-                  <li>
-                    <a href="#EUR">FRH</a>
-                  </li>
-                </ul>
-              </div>
-              <!-- End DropDown Menu -->
-              <span class="divider"></span>
-              <a href="contact-us.html" class="contact d-lg-show"
-                ><i class="d-icon-map"></i>Contact</a
-              >
-              <a href="#" class="help d-lg-show"
-                ><i class="d-icon-info"></i> Need Help</a
-              >
-              <a
-                class="login-link"
-                href="ajax/login.html"
-                data-toggle="login-modal"
-                ><i class="d-icon-user"></i>Sign in</a
-              >
-              <span class="delimiter">/</span>
-              <a
-                class="register-link ml-0"
-                href="ajax/login.html"
-                data-toggle="login-modal"
-                >Register</a
-              >
-              <!-- End of Login -->
-            </div>
-          </div>
-        </div>
-        <!-- End HeaderTop -->
-        <div class="header-middle sticky-header fix-top sticky-content">
-          <div class="container">
-            <div class="header-left">
-              <a href="#" class="mobile-menu-toggle">
-                <i class="d-icon-bars2"></i>
-              </a>
-              <a href="demo2.html" class="logo">
-                <img
-                  src="images/demos/demo2/logo.png"
-                  alt="logo"
-                  width="153"
-                  height="44"
-                />
-              </a>
-              <!-- End Logo -->
-
-              <div class="header-search hs-simple">
-                <form action="#" class="input-wrapper">
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="search"
-                    autocomplete="off"
-                    placeholder="Search..."
-                    required
-                  />
-                  <button
-                    class="btn btn-search"
-                    type="submit"
-                    title="submit-button"
-                  >
-                    <i class="d-icon-search"></i>
-                  </button>
-                </form>
-              </div>
-              <!-- End Header Search -->
-            </div>
-            <div class="header-right">
-              <a href="tel:#" class="icon-box icon-box-side">
-                <div class="icon-box-icon mr-0 mr-lg-2">
-                  <i class="d-icon-phone"></i>
-                </div>
-                <div class="icon-box-content d-lg-show">
-                  <h4 class="icon-box-title">Call Us Now:</h4>
-                  <p>0(800) 123-456</p>
-                </div>
-              </a>
-              <span class="divider"></span>
-              <wishlist-component></wishlist-component>
-              <span class="divider"></span>
-              <cart-component></cart-component>
-              <div class="header-search hs-toggle mobile-search">
-                <a href="#" class="search-toggle">
-                  <i class="d-icon-search"></i>
-                </a>
-                <form action="#" class="input-wrapper">
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="search"
-                    autocomplete="off"
-                    placeholder="Search your keyword..."
-                    required
-                  />
-                  <button
-                    class="btn btn-search"
-                    type="submit"
-                    title="submit-button"
-                  >
-                    <i class="d-icon-search"></i>
-                  </button>
-                </form>
-              </div>
-              <!-- End of Header Search -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Menu balaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-        <div class="header-bottom d-lg-show">
-          <div class="container">
-            <div class="header-left">
-              <nav class="main-nav">
-                  <menu-component
-                    :ulclass="'menu menu-active-underline'"
-                  ></menu-component>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </header>
-      <!-- End Header -->
       <main class="main demo2-cls">
         <div class="page-content">
           <div class="container">
@@ -945,7 +801,7 @@
                 <figure class="instagram">
                   <a href="#">
                     <img
-                      src="images/demos/demo2/instagram/1.jpg"
+                      src="/images/demos/demo2/instagram/1.jpg"
                       alt="Instagram"
                       width="220"
                       height="220"
@@ -955,7 +811,7 @@
                 <figure class="instagram">
                   <a href="#">
                     <img
-                      src="images/demos/demo2/instagram/2.jpg"
+                      src="/images/demos/demo2/instagram/2.jpg"
                       alt="Instagram"
                       width="220"
                       height="220"
@@ -965,7 +821,7 @@
                 <figure class="instagram">
                   <a href="#">
                     <img
-                      src="images/demos/demo2/instagram/3.jpg"
+                      src="/images/demos/demo2/instagram/3.jpg"
                       alt="Instagram"
                       width="220"
                       height="220"
@@ -975,7 +831,7 @@
                 <figure class="instagram">
                   <a href="#">
                     <img
-                      src="images/demos/demo2/instagram/4.jpg"
+                      src="/images/demos/demo2/instagram/4.jpg"
                       alt="Instagram"
                       width="220"
                       height="220"
@@ -985,7 +841,7 @@
                 <figure class="instagram">
                   <a href="#">
                     <img
-                      src="images/demos/demo2/instagram/5.jpg"
+                      src="/images/demos/demo2/instagram/5.jpg"
                       alt="Instagram"
                       width="220"
                       height="220"
@@ -997,243 +853,15 @@
           </div>
         </div>
       </main>
-      <!-- End of Main -->
-
-      <footer class="footer appear-animate">
-        <div class="container">
-          <div class="footer-middle">
-            <div class="row">
-              <div class="col-lg-4 col-sm-6">
-                <div class="widget widget-about">
-                  <a href="demo2.html" class="logo-footer mb-4">
-                    <img
-                      src="images/demos/demo2/logo-footer.png"
-                      alt="logo-footer"
-                      width="150"
-                      height="43"
-                    />
-                  </a>
-                  <div class="widget-body">
-                    <p class="ls-s">
-                      Fringilla urna porttitor rhoncus dolor purus<br />
-                      luctus venenatis lectus magna fringilla diam<br />
-                      maecenas ultricies mi eget mauris.
-                    </p>
-                    <a href="mailto:mail@riode.com">Riode@example.com</a>
-                  </div>
-                </div>
-                <!-- End of Widget -->
-              </div>
-              <div class="col-lg-8">
-                <div class="row">
-                  <div class="col-lg-4 col-sm-4">
-                    <div class="widget">
-                      <h4 class="widget-title">About Us</h4>
-                      <ul class="widget-body">
-                        <li><a href="about-us.html">About Us</a></li>
-                        <li><a href="#">Order History</a></li>
-                        <li><a href="#">Returns</a></li>
-                        <li><a href="#">Custom Service</a></li>
-                        <li><a href="#">Terms &amp; Condition</a></li>
-                      </ul>
-                    </div>
-                    <!-- End of Widget -->
-                  </div>
-                  <div class="col-lg-4 col-sm-4">
-                    <div class="widget">
-                      <h4 class="widget-title">Customer Service</h4>
-                      <ul class="widget-body">
-                        <li><a href="#">Payment Methods</a></li>
-                        <li><a href="#">Money-back Guarantee!</a></li>
-                        <li><a href="#">Returns</a></li>
-                        <li><a href="#">Shipping</a></li>
-                        <li><a href="#">Terms and Conditions</a></li>
-                      </ul>
-                    </div>
-                    <!-- End of Widget -->
-                  </div>
-                  <div class="col-lg-4 col-sm-4">
-                    <div class="widget">
-                      <h4 class="widget-title">My Account</h4>
-                      <ul class="widget-body">
-                        <li><a href="#">Sign In</a></li>
-                        <li><a href="cart.html">View Cart</a></li>
-                        <li><a href="wishlist.html">My Wishlist</a></li>
-                        <li><a href="#">Track My Order</a></li>
-                        <li><a href="#">Help</a></li>
-                      </ul>
-                    </div>
-                    <!-- End of Widget -->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- End of FooterMiddle -->
-          <div class="footer-bottom">
-            <div class="footer-left">
-              <figure class="payment">
-                <img
-                  src="images/payment.png"
-                  alt="payment"
-                  width="159"
-                  height="29"
-                />
-              </figure>
-            </div>
-            <div class="footer-center">
-              <p class="copyright">
-                Riode eCommerce &copy; 2021. All Rights Reserved
-              </p>
-            </div>
-            <div class="footer-right">
-              <div class="social-links">
-                <a
-                  href="#"
-                  title="social-link"
-                  class="social-link social-facebook fab fa-facebook-f"
-                ></a>
-                <a
-                  href="#"
-                  title="social-link"
-                  class="social-link social-twitter fab fa-twitter"
-                ></a>
-                <a
-                  href="#"
-                  title="social-link"
-                  class="social-link social-linkedin fab fa-linkedin-in"
-                ></a>
-              </div>
-            </div>
-          </div>
-          <!-- End of FooterBottom -->
-        </div>
-      </footer>
-      <!-- End of Footer -->
-    </div>
-
-    <!-- Sticky Footer -->
-    <div class="sticky-footer sticky-content fix-bottom">
-      <a href="demo2.html" class="sticky-link">
-        <i class="d-icon-home"></i>
-        <span>Home</span>
-      </a>
-      <a href="demo2-shop.html" class="sticky-link">
-        <i class="d-icon-volume"></i>
-        <span>Categories</span>
-      </a>
-      <a href="wishlist.html" class="sticky-link">
-        <i class="d-icon-heart"></i>
-        <span>Wishlist</span>
-      </a>
-      <a href="account.html" class="sticky-link">
-        <i class="d-icon-user"></i>
-        <span>Account</span>
-      </a>
-      <div class="header-search hs-toggle dir-up">
-        <a href="#" class="search-toggle sticky-link">
-          <i class="d-icon-search"></i>
-          <span>Search</span>
-        </a>
-        <form action="#" class="input-wrapper">
-          <input
-            type="text"
-            class="form-control"
-            name="search"
-            autocomplete="off"
-            placeholder="Search your keyword..."
-            required
-          />
-          <button class="btn btn-search" type="submit" title="submit-button">
-            <i class="d-icon-search"></i>
-          </button>
-        </form>
-      </div>
-    </div>
-    <!-- Scroll Top -->
-    <a id="scroll-top" href="#top" title="Top" role="button" class="scroll-top"
-      ><i class="d-icon-arrow-up"></i
-    ></a>
-
-    <!-- MobileMenu -->
-    <div class="mobile-menu-wrapper">
-      <div class="mobile-menu-overlay"></div>
-      <!-- End of Overlay -->
-      <a class="mobile-menu-close" href="#"><i class="d-icon-times"></i></a>
-      <!-- End of CloseButton -->
-      <div class="mobile-menu-container scrollable">
-        <form action="#" class="input-wrapper">
-          <input
-            type="text"
-            class="form-control"
-            name="search"
-            autocomplete="off"
-            placeholder="Search your keyword..."
-            required
-          />
-          <button class="btn btn-search" type="submit" title="submit-button">
-            <i class="d-icon-search"></i>
-          </button>
-        </form>
-        <!-- End of Search Form -->
-        <menu-component :ulclass="'mobile-menu mmenu-anim'"></menu-component>
-        <!-- End of MobileMenu -->
-      </div>
-    </div>
-
-    <!-- newsletter-popup default -->
-    <div
-      class="newsletter-popup newsletter-pop1 mfp-hide"
-      id="newsletter-popup"
-      style="background-image: url(images/newsletter-popup.jpg)"
-    >
-      <div class="newsletter-content">
-        <h4 class="text-uppercase text-dark">
-          Up to <span class="text-primary">20% Off</span>
-        </h4>
-        <h2 class="font-weight-semi-bold">Sign up to <span>RIODE</span></h2>
-        <p class="text-grey">
-          Subscribe to the Riode eCommerce newsletter to receive timely updates
-          from your favorite products.
-        </p>
-        <form
-          action="#"
-          method="get"
-          class="input-wrapper input-wrapper-inline input-wrapper-round"
-        >
-          <input
-            type="email"
-            class="form-control email"
-            name="email"
-            id="email2"
-            placeholder="Email address here..."
-            required=""
-          />
-          <button class="btn btn-dark" type="submit">SUBMIT</button>
-        </form>
-        <div class="form-checkbox justify-content-center">
-          <input
-            type="checkbox"
-            class="custom-checkbox"
-            id="hide-newsletter-popup"
-            name="hide-newsletter-popup"
-            required
-          />
-          <label for="hide-newsletter-popup">Don't show this popup again</label>
-        </div>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
 import Vue from "vue";
-import CartComponent from "~/components/CartComponent.vue";
-import MenuComponent from "~/components/MenuComponent.vue";
-import WishlistComponent from "~/components/WishlistComponent.vue";
 
 export default Vue.extend({
-  components: { MenuComponent, CartComponent, WishlistComponent },
+  components: {},
   head() {
     return {
       title: "main",

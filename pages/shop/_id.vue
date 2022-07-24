@@ -1683,34 +1683,34 @@ export default {
     },
   },
   async asyncData({ params, $axios }) {
-    const responses = await Promise.all([
-      await $axios.get(`products/${params.id}/`, { isBasic: true }),
-      await $axios.get(`products/related/${params.id}/`, { isBasic: true }),
-      await $axios.get(`comments/comments-product/${params.id}/`, {
-        isBasic: true,
-      }),
-    ]);
+    // const responses = await Promise.all([
+    //   await $axios.get(`products/${params.id}/`, { isBasic: true }),
+    //   await $axios.get(`products/related/${params.id}/`, { isBasic: true }),
+    //   await $axios.get(`comments/comments-product/${params.id}/`, {
+    //     isBasic: true,
+    //   }),
+    // ]);
 
-    const comments = responses[2].data;
-    let averageRating = {};
+    // const comments = responses[2].data;
+    // let averageRating = {};
 
-    if (comments != []) {
-      var rateSum = 0;
-      for (let i = 0; i < comments.length; i++) {
-        const element = comments[i];
-        rateSum += element.rate;
-      }
-      averageRating.total = rateSum / comments.length;
-    }
+    // if (comments != []) {
+    //   var rateSum = 0;
+    //   for (let i = 0; i < comments.length; i++) {
+    //     const element = comments[i];
+    //     rateSum += element.rate;
+    //   }
+    //   averageRating.total = rateSum / comments.length;
+    // }
 
-    return {
-      product: responses[0].data,
-      productPrice: responses[0].data.min_price,
-      relatedProductsList: responses[1].data,
-      comments,
-      averageRating,
-      productId: params.id,
-    };
+    // return {
+    //   product: responses[0].data,
+    //   productPrice: responses[0].data.min_price,
+    //   relatedProductsList: responses[1].data,
+    //   comments,
+    //   averageRating,
+    //   productId: params.id,
+    // };
   },
 };
 </script>

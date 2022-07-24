@@ -22,7 +22,7 @@
           <figure class="product-media">
             <a href="product.html">
               <img
-                src="images/wishlist/product-1.jpg"
+                :src="'images/' + item.image"
                 width="100"
                 height="100"
                 alt="product"
@@ -33,16 +33,18 @@
             </button>
           </figure>
           <div class="product-detail">
-            <a href="product.html" class="product-name">Girl's Dark Bag</a>
+            <a :href="'product/' + item.slug" class="product-name"
+              >Girl's Dark Bag</a
+            >
             <div class="price-box">
-              <span class="product-price">$84.00</span>
+              <span class="product-price">${{ item.price }}</span>
             </div>
           </div>
         </div>
 
         <!-- End of wishlist Product -->
       </div>
-      <a href="wishlist.html" class="btn btn-dark wishlist-btn mt-4"
+      <a href="wishlist" class="btn btn-dark wishlist-btn mt-4"
         ><span>Go To Wishlist</span></a
       >
       <!-- End of Products  -->
@@ -57,11 +59,6 @@ export default {
       list: [],
     };
   },
-  async fetch() {
-    // const { data } = await this.$axios.get("categories/navbar/", {
-    //   isBasic: true,
-    // });
-    // this.navbarMenuList = data;
-  },
+  async fetch() {},
 };
 </script>

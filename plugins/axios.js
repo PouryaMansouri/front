@@ -4,12 +4,16 @@ export default function ({
     redirect
 }) {
     $axios.onRequest((config) => {
+        console.log(config);
         if (config.isBasic) {
             config.headers.Authorization = 'Basic Og==';
+
             return config;
         }
         if (store.state.auth.access) {
             config.headers.Authorization = 'Bearer ' + store.state.auth.access;
+        } else {
+            config.headers.Authorization = 'Bearer ';
         }
 
         return config;
@@ -23,7 +27,7 @@ export default function ({
             if (error.response.data.errorCode === 'JWT_TOKEN_EXPIRED' && refresh) {
                 if (Object.prototype.hasOwnProperty.call(error.config, 'retryAttempts')) {
                     store.commit('auth/logout');
-                    return redirect('/anmelden');
+                    return redirect('/');
                 }
                 const config = { retryAttempts: 1, ...error.config };
                 try {
@@ -31,12 +35,12 @@ export default function ({
                     return Promise.resolve($axios(config));
                 } catch (e) {
                     store.commit('auth/logout');
-                    return redirect('/anmelden');
+                    return redirect('/');
                 }
             }
 
             store.commit('auth/logout');
-            return redirect('/anmelden');
+            return redirect('/');
         }
 
         return Promise.reject(error);

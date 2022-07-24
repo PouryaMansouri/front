@@ -38,8 +38,8 @@
       </div>
       <!-- End of Cart Total -->
       <div class="cart-action">
-        <a href="cart" class="btn btn-dark btn-link">View Cart</a>
-        <a href="checkout" class="btn btn-dark"><span>Go To Checkout</span></a>
+        <NuxtLink to="/cart" class="btn btn-dark btn-link">View Cart</NuxtLink>
+        <NuxtLink to="/checkout" class="btn btn-dark"> Go To Checkout </NuxtLink>
       </div>
       <!-- End of Cart Action -->
     </div>
