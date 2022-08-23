@@ -692,7 +692,7 @@
               </div>
             </section>
 
-            <section
+            <!-- <section
               class="instagram-section mt-10 pt-7 pb-8 mb-10 appear-animate"
               data-animation-options="{
                         'delay': '.2s',
@@ -779,7 +779,7 @@
                   </a>
                 </figure>
               </div>
-            </section>
+            </section> -->
           </div>
         </div>
       </main>
