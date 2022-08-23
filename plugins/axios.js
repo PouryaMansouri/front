@@ -4,17 +4,9 @@ export default function ({
     redirect
 }) {
     $axios.onRequest((config) => {
-        console.log(config);
-        if (config.isBasic) {
-            config.headers.Authorization = 'Basic Og==';
-
-            return config;
-        }
-        if (store.state.auth.access) {
+        if (store.state.auth.access != null)
             config.headers.Authorization = 'Bearer ' + store.state.auth.access;
-        } else {
-            config.headers.Authorization = 'Bearer ';
-        }
+        else config.headers.Authorization = '';
 
         return config;
     });

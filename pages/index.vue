@@ -36,7 +36,7 @@
                     >
                       <figure>
                         <img
-                          :src="landingMain.image_1"
+                          :src="mainPoster.image_1"
                           alt="intro-banner"
                           width="1180"
                           height="600"
@@ -57,7 +57,7 @@
                           "
                           data-animation-options="{'name': 'fadeInRightShorter', 'duration': '1.2s', 'delay': '.3s'}"
                         >
-                          {{ landingMain.title_1 }}
+                          {{ mainPoster.title_1 }}
                         </h4>
                         <h2
                           class="
@@ -67,7 +67,7 @@
                           "
                           data-animation-options="{'name': 'fadeInRightShorter', 'duration': '1.2s', 'delay': '.3s'}"
                         >
-                          {{ landingMain.description_1 }}
+                          {{ mainPoster.description_1 }}
                         </h2>
                         <!-- <h5
                         class="
@@ -92,7 +92,7 @@
                     <div class="intro-slide2 banner banner-fixed">
                       <figure>
                         <img
-                          :src="landingMain.image_2"
+                          :src="mainPoster.image_2"
                           alt="banner"
                           width="1180"
                           height="600"
@@ -110,7 +110,7 @@
                           "
                           data-animation-options="{'name': 'fadeInDownShorter', 'duration': '1.2s', 'delay': '.5s'}"
                         >
-                          {{ landingMain.title_2 }}
+                          {{ mainPoster.title_2 }}
                         </h4>
                         <h3
                           class="
@@ -123,7 +123,7 @@
                           "
                           data-animation-options="{'name': 'blurIn', 'duration': '1.4s', 'delay': '.1s'}"
                         >
-                          {{ landingMain.description_2 }}
+                          {{ mainPoster.description_2 }}
                         </h3>
                         <!-- <h5
                         class="
@@ -366,7 +366,7 @@
               </div>
             </section>
 
-            <section
+            <!-- <section
               class="pt-md-2 pb-md-6 category-section appear-animate"
               data-animation-options="{'name': 'fadeIn'}"
             >
@@ -484,7 +484,7 @@
                 </div>
                 <div class="col-1 grid-space"></div>
               </div>
-            </section>
+            </section> -->
 
             <section
               class="banner banner-sale mt-10 mb-10 appear-animate"
@@ -876,59 +876,25 @@ export default Vue.extend({
   },
   async asyncData({ $axios }) {
     const responses = await Promise.all([
-      await $axios.get("landing/main/", { isBasic: true }),
-      await $axios.get("landing/main/cart/top/", { isBasic: true }),
-      await $axios.get("landing/main/middle-banner/", { isBasic: true }),
-      await $axios.get("landing/main/best-selling-product/", { isBasic: true }),
-      await $axios.get("landing/new-product/", { isBasic: true }),
-      await $axios.get("categories/top/", { isBasic: true }),
+      await $axios.get("/landing/all-data/"),
     ]);
 
+    const allData = responses[0].data;
+
     return {
-      landingMain: responses[0].data,
-      topCartList: responses[1].data,
-      middleBanner: responses[2].data,
-      bestSellingList: responses[3].data,
-      ourFeaturedList: responses[4].data,
-      topCategories: responses[5].data,
+      mainPoster: allData.main_poster,
+      topCartList: allData.main_top_cart,
+      middleBanner: allData.middle_banner,
+      bestSellingList: allData.best_sells_in_month,
+      ourFeaturedList: allData.new_product,
     };
   },
   data() {
     return {
-      bestSellingList: [],
+      mainPoster: {},
       topCartList: [],
       middleBanner: {},
-      ourFeaturedList: [],
-      landingMain: {},
-      middleBanner: [],
-      topCategories: {
-        title: "Top categories",
-        category_part1_1: {
-          id: 1,
-          name: "",
-          slug: "",
-        },
-        category_part1_2: {
-          id: 1,
-          name: "",
-          slug: "",
-        },
-        image_part1: "",
-        category_part2: {
-          id: 1,
-          name: "",
-          slug: "",
-        },
-        image_part2: "",
-        category_part3: {
-          id: 1,
-          name: "",
-          slug: "",
-        },
-        image_part3: "",
-      },
       bestSellingList: [],
-      topCartList: [],
       ourFeaturedList: [],
     };
   },

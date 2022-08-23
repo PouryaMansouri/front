@@ -1,0 +1,21 @@
+version: '3.5'
+services:
+  nuxt-nginx:
+    restart: always
+    image: nginx
+    container_name: nuxt-nginx-container
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./nginx/prod/conf.d:/etc/nginx/conf.d
+    ports:
+      - '80:80'
+
+  nuxt-node:
+    image: node:16.16.0
+    container_name: nuxt-node-container
+    command: npm run deploy
+    volumes:
+      - ../:/usr/src/app
+    working_dir: /usr/src/app
+    environment:
+      HOST: 0.0.0.0
