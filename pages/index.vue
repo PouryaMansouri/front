@@ -874,21 +874,21 @@ export default Vue.extend({
       ],
     };
   },
-  // async asyncData({ $axios }) {
-  //   const responses = await Promise.all([
-  //     await $axios.get("/landing/all-data/"),
-  //   ]);
+  async asyncData({ $axios }) {
+    const responses = await Promise.all([
+      await $axios.get("/landing/all-data/"),
+    ]);
 
-  //   const allData = responses[0].data;
+    const allData = responses[0].data;
 
-  //   return {
-  //     mainPoster: allData.main_poster,
-  //     topCartList: allData.main_top_cart,
-  //     middleBanner: allData.middle_banner,
-  //     bestSellingList: allData.best_sells_in_month,
-  //     ourFeaturedList: allData.new_product,
-  //   };
-  // },
+    return {
+      mainPoster: allData.main_poster,
+      topCartList: allData.main_top_cart,
+      middleBanner: allData.middle_banner,
+      bestSellingList: allData.best_sells_in_month,
+      ourFeaturedList: allData.new_product,
+    };
+  },
   data() {
     return {
       mainPoster: {},
