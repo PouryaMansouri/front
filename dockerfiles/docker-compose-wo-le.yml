@@ -9,6 +9,8 @@ services:
       - ./nginx/prod/conf.d:/etc/nginx/conf.d
     ports:
       - '80:80'
+    depends_on:
+      - nuxt-node
 
   nuxt-node:
     image: node:16.16.0
