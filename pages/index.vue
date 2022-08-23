@@ -565,7 +565,7 @@
               </div>
             </section>
 
-            <section class="service-list mt-10">
+            <!-- <section class="service-list mt-10">
               <div
                 class="
                   owl-carousel owl-theme
@@ -690,7 +690,7 @@
                   </div>
                 </div>
               </div>
-            </section>
+            </section> -->
 
             <!-- <section
               class="instagram-section mt-10 pt-7 pb-8 mb-10 appear-animate"
