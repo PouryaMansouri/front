@@ -2,7 +2,7 @@ version: '3.5'
 services:
   nuxt-nginx:
     restart: always
-    image: nginx
+    image: nginx:stable
     container_name: nuxt-nginx-container
     volumes:
       - /etc/localtime:/etc/localtime:ro
