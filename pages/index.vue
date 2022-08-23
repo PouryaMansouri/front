@@ -224,14 +224,14 @@
                   :key="index"
                   class="col-lg-3 col-md-4 col-6 mb-4"
                 >
-                  <div
-                    class="product appear-animate"
-                    data-animation-options="{
+                  <router-link :key="item.id" :to="'/product/' + item.id">
+                    <div
+                      class="product appear-animate"
+                      data-animation-options="{
                                     'name': 'fadeInLeftShorter',
                                     'delay': '.4s'
                                 }"
-                  >
-                    <router-link :to="'/product/' + item.id">
+                    >
                       <figure class="product-media">
                         <a>
                           <img
@@ -267,102 +267,32 @@
                           >
                         </div>
                       </figure>
-                    </router-link>
-
-                    <div class="product-details">
-                      <div class="product-cat">
-                        <a :href="item.category.slug">{{
-                          item.category.name
-                        }}</a>
-                      </div>
-                      <h3 class="product-name">
-                        <a>{{ item.title }}</a>
-                      </h3>
-                      <div class="product-price">
-                        <span class="price">{{ item.min_price }}</span>
-                      </div>
-                      <div class="ratings-container">
-                        <div class="ratings-full">
-                          <span
-                            class="ratings"
-                            :style="'width: ' + item.star * 20 + '%'"
-                          ></span>
-                          <span class="tooltiptext tooltip-top"></span>
+                      <div class="product-details">
+                        <div class="product-cat">
+                          <a :href="item.category.slug">{{
+                            item.category.name
+                          }}</a>
                         </div>
-                        <a class="rating-reviews">( 12 reviews )</a>
+                        <h3 class="product-name">
+                          <a>{{ item.title }}</a>
+                        </h3>
+                        <div class="product-price">
+                          <span class="price">{{ item.min_price }}</span>
+                        </div>
+                        <div class="ratings-container">
+                          <div class="ratings-full">
+                            <span
+                              class="ratings"
+                              :style="'width: ' + item.star * 20 + '%'"
+                            ></span>
+                            <span class="tooltiptext tooltip-top"></span>
+                          </div>
+                          <a class="rating-reviews">( 12 reviews )</a>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </router-link>
                 </div>
-                <!-- <div class="col-lg-3 col-md-4 col-6 mb-4">
-                <div
-                  class="product appear-animate"
-                  data-animation-options="{
-                                    'name': 'fadeInLeftShorter',
-                                    'delay': '.2s'
-                                }"
-                >
-                  <figure class="product-media">
-                    <a href="demo2-product.html">
-                      <img
-                        src="images/demos/demo2/products/2.jpg"
-                        alt="Blue Pinafore Denim Dress"
-                        width="280"
-                        height="315"
-                        style="background-color: #f2f3f5"
-                      />
-                    </a>
-                    <div class="product-label-group">
-                      <label class="product-label label-sale">27% off</label>
-                    </div>
-                    <div class="product-action-vertical">
-                      <a
-                        href="#"
-                        class="btn-product-icon btn-cart"
-                        data-toggle="modal"
-                        data-target="#addCartModal"
-                        title="Add to cart"
-                        ><i class="d-icon-bag"></i
-                      ></a>
-                      <a
-                        href="#"
-                        class="btn-product-icon btn-wishlist"
-                        title="Add to wishlist"
-                        ><i class="d-icon-heart"></i
-                      ></a>
-                    </div>
-                    <div class="product-action">
-                      <a
-                        href="#"
-                        class="btn-product btn-quickview"
-                        title="Quick View"
-                        >Quick View</a
-                      >
-                    </div>
-                  </figure>
-                  <div class="product-details">
-                    <div class="product-cat">
-                      <a href="demo2-shop.html">Clothing</a>
-                    </div>
-                    <h3 class="product-name">
-                      <a href="demo2-product.html">Cotton-padded Clothing</a>
-                    </h3>
-                    <div class="product-price">
-                      <ins class="new-price">$125.99</ins
-                      ><del class="old-price">$160.99</del>
-                    </div>
-                    <div class="ratings-container">
-                      <div class="ratings-full">
-                        <span class="ratings" style="width: 60%"></span>
-                        <span class="tooltiptext tooltip-top"></span>
-                      </div>
-                      <a href="demo2-product.html" class="rating-reviews"
-                        >( 8 reviews )</a
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div> -->
               </div>
             </section>
 
@@ -875,22 +805,14 @@ export default Vue.extend({
     };
   },
   async asyncData({ $axios }) {
-    // const responses = await Promise.all([
-    //   await $axios.get("/landing/all-data/"),
-    // ]);
-
     const { data } = await $axios.get("/landing/all-data/");
 
-    const allData = data;
-    // const allData = responses[0].data;
-    // const allData = responses[0].data;
-
     return {
-      mainPoster: allData.main_poster,
-      topCartList: allData.main_top_cart,
-      middleBanner: allData.middle_banner,
-      bestSellingList: allData.best_sells_in_month,
-      ourFeaturedList: allData.new_product,
+      mainPoster: data.main_poster,
+      topCartList: data.main_top_cart,
+      middleBanner: data.middle_banner,
+      bestSellingList: data.best_sells_in_month,
+      ourFeaturedList: data.new_product,
     };
   },
   data() {
