@@ -875,11 +875,15 @@ export default Vue.extend({
     };
   },
   async asyncData({ $axios }) {
-    const responses = await Promise.all([
-      await $axios.get("/landing/all-data/"),
-    ]);
+    // const responses = await Promise.all([
+    //   await $axios.get("/landing/all-data/"),
+    // ]);
 
-    const allData = responses[0].data;
+    const { data } = await $axios.get("/landing/all-data/");
+
+    const allData = data;
+    // const allData = responses[0].data;
+    // const allData = responses[0].data;
 
     return {
       mainPoster: allData.main_poster,
