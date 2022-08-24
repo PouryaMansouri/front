@@ -7,6 +7,10 @@ export const state = () => ({
 export const getters = {
     isAuthenticated(state) {
         return !!state.access;
+    },
+    
+    getAccessToken(state) {
+        return state.access;
     }
 };
 
@@ -34,7 +38,6 @@ export const actions = {
             email,
             password
         });
-
         commit('setTokens', res);
         await dispatch('getUser');
     },

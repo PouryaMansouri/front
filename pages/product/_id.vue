@@ -835,13 +835,10 @@ export default {
       this.productQuantity = shop.quantity;
     },
     addToWishlist() {
-      console.log(this.product.id);
     },
     addToCart() {
-      console.log();
     },
     submitComment() {
-      console.log(this.comment);
       // this.$axios
       //   .post("comments/create-product/", this.comment)
       //   .then((response) => {

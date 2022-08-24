@@ -1,15 +1,13 @@
-export const state = () => ({
-    carts: [],
-});
+export const state = () => ([]);
 
 export const getters = {
-    totalCart: (state) => state.carts.reduce((currentQuantiy, cart) => currentQuantiy + cart.quantity, 0),
-    totalAmount: (state) => state.carts.reduce((currentAmount, cart) => currentAmount + cart.quantity * cart.price, 0),
+    totalCart: (state) => state.reduce((currentQuantiy, cart) => currentQuantiy + cart.quantity, 0),
+    totalAmount: (state) => state.reduce((currentAmount, cart) => currentAmount + cart.quantity * cart.price, 0),
 };
 
 export const mutations = {
     ADD_PRODUCT_TO_CART(state, product) {
-        const carts = [...state.carts]
+        const carts = [...state]
         const cartIndex = carts.findIndex((cart) => cart.id === product.id)
 
         if (cartIndex !== -1) {
@@ -18,11 +16,11 @@ export const mutations = {
             carts.push({ ...product, quantity: 1 })
         }
 
-        state.carts = [...carts]
+        state = [...carts]
     },
 
     REMOVE_PRODUCT_FROM_CART(state, product) {
-        const carts = [...state.carts]
+        const carts = [...state]
         const cartIndex = carts.findIndex((cart) => cart.id === product.id)
 
         if (cartIndex !== -1) {
@@ -35,7 +33,7 @@ export const mutations = {
             }
         }
 
-        state.carts = [...carts]
+        state = [...carts]
     },
 };
 

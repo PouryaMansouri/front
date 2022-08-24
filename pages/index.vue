@@ -388,6 +388,11 @@
 import Vue from "vue";
 
 export default Vue.extend({
+  computed: {
+    access() {
+      return this.$store.state;
+    },
+  },
   components: {},
   head() {
     return {
