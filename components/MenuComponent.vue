@@ -36,9 +36,7 @@ export default {
     };
   },
   async fetch() {
-    const { data } = await this.$axios.get("categories/navbar/", {
-      isBasic: true,
-    });
+    const { data } = await this.$axios.get("categories/navbar/");
     this.navbarMenuList = data;
   },
 };

@@ -1,17 +1,6 @@
 <template>
   <div class="page-wrapper">
     <main class="main">
-      <nav class="breadcrumb-nav">
-        <div class="container">
-          <ul class="breadcrumb">
-            <li>
-              <a href="/"><i class="d-icon-home"></i></a>
-            </li>
-            <li><a href="shop">Sarar Shop</a></li>
-            <li>My Account</li>
-          </ul>
-        </div>
-      </nav>
       <div class="page-content mt-6 pb-2 mb-10">
         <div class="container">
           <div class="login-popup">

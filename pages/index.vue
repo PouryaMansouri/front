@@ -179,7 +179,7 @@
                   :key="index"
                   class="col-lg-3 col-md-4 col-6 mb-4"
                 >
-                  <router-link :key="item.id" :to="'/product/' + item.id">
+                  <router-link :key="item.slug" :to="'/product/' + item.slug">
                     <div
                       class="product appear-animate"
                       data-animation-options="{
@@ -326,7 +326,7 @@
                       <a>
                         <img
                           :src="item.image"
-                          alt="Blue Pinafore Denim Dress"
+                          :key="item.slug"
                           width="280"
                           height="315"
                           style="background-color: #f2f3f5"

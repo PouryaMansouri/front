@@ -1417,16 +1417,16 @@ window.Riode = {};
      */
     Riode.initPurchasedMinipopup = function () {
         setInterval(function () {
-            Riode.Minipopup.open({
-                message: 'Someone Purchased',
-                productClass: 'product-cart',
-                name: 'Daisy Shoes Sonia by Sonia-Blue',
-                nameLink: 'product.html',
-                imageSrc: 'images/cart/product-1.jpg',
-                isPurchased: true
-            }, function ($box) {
-                Riode.ratingTooltip($box[0]);
-            });
+            // Riode.Minipopup.open({
+            //     message: 'Someone Purchased',
+            //     productClass: 'product-cart',
+            //     name: 'Daisy Shoes Sonia by Sonia-Blue',
+            //     nameLink: 'product.html',
+            //     imageSrc: 'images/cart/product-1.jpg',
+            //     isPurchased: true
+            // }, function ($box) {
+            //     Riode.ratingTooltip($box[0]);
+            // });
         }, 60000);
     }
 

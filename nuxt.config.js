@@ -3,7 +3,7 @@ export default {
   target: 'server',
   server: {
     port: '8324'
-    },
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'front',
@@ -13,7 +13,7 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
     ],
     link: [
-      { rel: "icon", type: "image/png", href: "/images/icons/favicon.png" },
+      // { rel: "icon", type: "image/png", href: "/images/icons/favicon.png" },
       { rel: "preload", href: "/fonts/riode.ttf?5gap68", as: "font", type: "font/woff2", crossorigin: "anonymous" },
       {
         rel: "preload", href: "/vendor/fontawesome-free/webfonts/fa-solid-900.woff2", as: "font", type: "font/woff2",
@@ -116,7 +116,6 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
   ],
-
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/auth-vuex-persistedstate',
@@ -140,7 +139,13 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     'cookie-universal-nuxt',
+    'bootstrap-vue/nuxt',
   ],
+
+  bootstrapVue: {
+    bootstrapCSS: false, // Or `css: false`
+    bootstrapVueCSS: false, // Or `bvCSS: false`
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

@@ -4,45 +4,6 @@
     <main class="main single-product">
       <div class="page-content mb-10">
         <div class="container-fluid">
-          <div class="product-navigation">
-            <ul class="breadcrumb breadcrumb-lg">
-              <li>
-                <a href="demo7.html"><i class="d-icon-home"></i></a>
-              </li>
-              <li><a href="#" class="active">Products</a></li>
-              <li>Detail</li>
-            </ul>
-            <ul class="product-nav">
-              <li class="product-nav-prev">
-                <a href="#">
-                  <i class="d-icon-arrow-left"></i> Prev
-                  <span class="product-nav-popup">
-                    <img
-                      src="/images/product/product-thumb-prev.jpg"
-                      alt="product thumbnail"
-                      width="110"
-                      height="123"
-                    />
-                    <span class="product-name">Sed egtas Dnte Comfort</span>
-                  </span>
-                </a>
-              </li>
-              <li class="product-nav-next">
-                <a href="#">
-                  Next <i class="d-icon-arrow-right"></i>
-                  <span class="product-nav-popup">
-                    <img
-                      src="/images/product/product-thumb-next.jpg"
-                      alt="product thumbnail"
-                      width="110"
-                      height="123"
-                    />
-                    <span class="product-name">Sed egtas Dnte Comfort</span>
-                  </span>
-                </a>
-              </li>
-            </ul>
-          </div>
           <div class="row gutter-lg">
             <aside
               class="
@@ -209,7 +170,7 @@
                         <a
                           v-for="color in product.color"
                           :key="color.id"
-                          @click="colorSelect(color.name)"
+                          @click="colorSelect(color)"
                           class="color"
                           data-src="/images/demos/demo7/products/big1.jpg"
                           :style="'background-color: ' + color.code"
@@ -220,17 +181,44 @@
                       <label>Size:</label>
                       <div class="product-form-group">
                         <div class="product-variations">
-                          <a
-                            class="size"
-                            v-for="size in productSize"
-                            :key="size.id"
-                            @click="sizeSelect(size)"
-                            >{{ size.name }}</a
-                          >
+                          <b-row class="match-height">
+                            <b-col
+                              cols="6"
+                              v-for="size in productSize"
+                              :key="size.id"
+                            >
+                              <button
+                                @click="
+                                  sizeSelect(size, productSize.color.name)
+                                "
+                                :style="
+                                  'border-color:' + productSize.color.code
+                                "
+                              >
+                                {{ size.name }}
+                              </button>
+                            </b-col>
+                          </b-row>
                         </div>
-                        <!-- <a href="#" class="product-variation-clean"
-                          >Clean All</a
-                        > -->
+                      </div>
+                    </div>
+
+                    <div class="product-form product-size">
+                      <label>Shop:</label>
+                      <div class="product-form-group">
+                        <div class="product-variations">
+                          <b-row>
+                            <b-col
+                              cols="12"
+                              v-for="shop in productShop"
+                              :key="shop.id"
+                            >
+                              <button @click="shopSelect(shop)">
+                                {{ shop.shop_name }}
+                              </button>
+                            </b-col>
+                          </b-row>
+                        </div>
                       </div>
                     </div>
                     <!-- <div>
@@ -242,16 +230,23 @@
                     <div class="product-form product-qty">
                       <div class="product-form-group">
                         <div class="input-group">
-                          <button class="quantity-minus d-icon-minus"></button>
+                          <button
+                            @click="changeProductPick('minus')"
+                            class="quantity-minus d-icon-minus"
+                          ></button>
                           <input
+                            v-model="productPick"
                             class="quantity form-control"
                             type="number"
                             min="1"
-                            :max="productQuantity"
+                            :max="shop.quantity"
                           />
-                          <button class="quantity-plus d-icon-plus"></button>
+                          <button
+                            @click="changeProductPick('plus')"
+                            class="quantity-plus d-icon-plus"
+                          ></button>
                         </div>
-                        <button class="btn-product btn-cart">
+                        <button @click="addToCart" class="btn-product btn-cart">
                           <i class="d-icon-bag"></i>Add To Cart
                         </button>
                       </div>
@@ -259,41 +254,16 @@
 
                     <hr class="product-divider mb-3" />
 
-                    <div class="product-footer">
-                      <!-- <div class="social-links mr-2">
-                          <a
-                            href="#"
-                            class="
-                              social-link social-facebook
-                              fab
-                              fa-facebook-f
-                            "
-                          ></a>
-                          <a
-                            href="#"
-                            class="social-link social-twitter fab fa-twitter"
-                          ></a>
-                          <a
-                            href="#"
-                            class="
-                              social-link social-pinterest
-                              fab
-                              fa-pinterest-p
-                            "
-                          ></a>
-                        </div> -->
+                    <!-- <div class="product-footer">
                       <div class="product-action">
-                        <a
+                        <div
                           @click="addToWishlist"
                           class="btn-product btn-wishlist"
-                          ><i class="d-icon-heart"></i>Add To Wishlist</a
                         >
-                        <!-- <span class="divider"></span>
-                          <a href="#" class="btn-product btn-compare"
-                            ><i class="d-icon-random"></i>Add To Compare</a
-                          > -->
+                          <i class="d-icon-heart"></i>Add To Wishlist
+                        </div>
                       </div>
-                    </div>
+                    </div> -->
 
                     <div class="accordion accordion-simple mb-4">
                       <div class="card border-no card-description">
@@ -304,6 +274,9 @@
                         </div>
                         <div id="collapse1-1" class="card-body expanded">
                           <div class="row mt-4">
+                            <p class="mb-2">
+                              {{ product.description }}
+                            </p>
                             <div class="mb-4">
                               <h5
                                 class="
@@ -315,180 +288,17 @@
                               >
                                 Features
                               </h5>
-                              <p class="mb-2">
-                                Praesent id enim sit amet.Tdio vulputate
-                                eleifend in in tortor. ellus massa. siti iMassa
-                                ristique sit amet condim vel, facilisis
-                                quimequistiqutiqu amet condim Dilisis Facilisis
-                                quis sapien. Praesent id enim sit amet.
-                              </p>
-                              <ul class="mb-8">
-                                <li>
-                                  Praesent id enim sit amet.Tdio vulputate
-                                </li>
-                                <li>
-                                  Eleifend in in tortor. ellus massa.Dristique
-                                  sitii
-                                </li>
-                                <li>Massa ristique sit amet condim vel</li>
-                                <li>
-                                  Dilisis Facilisis quis sapien. Praesent id
-                                  enim sit amet
-                                </li>
+                              <ul>
+                                <div
+                                  v-for="item in product.product_features"
+                                  :key="item.id"
+                                >
+                                  <span></span>
+                                  {{ item.description }}
+                                </div>
                               </ul>
-                              <h5
-                                class="
-                                  description-title
-                                  mb-3
-                                  font-weight-semi-bold
-                                  ls-m
-                                "
-                              >
-                                Specifications
-                              </h5>
-                              <table class="table">
-                                <tbody>
-                                  <tr>
-                                    <th
-                                      class="
-                                        font-weight-semi-bold
-                                        text-dark
-                                        pl-0
-                                      "
-                                    >
-                                      Material
-                                    </th>
-                                    <td class="pl-4">
-                                      Praesent id enim sit amet.Tdio
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <th
-                                      class="
-                                        font-weight-semi-bold
-                                        text-dark
-                                        pl-0
-                                      "
-                                    >
-                                      Claimed Size
-                                    </th>
-                                    <td class="pl-4">Praesent id enim sit</td>
-                                  </tr>
-                                  <tr>
-                                    <th
-                                      class="
-                                        font-weight-semi-bold
-                                        text-dark
-                                        pl-0
-                                      "
-                                    >
-                                      Recommended Use
-                                    </th>
-                                    <td class="pl-4">
-                                      Praesent id enim sit amet.Tdio vulputate
-                                      eleifend in in tortor. ellus massa. siti
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <th
-                                      class="
-                                        font-weight-semi-bold
-                                        text-dark
-                                        border-no
-                                        pl-0
-                                      "
-                                    >
-                                      Manufacturer
-                                    </th>
-                                    <td class="border-no pl-4">
-                                      Praesent id enim
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </div>
-                            <div>
-                              <div class="icon-box-wrap d-flex flex-wrap">
-                                <div
-                                  class="
-                                    icon-box icon-box-side icon-border
-                                    pt-2
-                                    pb-2
-                                    mb-4
-                                    mr-10
-                                  "
-                                >
-                                  <div class="icon-box-icon">
-                                    <i class="d-icon-lock"></i>
-                                  </div>
-                                  <div class="icon-box-content">
-                                    <h4
-                                      class="
-                                        icon-box-title
-                                        lh-1
-                                        pt-1
-                                        ls-s
-                                        text-normal
-                                      "
-                                    >
-                                      2 year warranty
-                                    </h4>
-                                    <p>Guarantee with no doubt</p>
-                                  </div>
-                                </div>
-                                <div class="divider d-xl-show mr-10"></div>
-                                <div
-                                  class="
-                                    icon-box icon-box-side icon-border
-                                    pt-2
-                                    pb-2
-                                    mb-4
-                                  "
-                                >
-                                  <div class="icon-box-icon">
-                                    <i class="d-icon-truck"></i>
-                                  </div>
-                                  <div class="icon-box-content">
-                                    <h4
-                                      class="
-                                        icon-box-title
-                                        lh-1
-                                        pt-1
-                                        ls-s
-                                        text-normal
-                                      "
-                                    >
-                                      Free shipping
-                                    </h4>
-                                    <p>On orders over $50.00</p>
-                                  </div>
-                                </div>
-                              </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                      <div class="card card-additional">
-                        <div class="card-header">
-                          <a href="#collapse1-2" class="expand"
-                            >Additional information</a
-                          >
-                        </div>
-                        <div class="card-body collapsed" id="collapse1-2">
-                          <ul class="list-none">
-                            <li>
-                              <label>Brands:</label>
-                              <p>SkillStar, SLS</p>
-                            </li>
-                            <li>
-                              <label>Color:</label>
-                              <p>Blue, Brown</p>
-                            </li>
-                            <li>
-                              <label>Size:</label>
-                              <p>Large, Medium, Small</p>
-                            </li>
-                          </ul>
                         </div>
                       </div>
                       <div class="card card-reviews">
@@ -621,69 +431,6 @@
                               >
                             </div>
                             <div class="col-12 comments pt-2 pb-10 border-no">
-                              <nav class="toolbox">
-                                <!-- <div class="toolbox-left">
-                                    <div class="toolbox-item">
-                                      <a
-                                        href="#"
-                                        class="btn btn-outline btn-rounded"
-                                        >All Reviews</a
-                                      >
-                                    </div>
-                                    <div class="toolbox-item">
-                                      <a
-                                        href="#"
-                                        class="btn btn-outline btn-rounded"
-                                        >With Images</a
-                                      >
-                                    </div>
-                                    <div class="toolbox-item">
-                                      <a
-                                        href="#"
-                                        class="btn btn-outline btn-rounded"
-                                        >With Videos</a
-                                      >
-                                    </div>
-                                  </div> -->
-                                <!-- <div class="toolbox-right">
-                                    <div
-                                      class="
-                                        toolbox-item toolbox-sort
-                                        select-box
-                                        text-dark
-                                      "
-                                    >
-                                      <label>Sort By :</label>
-                                      <select
-                                        name="orderby"
-                                        class="form-control"
-                                      >
-                                        <option value="">Default Order</option>
-                                        <option
-                                          value="newest"
-                                          selected="selected"
-                                        >
-                                          Newest Reviews
-                                        </option>
-                                        <option value="oldest">
-                                          Oldest Reviews
-                                        </option>
-                                        <option value="high_rate">
-                                          Highest Rating
-                                        </option>
-                                        <option value="low_rate">
-                                          Lowest Rating
-                                        </option>
-                                        <option value="most_likely">
-                                          Most Likely
-                                        </option>
-                                        <option value="most_unlikely">
-                                          Most Unlikely
-                                        </option>
-                                      </select>
-                                    </div>
-                                  </div> -->
-                              </nav>
                               <ul class="comments-list">
                                 <li v-for="item in comments" :key="item.id">
                                   <div class="comment">
@@ -734,64 +481,6 @@
                                           {{ item.body }}
                                         </p>
                                       </div>
-                                      <!-- <div class="file-input-wrappers">
-                                          <img
-                                            class="btn-play btn-img pwsp"
-                                            src="images/products/product1.jpg"
-                                            width="280"
-                                            height="315"
-                                            alt="product"
-                                          />
-
-                                          <img
-                                            class="btn-play btn-img pwsp"
-                                            src="images/products/product3.jpg"
-                                            width="280"
-                                            height="315"
-                                            alt="product"
-                                          />
-
-                                          <a
-                                            class="btn-play btn-iframe"
-                                            style="
-                                              background-image: url(images/product/product.jpg);
-                                              background-size: cover;
-                                            "
-                                            href="video/memory-of-a-woman.mp4"
-                                          >
-                                            <i class="d-icon-play-solid"></i>
-                                          </a>
-                                        </div>
-                                        <div class="feeling mt-5">
-                                          <button
-                                            class="
-                                              btn
-                                              btn-link
-                                              btn-icon-left
-                                              btn-slide-up
-                                              btn-infinite
-                                              like
-                                              mr-2
-                                            "
-                                          >
-                                            <i class="fa fa-thumbs-up"></i>
-                                            Like (<span class="count">0</span>)
-                                          </button>
-                                          <button
-                                            class="
-                                              btn
-                                              btn-link
-                                              btn-icon-left
-                                              btn-slide-down
-                                              btn-infinite
-                                              unlike
-                                            "
-                                          >
-                                            <i class="fa fa-thumbs-down"></i>
-                                            Unlike (<span class="count">0</span
-                                            >)
-                                          </button>
-                                        </div> -->
                                     </div>
                                   </div>
                                 </li>
@@ -883,97 +572,6 @@
                                   placeholder="Comment *"
                                   required
                                 ></textarea>
-
-                                <!-- <div class="review-medias">
-                                    <div
-                                      class="
-                                        file-input
-                                        form-control
-                                        image-input
-                                      "
-                                      style="
-                                        background-image: url(images/product/placeholder.png);
-                                      "
-                                    >
-                                      <div class="file-input-wrapper"></div>
-                                      <label
-                                        class="btn-action btn-upload"
-                                        title="Upload Media"
-                                      >
-                                        <input
-                                          type="file"
-                                          accept=".png, .jpg, .jpeg"
-                                          name="riode_comment_medias_image_1"
-                                        />
-                                      </label>
-                                      <label
-                                        class="btn-action btn-remove"
-                                        title="Remove Media"
-                                      >
-                                      </label>
-                                    </div>
-                                    <div
-                                      class="
-                                        file-input
-                                        form-control
-                                        image-input
-                                      "
-                                      style="
-                                        background-image: url(images/product/placeholder.png);
-                                      "
-                                    >
-                                      <div class="file-input-wrapper"></div>
-                                      <label
-                                        class="btn-action btn-upload"
-                                        title="Upload Media"
-                                      >
-                                        <input
-                                          type="file"
-                                          accept=".png, .jpg, .jpeg"
-                                          name="riode_comment_medias_image_2"
-                                        />
-                                      </label>
-                                      <label
-                                        class="btn-action btn-remove"
-                                        title="Remove Media"
-                                      >
-                                      </label>
-                                    </div>
-                                    <div
-                                      class="
-                                        file-input
-                                        form-control
-                                        video-input
-                                      "
-                                      style="
-                                        background-image: url(images/product/placeholder.png);
-                                      "
-                                    >
-                                      <video
-                                        class="file-input-wrapper"
-                                        controls=""
-                                      ></video>
-                                      <label
-                                        class="btn-action btn-upload"
-                                        title="Upload Media"
-                                      >
-                                        <input
-                                          type="file"
-                                          accept=".avi, .mp4"
-                                          name="riode_comment_medias_video_1"
-                                        />
-                                      </label>
-                                      <label
-                                        class="btn-action btn-remove"
-                                        title="Remove Media"
-                                      >
-                                      </label>
-                                    </div>
-                                  </div>
-                                  <p>
-                                    Upload images and videos. Maximum count: 3,
-                                    size: 2MB
-                                  </p> -->
                                 <button
                                   @click="submitComment"
                                   class="btn btn-primary btn-rounded"
@@ -991,7 +589,7 @@
                 </div>
               </div>
 
-              <section>
+              <section v-if="product.related_products.length !== 0">
                 <h2
                   class="title title-simple title-center text-capitalize mb-4"
                 >
@@ -1174,24 +772,16 @@ export default {
           property: "og:description",
           content: this.product.description,
         },
-        // {
-        //   hid: "og-image",
-        //   property: "og:image",
-        //   content: this.$img(this.product.images[0], { width: 1200 }),
-        // },
-        // {
-        //   hid: "og-url",
-        //   property: "og:url",
-        //   content: `${this.$config.rootUrl}/product/${this.product.id}`,
-        // },
       ],
     };
   },
   data() {
     return {
       product: { stock_detail: {}, min_price: 0 },
+      shop: { quantirty: 0 },
       productQuantity: null,
       productSize: [],
+      productShop: [],
       relatedProductsList: [],
       comments: [
         {
@@ -1199,6 +789,7 @@ export default {
         },
       ],
       productPrice: 0,
+      productPick: 1,
       averageRating: {
         total: 0,
         star5: 0,
@@ -1216,13 +807,38 @@ export default {
     };
   },
   methods: {
-    colorSelect(name) {
-      const detail = this.product.stock_detail[name].color_data.data;
-      this.productSize = Object.values(detail);
+    changeProductPick(type) {
+      if (
+        type == 'plus' &&
+        this.shop.quantity > 0 &&
+        this.productPick < this.shop.quantity
+      )
+        this.productPick = this.productPick + 1;
+
+      if (type == 'minus' && this.productPick > 1)
+        this.productPick = this.productPick - 1;
     },
-    sizeSelect(size) {
-      this.productQuantity = size.quantity;
-      this.productPrice = size.price;
+    colorSelect(color) {
+      const detail = this.product.stock_detail[color.name].color_data.data;
+      this.productSize = Object.values(detail);
+      this.productSize.color = color;
+    },
+    sizeSelect(sizeName, colorName) {
+      const detail =
+        this.product.stock_detail[colorName].color_data.data[sizeName.name]
+          .shop_data;
+      this.productShop = Object.values(detail);
+    },
+    shopSelect(shop) {
+      this.shop = shop;
+      this.productPrice = shop.price;
+      this.productQuantity = shop.quantity;
+    },
+    addToWishlist() {
+      console.log(this.product.id);
+    },
+    addToCart() {
+      console.log();
     },
     submitComment() {
       console.log(this.comment);
