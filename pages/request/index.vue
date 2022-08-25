@@ -124,11 +124,13 @@ export default Vue.extend({
   },
   methods: {
     submitMessage() {
+      this.$nuxt.$loading.start();
       this.$axios
         .post("public/all-asks/", this.askBody)
         .then((response) => {
           if (response.status == 201) {
             this.askBody = {};
+            this.$nuxt.$loading.finish();
           }
         })
         .catch((e) => {

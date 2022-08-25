@@ -275,9 +275,10 @@
           </div>
         </div>
       </div> -->
-    <div><button id="pick-avatar" class="btn btn-primary">
-                    SAVE CHANGES
-                  </button></div>
+      <div>
+        <button id="pick-avatar" class="btn btn-primary">SAVE CHANGES</button>
+        <button @click="handleUploading" class="btn btn-primary">SAVE CHANGES</button>
+      </div>
     </main>
     <avatar-cropper
       @uploading="handleUploading"
@@ -289,7 +290,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from "vue";
 
 export default Vue.extend({
@@ -317,6 +318,10 @@ export default Vue.extend({
     //   options
     // );
     // checkout.render();
+    // this.$nextTick(() => {
+    //   this.$nuxt.$loading.start()
+    //   setTimeout(() => this.$nuxt.$loading.finish(), 10000)
+    // })
   },
   async asyncData() {
     return;
@@ -325,7 +330,9 @@ export default Vue.extend({
     return {};
   },
   methods: {
-    handleUploading() {},
+    handleUploading() {
+      this.$toast.show( 'my message', { duration:3000 })
+    },
   },
 });
 </script>
