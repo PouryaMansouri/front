@@ -84,6 +84,10 @@ export default {
         body: true
       },
       {
+        src: "/vendor/compare/compare.min.js",
+        body: true
+      },
+      {
         src: "/vendor/photoswipe/photoswipe-ui-default.min.js",
         body: true
       },
