@@ -5,7 +5,7 @@
     <StickyFooterComponent />
     <!-- Scroll Top -->
     <a
-      style="background-color: #558063"
+      style="background-color: #cceff0"
       id="scroll-top"
       href="#top"
       title="Top"

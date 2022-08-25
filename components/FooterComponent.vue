@@ -234,7 +234,7 @@
         <!-- End FooterTop -->
         <div class="footer-middle">
           <div class="row">
-            <div class="col-lg-3 col-sm-6">
+            <div class="col-lg-5 col-sm-6">
               <div class="widget widget-about">
                 <a href="/" class="logo-footer mb-4">
                   <img
@@ -276,7 +276,7 @@
               </div>
               <!-- End Widget -->
             </div>
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-2 col-md-6">
               <div class="widget ml-lg-4">
                 <h4 class="widget-title">My Account</h4>
                 <ul class="widget-body">
@@ -292,7 +292,7 @@
                 </ul>
               </div>
             </div>
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-2 col-md-6">
               <div class="widget ml-lg-4">
                 <h4 class="widget-title">Usefull Links</h4>
                 <ul class="widget-body">

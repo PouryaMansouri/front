@@ -281,7 +281,6 @@
                 </h3>
               </div>
             </section>
-
             <section class="pt-7 pb-1">
               <h2 class="title title-simple ls-m">Our Featured</h2>
               <div
@@ -377,6 +376,101 @@
                 </div>
               </div>
             </section>
+            <section v-if="suggestedList.length !== 0" class="pt-7 pb-1">
+              <h2 class="title title-simple ls-m">Suggested Products</h2>
+              <div
+                class="
+                  owl-carousel owl-theme
+                  row
+                  owl-nav-full
+                  cols-lg-4 cols-md-3 cols-2
+                "
+                data-owl-options="{
+                            'items': 4,
+                            'nav': false,
+                            'dots': true,
+                            'loop': false,
+                            'margin': 20,
+                            'responsive': {
+                                '0': {
+                                    'items': 2
+                                },
+                                '768': {
+                                    'items': 3
+                                },
+                                '992': {
+                                    'items': 4,
+                                    'dots': false,
+                                    'nav': true
+                                }
+                            }
+                        }"
+              >
+                <div
+                  v-for="(item, index) in suggestedList"
+                  :key="index"
+                  class="product appear-animate"
+                  data-animation-options="{
+                                'name': 'fadeInRightShorter',
+                                'delay': '.2s'
+                            }"
+                >
+                  <router-link :to="'/product/' + item.slug">
+                    <figure class="product-media">
+                      <a>
+                        <img
+                          :src="item.image"
+                          :key="item.slug"
+                          width="280"
+                          height="315"
+                          style="background-color: #f2f3f5"
+                        />
+                      </a>
+                      <div class="product-action-vertical">
+                        <a
+                          class="btn-product-icon btn-cart"
+                          data-toggle="modal"
+                          data-target="#addCartModal"
+                          title="Add to cart"
+                          ><i class="d-icon-bag"></i
+                        ></a>
+                        <a
+                          class="btn-product-icon btn-wishlist"
+                          title="Add to wishlist"
+                          ><i class="d-icon-heart"></i
+                        ></a>
+                      </div>
+                      <div class="product-action">
+                        <a class="btn-product btn-quickview" title="Quick View"
+                          >Quick View</a
+                        >
+                      </div>
+                    </figure>
+                  </router-link>
+                  <div class="product-details">
+                    <div class="product-cat">
+                      <a :href="item.category.slug">{{ item.category.name }}</a>
+                    </div>
+                    <h3 class="product-name">
+                      <a>{{ item.title }}</a>
+                    </h3>
+                    <div class="product-price">
+                      <span class="price">{{ item.min_price }}</span>
+                    </div>
+                    <div class="ratings-container">
+                      <div class="ratings-full">
+                        <span
+                          class="ratings"
+                          :style="'width: ' + item.star * 20 + '%'"
+                        ></span>
+                        <span class="tooltiptext tooltip-top"></span>
+                      </div>
+                      <a class="rating-reviews">( 6 reviews )</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
         </div>
       </main>
@@ -406,6 +500,10 @@ export default Vue.extend({
       ],
     };
   },
+  async fetch() {
+    const { data } = await this.$axios.get("landing/suggest-product/");
+    this.suggestedList = data;
+  },
   async asyncData({ $axios }) {
     const { data } = await $axios.get("/landing/all-data/");
 
@@ -424,6 +522,7 @@ export default Vue.extend({
       middleBanner: {},
       bestSellingList: [],
       ourFeaturedList: [],
+      suggestedList: [],
     };
   },
 });
