@@ -121,6 +121,7 @@ export default {
     '~/plugins/auth-vuex-persistedstate',
     '~/plugins/cart-vuex-persistedstate',
     '~/plugins/axios',
+    { src: '~/plugins/vue-avatar-cropper', ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
