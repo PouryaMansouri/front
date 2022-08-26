@@ -1,17 +1,24 @@
-export const actions = {
-    async nuxtServerInit({ state, commit, dispatch }) {
-        const cookie = this.$cookies.get('auth');
-        if (cookie) {
-            commit('auth/setTokens', cookie.auth);
-        }
-
-        const { access, refresh } = state.auth;
-        if (access && refresh) {
-            try {
-                await dispatch('auth/refresh');
-            } catch (e) {
-                commit('auth/logout');
-            }
-        }
+export const state = () => ({
+    counter: 0
+  })
+  
+  export const getters = {
+    getCounter(state) {
+      return state.counter
     }
-};
+  }
+  
+  export const mutations = {
+    increment(state) {
+      state.counter++
+    }
+  }
+  
+  export const actions = {
+    async fetchCounter(state) {
+      // make request
+      const res = { data: 10 };
+      state.counter = res.data;
+      return res.data;
+    }
+  }

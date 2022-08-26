@@ -173,7 +173,9 @@
                           @click="colorSelect(color)"
                           class="color"
                           data-src="/images/demos/demo7/products/big1.jpg"
-                          :style="'background-color: ' + color.code"
+                          :style="
+                            'border: 1px solid; background-color: ' + color.code
+                          "
                         ></a>
                       </div>
                     </div>
@@ -192,7 +194,8 @@
                                   sizeSelect(size, productSize.color.name)
                                 "
                                 :style="
-                                  'border-color:' + productSize.color.code
+                                  'border: 1px solid; background-color:' +
+                                  productSize.color.code
                                 "
                               >
                                 {{ size.name }}
@@ -246,7 +249,12 @@
                             class="quantity-plus d-icon-plus"
                           ></button>
                         </div>
-                        <button @click="addToCart" class="btn-product btn-cart">
+                        {{this.shopSelected}}
+                        <button
+                          :disabled="!shopSelected"
+                          @click="addToCart"
+                          class="btn-product btn-cart"
+                        >
                           <i class="d-icon-bag"></i>Add To Cart
                         </button>
                       </div>
@@ -777,6 +785,7 @@ export default {
   },
   data() {
     return {
+      stockId: 0,
       product: { stock_detail: {}, min_price: 0 },
       shop: { quantirty: 0 },
       productQuantity: null,
@@ -806,24 +815,36 @@ export default {
       },
     };
   },
+  computed: {
+    addToCartDisabled() {
+      console.log(!this.shopSelected);
+      return !this.shopSelected;
+    },
+  },
   methods: {
     changeProductPick(type) {
       if (
-        type == 'plus' &&
+        type == "plus" &&
         this.shop.quantity > 0 &&
         this.productPick < this.shop.quantity
       )
         this.productPick = this.productPick + 1;
 
-      if (type == 'minus' && this.productPick > 1)
+      if (type == "minus" && this.productPick > 1)
         this.productPick = this.productPick - 1;
     },
     colorSelect(color) {
+      this.shopSelected = false;
+
+      this.shop = { quantirty: 0 };
+      this.productShop = [];
       const detail = this.product.stock_detail[color.name].color_data.data;
       this.productSize = Object.values(detail);
       this.productSize.color = color;
     },
     sizeSelect(sizeName, colorName) {
+      this.shopSelected = false;
+
       const detail =
         this.product.stock_detail[colorName].color_data.data[sizeName.name]
           .shop_data;
@@ -833,10 +854,12 @@ export default {
       this.shop = shop;
       this.productPrice = shop.price;
       this.productQuantity = shop.quantity;
+      this.shopSelected = true;
     },
-    addToWishlist() {
-    },
+    addToWishlist() {},
     addToCart() {
+      console.log(this.productPick);
+      // this.$store.dispatch('cart/addProductToCart',this.product)
     },
     submitComment() {
       // this.$axios

@@ -263,11 +263,21 @@ export default Vue.extend({
     };
   },
   methods: {
-    loginClick() {
-      this.$store.dispatch("auth/login", {
-        email: this.email,
-        password: this.password,
+    async loginClick() {
+      let response = await this.$auth.loginWith("local", {
+        data: {
+          email: this.email,
+          password: this.password,
+        },
       });
+
+      console.log(response);
+      
+
+      // this.$store.dispatch("auth/login", {
+      //   email: this.email,
+      //   password: this.password,
+      // });
     },
     registerClick() {
       this.$store.dispatch("auth/register", {

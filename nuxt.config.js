@@ -122,9 +122,9 @@ export default {
   ],
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/auth-vuex-persistedstate',
-    '~/plugins/cart-vuex-persistedstate',
-    '~/plugins/axios',
+    // '~/plugins/auth-vuex-persistedstate',
+    // '~/plugins/cart-vuex-persistedstate',
+    // '~/plugins/axios',
     { src: '~/plugins/vue-avatar-cropper', ssr: false }
   ],
 
@@ -143,9 +143,51 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    'cookie-universal-nuxt',
+    // 'cookie-universal-nuxt',
     '@nuxtjs/toast',
+    '@nuxtjs/auth-next'
   ],
+
+
+  auth: {
+    token: {
+      prefix: '_token.',
+      global: true,
+    },
+    redirect: {
+      login: '/auth',
+      logout: '/',
+      callback: '/auth',
+      home: '/'
+    },
+    strategies: {
+      local: {
+        scheme: 'refresh',
+        token: {
+          property: 'access',
+          maxAge: 1800,
+          global: true,
+          // type: 'Bearer'
+        },
+        refreshToken: {
+          property: 'refresh',
+          data: 'refresh',
+          maxAge: 60 * 60 * 24 * 30
+        },
+        user: {
+          property: 'user',
+          // autoFetch: true
+        },
+        endpoints: {
+          login: { url: 'accounts/login/', method: 'post' },
+          refresh: { url: 'accounts/auth/token/refresh/', method: 'post' },
+          user: { url: 'accounts/profile/detail/', method: 'get' },
+          logout: { url: '/api/auth/logout', method: 'post' }
+        },
+        // autoLogout: false
+      }
+    }
+  },
 
   toast: {
     position: 'top-center',

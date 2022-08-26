@@ -7,45 +7,13 @@
             <p class="welcome-msg">Welcome to Sarar From UAE!</p>
           </div>
           <div class="header-right">
-            <!-- <div class="dropdown">
-              <a href="#currency">USD</a>
-              <ul class="dropdown-box">
-                <li><a href="#USD">USD</a></li>
-                <li><a href="#EUR">EUR</a></li>
-              </ul>
-            </div> -->
-            <!-- End DropDown Menu -->
-            <!-- <div class="dropdown ml-5">
-              <a href="#language">ENG</a>
-              <ul class="dropdown-box">
-                <li>
-                  <a href="#USD">ENG</a>
-                </li>
-                <li>
-                  <a href="#EUR">FRH</a>
-                </li>
-              </ul>
-            </div> -->
-            <!-- End DropDown Menu -->
-            <!-- <span class="divider"></span>
-            <a href="contact-us.html" class="contact d-lg-show"
-              ><i class="d-icon-map"></i>Contact</a
-            >
-            <a href="#" class="help d-lg-show"
-              ><i class="d-icon-info"></i> Need Help</a
-            > -->
-
-            <NuxtLink to="/auth"
-              ><div class="login-link"><i class="d-icon-user"></i>Sign in</div>
-              <span class="delimiter">/</span>
-              <div class="register-link ml-0">Register</div></NuxtLink
-            >
-
-            <!-- End of Login -->
+            <NuxtLink v-if="this.$auth.loggedIn" to="/account">
+              Go To Profile
+            </NuxtLink>
+            <NuxtLink v-else to="/auth"> Login And Register </NuxtLink>
           </div>
         </div>
       </div>
-      <!-- End HeaderTop -->
       <div class="header-middle sticky-header fix-top sticky-content">
         <div class="container">
           <div class="header-left">
@@ -55,7 +23,6 @@
             <a href="/" class="logo">
               <img src="/logo.svg" alt="logo" width="153" height="44" />
             </a>
-            <!-- End Logo -->
             <div class="header-search hs-simple">
               <form action="#" class="input-wrapper">
                 <input
@@ -75,7 +42,6 @@
                 </button>
               </form>
             </div>
-            <!-- End Header Search -->
           </div>
           <div class="header-right">
             <a href="tel:#" class="icon-box icon-box-side">
@@ -113,12 +79,9 @@
                 </button>
               </form>
             </div>
-            <!-- End of Header Search -->
           </div>
         </div>
       </div>
-
-      <!-- Menu balaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
       <div class="header-bottom d-lg-show">
         <div class="container">
           <div class="header-left">
@@ -136,6 +99,7 @@ export default {
   data() {
     return {};
   },
+  methods: {},
   async fetch() {},
 };
 </script>

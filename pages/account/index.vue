@@ -17,7 +17,7 @@
                 <a class="nav-link" href="#account">Account details</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="login.html">Logout</a>
+                <a href="#logout" class="nav-link" @click="logout">Logout</a>
               </li>
             </ul>
             <div class="tab-content col-lg-9 col-md-8">
@@ -45,6 +45,7 @@ import AccountTab from "./AccountTab.vue";
 import OrdersTab from "./OrdersTab.vue";
 
 export default Vue.extend({
+  middleware: "auth",
   components: {
     AddressTab,
     AccountTab,
@@ -91,6 +92,11 @@ export default Vue.extend({
   methods: {
     handleUploading() {
       this.$toast.show("my message", { duration: 3000 });
+    },
+    async logout() {
+      this.$nuxt.$loading.start();
+      await this.$auth.logout();
+      this.$nuxt.$loading.finish();
     },
   },
 });

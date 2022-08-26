@@ -400,9 +400,9 @@ export default Vue.extend({
   },
   async asyncData({ $axios }) {
     const responses = await Promise.all([
-      await $axios.get("products/data-for-filter/", { isBasic: true }),
-      await $axios.get("products/", { isBasic: true }),
-      await $axios.get("landing/new-product/", { isBasic: true }),
+      await $axios.get("products/data-for-filter/"),
+      await $axios.get("products/"),
+      await $axios.get("landing/new-product/"),
     ]);
 
     return {

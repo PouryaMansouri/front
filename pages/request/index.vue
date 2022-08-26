@@ -123,7 +123,9 @@ export default Vue.extend({
     };
   },
   methods: {
-    submitMessage() {
+    async submitMessage() {
+      // console.log(await this.$auth.fetchUser());
+
       this.$nuxt.$loading.start();
       this.$axios
         .post("public/all-asks/", this.askBody)

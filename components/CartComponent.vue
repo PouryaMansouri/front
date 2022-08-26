@@ -6,7 +6,7 @@
         <span class="cart-price">${{ all_total_price }}</span>
       </div>
       <i class="d-icon-bag"
-        ><span class="cart-count">{{ list.length }}</span></i
+        ><span class="cart-count">{{ totalCart }}</span></i
       >
     </a>
     <div class="dropdown-box">
@@ -39,7 +39,9 @@
       <!-- End of Cart Total -->
       <div class="cart-action">
         <NuxtLink to="/cart" class="btn btn-dark btn-link">View Cart</NuxtLink>
-        <NuxtLink to="/checkout" class="btn btn-dark"> Go To Checkout </NuxtLink>
+        <NuxtLink to="/checkout" class="btn btn-dark">
+          Go To Checkout
+        </NuxtLink>
       </div>
       <!-- End of Cart Action -->
     </div>
@@ -47,12 +49,25 @@
   </div>
 </template>
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {
-      list: [],
-      all_total_price: 0,
+      // list: [],
+      // all_total_price: 0,
     };
+  },
+  computed: {
+    list() {
+      return this.$store.state.cart;
+    },
+    all_total_price() {
+      return this.$store.getters["cart/totalAmount"];
+    },
+    totalCart() {
+      return this.$store.getters["cart/totalCart"];
+    },
   },
   async fetch() {
     // const { data } = await this.$axios.get("cart/user-cart-detail/");
