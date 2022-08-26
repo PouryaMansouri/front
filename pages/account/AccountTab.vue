@@ -50,33 +50,21 @@
 
       <button id="pick-avatar" class="btn btn-primary">SAVE CHANGES</button>
     </form>
-    <avatar-cropper
-      @uploading="handleUploading"
-      :labels="{ submit: 'upload', cancel: 'cancel' }"
-      :output-options="{ width: 640, height: 640 }"
-      trigger="#pick-avatar"
-      upload-url="/crop"
-    />
+    <div>
+      <avatar-cropper
+        @uploading="handleUploading"
+        :labels="{ submit: 'upload', cancel: 'cancel' }"
+        :output-options="{ width: 640, height: 640 }"
+        trigger="#pick-avatar"
+        upload-url="/crop"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-import Vue from "vue";
-
-export default Vue.extend({
+export default {
   components: {},
-  head() {
-    return {
-      title: "account",
-      meta: [
-        {
-          name: "description",
-          hid: "description",
-          content: "description",
-        },
-      ],
-    };
-  },
   mounted() {
     // const Checkout = require("@payvision/checkout-library");
     // const options = {
@@ -108,5 +96,5 @@ export default Vue.extend({
       this.$toast.show("my message", { duration: 3000 });
     },
   },
-});
+};
 </script>

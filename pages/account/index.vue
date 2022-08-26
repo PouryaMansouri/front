@@ -17,7 +17,7 @@
                 <a class="nav-link" href="#account">Account details</a>
               </li>
               <li class="nav-item">
-                <a href="#logout" class="nav-link" @click="logout">Logout</a>
+                <button class="nav-link" @click="logout">Logout</button>
               </li>
             </ul>
             <div class="tab-content col-lg-9 col-md-8">

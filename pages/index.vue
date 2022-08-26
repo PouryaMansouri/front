@@ -170,86 +170,22 @@
               </div>
             </section>
 
-            <section class="mt-10 pt-3 mb-6">
+            <section
+              v-if="bestSellingList.length !== 0"
+              class="mt-10 pt-3 mb-6"
+            >
               <h2 class="title title-simple title-center ls-m">Best Selling</h2>
-
               <div class="product-wrapper row">
                 <div
-                  v-for="(item, index) in bestSellingList"
-                  :key="index"
                   class="col-lg-3 col-md-4 col-6 mb-4"
+                  v-for="item in bestSellingList"
+                  :key="item.id + Math.random()"
                 >
-                  <router-link :key="item.slug" :to="'/product/' + item.slug">
-                    <div
-                      class="product appear-animate"
-                      data-animation-options="{
-                                    'name': 'fadeInLeftShorter',
-                                    'delay': '.4s'
-                                }"
-                    >
-                      <figure class="product-media">
-                        <a>
-                          <img
-                            :src="item.image"
-                            :alt="item.title"
-                            width="280"
-                            height="315"
-                            style="background-color: #f2f3f5"
-                          />
-                        </a>
-                        <div class="product-label-group">
-                          <label class="product-label label-new">new</label>
-                        </div>
-                        <div class="product-action-vertical">
-                          <a
-                            class="btn-product-icon btn-cart"
-                            data-toggle="modal"
-                            data-target="#addCartModal"
-                            title="Add to cart"
-                            ><i class="d-icon-bag"></i
-                          ></a>
-                          <a
-                            class="btn-product-icon btn-wishlist"
-                            title="Add to wishlist"
-                            ><i class="d-icon-heart"></i
-                          ></a>
-                        </div>
-                        <div class="product-action">
-                          <a
-                            class="btn-product btn-quickview"
-                            title="Quick View"
-                            >Quick View</a
-                          >
-                        </div>
-                      </figure>
-                      <div class="product-details">
-                        <div class="product-cat">
-                          <a :href="item.category.slug">{{
-                            item.category.name
-                          }}</a>
-                        </div>
-                        <h3 class="product-name">
-                          <a>{{ item.title }}</a>
-                        </h3>
-                        <div class="product-price">
-                          <span class="price">{{ item.min_price }}</span>
-                        </div>
-                        <div class="ratings-container">
-                          <div class="ratings-full">
-                            <span
-                              class="ratings"
-                              :style="'width: ' + item.star * 20 + '%'"
-                            ></span>
-                            <span class="tooltiptext tooltip-top"></span>
-                          </div>
-                          <a class="rating-reviews">( 12 reviews )</a>
-                        </div>
-                      </div>
-                    </div>
-                  </router-link>
+                  <ProductComponent :product="item" />
                 </div>
               </div>
             </section>
+
             <section
               class="banner banner-sale mt-10 mb-10 appear-animate"
               data-animation-options="{'name': 'fadeIn'}"
@@ -281,7 +217,8 @@
                 </h3>
               </div>
             </section>
-            <section class="pt-7 pb-1">
+
+            <section v-if="ourFeaturedList.length !== 0" class="pt-7 pb-1">
               <h2 class="title title-simple ls-m">Our Featured</h2>
               <div
                 class="
@@ -312,70 +249,14 @@
                         }"
               >
                 <div
-                  v-for="(item, index) in ourFeaturedList"
-                  :key="index"
-                  class="product appear-animate"
-                  data-animation-options="{
-                                'name': 'fadeInRightShorter',
-                                'delay': '.2s'
-                            }"
+                  v-for="item in ourFeaturedList"
+                  :key="item.id + Math.random()"
                 >
-                  <router-link :to="'/product/' + item.slug">
-                    <figure class="product-media">
-                      <a>
-                        <img
-                          :src="item.image"
-                          :key="item.slug"
-                          width="280"
-                          height="315"
-                          style="background-color: #f2f3f5"
-                        />
-                      </a>
-                      <div class="product-action-vertical">
-                        <a
-                          class="btn-product-icon btn-cart"
-                          data-toggle="modal"
-                          data-target="#addCartModal"
-                          title="Add to cart"
-                          ><i class="d-icon-bag"></i
-                        ></a>
-                        <a
-                          class="btn-product-icon btn-wishlist"
-                          title="Add to wishlist"
-                          ><i class="d-icon-heart"></i
-                        ></a>
-                      </div>
-                      <div class="product-action">
-                        <a class="btn-product btn-quickview" title="Quick View"
-                          >Quick View</a
-                        >
-                      </div>
-                    </figure>
-                  </router-link>
-                  <div class="product-details">
-                    <div class="product-cat">
-                      <a :href="item.category.slug">{{ item.category.name }}</a>
-                    </div>
-                    <h3 class="product-name">
-                      <a>{{ item.title }}</a>
-                    </h3>
-                    <div class="product-price">
-                      <span class="price">{{ item.min_price }}</span>
-                    </div>
-                    <div class="ratings-container">
-                      <div class="ratings-full">
-                        <span
-                          class="ratings"
-                          :style="'width: ' + item.star * 20 + '%'"
-                        ></span>
-                        <span class="tooltiptext tooltip-top"></span>
-                      </div>
-                      <a class="rating-reviews">( 6 reviews )</a>
-                    </div>
-                  </div>
+                  <ProductComponent :product="item" />
                 </div>
               </div>
             </section>
+
             <section v-if="suggestedList.length !== 0" class="pt-7 pb-1">
               <h2 class="title title-simple ls-m">Suggested Products</h2>
               <div
@@ -407,67 +288,10 @@
                         }"
               >
                 <div
-                  v-for="(item, index) in suggestedList"
-                  :key="index"
-                  class="product appear-animate"
-                  data-animation-options="{
-                                'name': 'fadeInRightShorter',
-                                'delay': '.2s'
-                            }"
+                  v-for="item in suggestedList"
+                  :key="item.id + Math.random()"
                 >
-                  <router-link :to="'/product/' + item.slug">
-                    <figure class="product-media">
-                      <a>
-                        <img
-                          :src="item.image"
-                          :key="item.slug"
-                          width="280"
-                          height="315"
-                          style="background-color: #f2f3f5"
-                        />
-                      </a>
-                      <div class="product-action-vertical">
-                        <a
-                          class="btn-product-icon btn-cart"
-                          data-toggle="modal"
-                          data-target="#addCartModal"
-                          title="Add to cart"
-                          ><i class="d-icon-bag"></i
-                        ></a>
-                        <a
-                          class="btn-product-icon btn-wishlist"
-                          title="Add to wishlist"
-                          ><i class="d-icon-heart"></i
-                        ></a>
-                      </div>
-                      <div class="product-action">
-                        <a class="btn-product btn-quickview" title="Quick View"
-                          >Quick View</a
-                        >
-                      </div>
-                    </figure>
-                  </router-link>
-                  <div class="product-details">
-                    <div class="product-cat">
-                      <a :href="item.category.slug">{{ item.category.name }}</a>
-                    </div>
-                    <h3 class="product-name">
-                      <a>{{ item.title }}</a>
-                    </h3>
-                    <div class="product-price">
-                      <span class="price">{{ item.min_price }}</span>
-                    </div>
-                    <div class="ratings-container">
-                      <div class="ratings-full">
-                        <span
-                          class="ratings"
-                          :style="'width: ' + item.star * 20 + '%'"
-                        ></span>
-                        <span class="tooltiptext tooltip-top"></span>
-                      </div>
-                      <a class="rating-reviews">( 6 reviews )</a>
-                    </div>
-                  </div>
+                  <ProductComponent :product="item" />
                 </div>
               </div>
             </section>
@@ -487,6 +311,11 @@ export default Vue.extend({
       return this.$store.state;
     },
   },
+  methods: {
+    addToWishList() {
+      this.$toast.show("added");
+    },
+  },
   components: {},
   head() {
     return {
@@ -500,19 +329,17 @@ export default Vue.extend({
       ],
     };
   },
-  async fetch() {
-    const { data } = await this.$axios.get("landing/suggest-product/");
-    this.suggestedList = data;
-  },
   async asyncData({ $axios }) {
-    const { data } = await $axios.get("/landing/all-data/");
+    const landing = await $axios.get("/landing/all-data/");
+    const suggest = await $axios.get("landing/suggest-product/");
 
     return {
-      mainPoster: data.main_poster,
-      topCartList: data.main_top_cart,
-      middleBanner: data.middle_banner,
-      bestSellingList: data.best_sells_in_month,
-      ourFeaturedList: data.new_product,
+      mainPoster: landing.data.main_poster,
+      topCartList: landing.data.main_top_cart,
+      middleBanner: landing.data.middle_banner,
+      bestSellingList: landing.data.best_sells_in_month,
+      ourFeaturedList: landing.data.new_product,
+      suggestedList: suggest.data,
     };
   },
   data() {

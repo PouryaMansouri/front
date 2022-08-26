@@ -1,6 +1,8 @@
 <template>
   <div>
-    <LoadSpinner v-if="showHideSpinner" />
+    <client-only>
+      <LoadSpinner v-if="showHideSpinner" />
+    </client-only>
     <HeaderComponent />
     <Nuxt />
     <StickyFooterComponent />

@@ -90,22 +90,8 @@
 </template>
 
 <script>
-import Vue from "vue";
-
-export default Vue.extend({
+export default {
   components: {},
-  head() {
-    return {
-      title: "account",
-      meta: [
-        {
-          name: "description",
-          hid: "description",
-          content: "description",
-        },
-      ],
-    };
-  },
   mounted() {
     // const Checkout = require("@payvision/checkout-library");
     // const options = {
@@ -137,5 +123,5 @@ export default Vue.extend({
       this.$toast.show("my message", { duration: 3000 });
     },
   },
-});
+};
 </script>

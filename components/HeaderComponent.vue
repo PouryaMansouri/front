@@ -44,7 +44,7 @@
             </div>
           </div>
           <div class="header-right">
-            <a href="tel:#" class="icon-box icon-box-side">
+            <!-- <a href="tel:#" class="icon-box icon-box-side">
               <div class="icon-box-icon mr-0 mr-lg-2">
                 <i class="d-icon-phone"></i>
               </div>
@@ -52,7 +52,7 @@
                 <h4 class="icon-box-title">Call Us Now:</h4>
                 <p>0(800) 123-456</p>
               </div>
-            </a>
+            </a> -->
             <span class="divider"></span>
             <WishlistComponent />
             <span class="divider"></span>

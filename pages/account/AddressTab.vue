@@ -15,15 +15,11 @@
               <th><span>city</span></th>
               <th>street</th>
               <th>zip code</th>
+              <th>action</th>
             </tr>
           </thead>
           <tbody>
-            <tr
-              @click="setSelectItem(item)"
-              :style="isSelectItem(item.id) ? 'border: double;' : ''"
-              v-for="item in addressList"
-              :key="item.id"
-            >
+            <tr v-for="item in addressList" :key="item.id">
               <td class="product-name">
                 <div class="product-name-section">
                   <span>{{
@@ -72,7 +68,7 @@
           <h4 class="title coupon-title text-uppercase ls-m">
             Add New Address
           </h4>
-          <form action="#" class="form">
+          <div class="form">
             <div class="row">
               <div class="col-sm-4">
                 <label>First Name *</label>
@@ -178,20 +174,15 @@
                 />
               </div>
             </div>
-          </form>
+          </div>
           <button
             @click="addAddress"
-            type="submit"
             class="btn btn-md btn-dark btn-rounded btn-outline"
           >
             Add Address
           </button>
 
-          <button
-            @click="editAddress"
-            type="submit"
-            class="btn btn-md btn-dark btn-rounded btn-outline"
-          >
+          <button class="btn btn-md btn-dark btn-rounded btn-outline">
             Edit Address
           </button>
         </div>
@@ -201,22 +192,7 @@
 </template>
 
 <script>
-import Vue from "vue";
-
-export default Vue.extend({
-  components: {},
-  head() {
-    return {
-      title: "account",
-      meta: [
-        {
-          name: "description",
-          hid: "description",
-          content: "description",
-        },
-      ],
-    };
-  },
+export default {
   mounted() {},
   async fetch() {
     await this.fetchData();
@@ -297,5 +273,5 @@ export default Vue.extend({
         });
     },
   },
-});
+};
 </script>
