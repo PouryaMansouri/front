@@ -214,7 +214,7 @@ window.Riode = {};
             paddingOffsetBottom: 0,
         },
         templateCartAddedAlert: '<div class="alert alert-simple alert-btn cart-added-alert">' +
-            '<a href="cart.html" class="btn btn-success btn-md">View Cart</a>' +
+            '<a href="/cart" class="btn btn-success btn-md">View Cart</a>' +
             '<span>"{{name}}" has been added to your cart.</span>' +
             '<button type="button" class="btn btn-link btn-close"><i class="d-icon-times"></i></button>' +
             '</div>',
