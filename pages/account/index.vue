@@ -17,6 +17,9 @@
                 <a class="nav-link" href="#account">Account details</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="#affiliate">Affiliates</a>
+              </li>
+              <li class="nav-item">
                 <button class="nav-link" @click="logout">Logout</button>
               </li>
             </ul>
@@ -29,6 +32,9 @@
               </div>
               <div class="tab-pane" id="account">
                 <account-tab />
+              </div>
+              <div class="tab-pane" id="affiliate">
+                <affiliate-tab />
               </div>
             </div>
           </div>
@@ -43,6 +49,7 @@ import Vue from "vue";
 import AddressTab from "./AddressTab.vue";
 import AccountTab from "./AccountTab.vue";
 import OrdersTab from "./OrdersTab.vue";
+import AffiliateTab from "./AffiliateTab.vue";
 
 export default Vue.extend({
   middleware: "auth",
@@ -50,6 +57,7 @@ export default Vue.extend({
     AddressTab,
     AccountTab,
     OrdersTab,
+    AffiliateTab,
   },
   head() {
     return {

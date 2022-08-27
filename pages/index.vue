@@ -2,7 +2,7 @@
   <div class="home">
     <div class="page-wrapper">
       <h1 class="d-none">Sarar - UAE branch in United Arabic Emirates</h1>
-      <main class="main demo2-cls">
+      <div class="main demo2-cls">
         <div class="page-content">
           <div class="container">
             <section class="intro-section">
@@ -179,9 +179,9 @@
                 <div
                   class="col-lg-3 col-md-4 col-6 mb-4"
                   v-for="item in bestSellingList"
-                  :key="item.id + Math.random()"
+                  :key="item.id"
                 >
-                  <ProductComponent :product="item" />
+                  <product-component :product="item" />
                 </div>
               </div>
             </section>
@@ -195,10 +195,7 @@
                 '); background-color: #1f272b;'
               "
             >
-              <div
-                class="banner-content appear-animate"
-                data-animation-options="{'name': 'fadeInUpShorter','duration': '1s'}"
-              >
+              <div>
                 <h4
                   class="
                     banner-subtitle
@@ -248,11 +245,8 @@
                             }
                         }"
               >
-                <div
-                  v-for="item in ourFeaturedList"
-                  :key="item.id + Math.random()"
-                >
-                  <ProductComponent :product="item" />
+                <div v-for="item in ourFeaturedList" :key="item.id">
+                  <product-component :product="item" />
                 </div>
               </div>
             </section>
@@ -287,23 +281,21 @@
                             }
                         }"
               >
-                <div
-                  v-for="item in suggestedList"
-                  :key="item.id + Math.random()"
-                >
-                  <ProductComponent :product="item" />
+                <div v-for="item in suggestedList" :key="item.id">
+                  <product-component :product="item" />
                 </div>
               </div>
             </section>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import Vue from "vue";
+import ProductComponent from "~/components/ProductComponent.vue";
 
 export default Vue.extend({
   computed: {
@@ -316,7 +308,7 @@ export default Vue.extend({
       this.$toast.show("added");
     },
   },
-  components: {},
+  components: { ProductComponent },
   head() {
     return {
       title: "main",
@@ -330,7 +322,7 @@ export default Vue.extend({
     };
   },
   async asyncData({ $axios }) {
-    const landing = await $axios.get("/landing/all-data/");
+    const landing = await $axios.get("landing/all-data/");
     const suggest = await $axios.get("landing/suggest-product/");
 
     return {

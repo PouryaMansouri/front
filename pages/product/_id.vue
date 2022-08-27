@@ -249,9 +249,8 @@
                             class="quantity-plus d-icon-plus"
                           ></button>
                         </div>
-                        {{this.shopSelected}}
+                        <!-- {{this.shopSelected}} -->
                         <button
-                          :disabled="!shopSelected"
                           @click="addToCart"
                           class="btn-product btn-cart"
                         >
@@ -817,8 +816,8 @@ export default {
   },
   computed: {
     addToCartDisabled() {
-      console.log(!this.shopSelected);
-      return !this.shopSelected;
+      // console.log(!this.shopSelected);
+      // return !this.shopSelected;
     },
   },
   methods: {
@@ -834,7 +833,7 @@ export default {
         this.productPick = this.productPick - 1;
     },
     colorSelect(color) {
-      this.shopSelected = false;
+      // this.shopSelected = false;
 
       this.shop = { quantirty: 0 };
       this.productShop = [];
@@ -843,7 +842,7 @@ export default {
       this.productSize.color = color;
     },
     sizeSelect(sizeName, colorName) {
-      this.shopSelected = false;
+      // this.shopSelected = false;
 
       const detail =
         this.product.stock_detail[colorName].color_data.data[sizeName.name]
@@ -854,7 +853,7 @@ export default {
       this.shop = shop;
       this.productPrice = shop.price;
       this.productQuantity = shop.quantity;
-      this.shopSelected = true;
+      // this.shopSelected = true;
     },
     addToWishlist() {},
     addToCart() {

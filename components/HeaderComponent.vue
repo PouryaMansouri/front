@@ -7,10 +7,8 @@
             <p class="welcome-msg">Welcome to Sarar From UAE!</p>
           </div>
           <div class="header-right">
-            <NuxtLink v-if="this.$auth.loggedIn" to="/account">
-              Go To Profile
-            </NuxtLink>
-            <NuxtLink v-else to="/auth"> Login And Register </NuxtLink>
+            <a v-if="this.$auth.loggedIn" href="/account"> Go To Profile </a>
+            <a v-else href="/auth"> Login And Register </a>
           </div>
         </div>
       </div>
@@ -24,23 +22,23 @@
               <img src="/logo.svg" alt="logo" width="153" height="44" />
             </a>
             <div class="header-search hs-simple">
-              <form action="#" class="input-wrapper">
+              <div class="input-wrapper">
                 <input
+                  v-model="searchName"
                   type="text"
                   class="form-control"
-                  name="search"
                   autocomplete="off"
                   placeholder="Search..."
                   required
                 />
                 <button
+                  @click="goToSearchPage"
                   class="btn btn-search"
-                  type="submit"
                   title="submit-button"
                 >
                   <i class="d-icon-search"></i>
                 </button>
-              </form>
+              </div>
             </div>
           </div>
           <div class="header-right">
@@ -58,26 +56,26 @@
             <span class="divider"></span>
             <CartComponent />
             <div class="header-search hs-toggle mobile-search">
-              <a href="#" class="search-toggle">
+              <a class="search-toggle">
                 <i class="d-icon-search"></i>
               </a>
-              <form action="#" class="input-wrapper">
+              <div class="input-wrapper">
                 <input
+                  v-model="searchName"
                   type="text"
                   class="form-control"
-                  name="search"
                   autocomplete="off"
-                  placeholder="Search your keyword..."
+                  placeholder="Search..."
                   required
                 />
                 <button
+                  @click="goToSearchPage"
                   class="btn btn-search"
-                  type="submit"
                   title="submit-button"
                 >
                   <i class="d-icon-search"></i>
                 </button>
-              </form>
+              </div>
             </div>
           </div>
         </div>
@@ -97,9 +95,18 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      searchName: "",
+    };
   },
-  methods: {},
+  methods: {
+    goToSearchPage() {
+      this.$router.push({
+        name: "search-name",
+        params: { name: this.searchName },
+      });
+    },
+  },
   async fetch() {},
 };
 </script>

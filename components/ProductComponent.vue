@@ -1,11 +1,5 @@
 <template>
-  <div
-    class="product appear-animate"
-    data-animation-options="{
-                                'name': 'fadeInRightShorter',
-                                'delay': '.2s'
-                            }"
-  >
+  <div>
     <figure class="product-media">
       <a :href="'/product/' + product.slug">
         <img
@@ -17,8 +11,14 @@
         />
       </a>
       <div class="product-label-group">
-        <label v-if="product.product_type === 1" class="product-label label-new">New</label>
-        <label v-if="product.product_type === 2" class="product-label label-sale">Hot</label>
+        <label v-if="product.product_type === 1" class="product-label label-new"
+          >New</label
+        >
+        <label
+          v-if="product.product_type === 2"
+          class="product-label label-sale"
+          >Hot</label
+        >
       </div>
       <div class="product-action-vertical">
         <a
@@ -38,9 +38,7 @@
       <h3 class="product-name">
         <a :href="'/product/' + product.slug">{{ product.name }}</a>
       </h3>
-      <div class="product-price">
-        $ {{ product.min_price }}
-      </div>
+      <div class="product-price">$ {{ product.min_price }}</div>
       <div class="ratings-container">
         <div class="ratings-full">
           <span

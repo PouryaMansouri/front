@@ -5,6 +5,7 @@
         <div class="col-sm-6">
           <label>First Name *</label>
           <input
+            v-model="user.first_name"
             type="text"
             class="form-control"
             name="first_name"
@@ -14,15 +15,36 @@
         <div class="col-sm-6">
           <label>Last Name *</label>
           <input
+            v-model="user.last_name"
             type="text"
             class="form-control"
             name="last_name"
             required=""
           />
         </div>
+        <div class="col-sm-6">
+          <label>Email *</label>
+          <input
+            v-model="user.email"
+            type="text"
+            class="form-control"
+            name="email"
+            required=""
+          />
+        </div>
+        <div class="col-sm-6">
+          <label>Phone *</label>
+          <input
+            v-model="user.phone_number"
+            type="text"
+            class="form-control"
+            name="phone_number"
+            required=""
+          />
+        </div>
       </div>
 
-      <label>Display Name *</label>
+      <!-- <label>Display Name *</label>
       <input
         type="text"
         class="form-control mb-0"
@@ -35,8 +57,8 @@
       >
 
       <label>Email Address *</label>
-      <input type="email" class="form-control" name="email" required="" />
-      <fieldset>
+      <input type="email" class="form-control" name="email" required="" /> -->
+      <!-- <fieldset>
         <legend>Password Change</legend>
         <label>Current password (leave blank to leave unchanged)</label>
         <input type="password" class="form-control" name="current_password" />
@@ -46,9 +68,10 @@
 
         <label>Confirm new password</label>
         <input type="password" class="form-control" name="confirm_password" />
-      </fieldset>
+      </fieldset> -->
 
-      <button id="pick-avatar" class="btn btn-primary">SAVE CHANGES</button>
+      <button @click="edit" class="btn btn-primary">SAVE CHANGES</button>
+      <!-- <button id="pick-avatar" class="btn btn-primary">SAVE CHANGES</button> -->
     </form>
     <div>
       <avatar-cropper
@@ -65,35 +88,41 @@
 <script>
 export default {
   components: {},
-  mounted() {
-    // const Checkout = require("@payvision/checkout-library");
-    // const options = {
-    //   live: false,
-    // };
-    // const checkout = new Checkout(
-    //   "{{CHECKOUT_ID}}",
-    //   "checkout-container",
-    //   options
-    // );
-    // checkout.render();
-    // this.$nextTick(() => {
-    //   this.$nuxt.$loading.start()
-    //   setTimeout(() => this.$nuxt.$loading.finish(), 10000)
-    // })
+  computed: {},
+  async fetch() {
+    await this.fetchData();
   },
-  async asyncData() {
-    return;
-  },
+  async asyncData() {},
   data() {
     return {
-      selected: 0,
-      countries: [],
-      cities: [],
+      user: {
+        first_name: "",
+        last_name: "",
+        email: "",
+        phone_number: "",
+      },
     };
   },
   methods: {
+    async fetchData() {
+      const { data } = await this.$axios.get("accounts/profile/detail/");
+
+      this.user = data.user;
+    },
     handleUploading() {
       this.$toast.show("my message", { duration: 3000 });
+    },
+    edit() {
+      this.$axios
+        .patch("/accounts/profile/update/", { user: this.user })
+        .then((response) => {
+          if (response.status == 200) {
+            this.$toast.success("Profile Edited", { duration: 3000 });
+          }
+        })
+        .catch((error) => {
+          this.$toast.error("error", { duration: 3000 });
+        });
     },
   },
 };

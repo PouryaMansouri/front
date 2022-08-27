@@ -4,7 +4,7 @@
       <a href="/">Home</a>
     </li>
     <li v-for="item in navbarMenuList" :key="item.id">
-      <a :href="item.slug">{{ item.name }}</a>
+      <a :href="'/category/' + item.slug">{{ item.name }}</a>
       <div class="megamenu">
         <div class="row">
           <div
@@ -12,12 +12,12 @@
             :key="sub1.id"
             class="col-4 col-sm-3 col-md-3 col-lg-2"
           >
-            <a :href="sub1.slug">
+            <a :href="'/category/' + sub1.slug">
               <h5 class="menu-title">{{ sub1.name }}</h5>
             </a>
             <ul>
               <li v-for="sub2 in sub1.subcategories" :key="sub2.id">
-                <a :href="sub2.slug">{{ sub2.name }}</a>
+                <a :href="'/category/' + sub2.slug">{{ sub2.name }}</a>
               </li>
             </ul>
           </div>
