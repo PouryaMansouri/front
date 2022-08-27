@@ -131,7 +131,8 @@ export default {
     '@nuxtjs/pwa',
     // 'cookie-universal-nuxt',
     '@nuxtjs/toast',
-    '@nuxtjs/auth-next'
+    '@nuxtjs/auth-next',
+    'cookie-universal-nuxt',
   ],
 
 

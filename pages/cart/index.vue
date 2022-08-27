@@ -9,20 +9,19 @@
               <table class="shop-table cart-table">
                 <thead>
                   <tr>
+                    <th><span>Image</span></th>
                     <th><span>Product</span></th>
-                    <th></th>
-                    <th><span>Price</span></th>
                     <th><span>quantity</span></th>
-                    <th>Subtotal</th>
+                    <th><span>Price</span></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr v-for="item in cartList" :key="item.id" >
                     <td class="product-thumbnail">
                       <figure>
                         <a href="product-simple.html">
                           <img
-                            src="images/products/product18.jpg"
+                            :src="item.image"
                             width="100"
                             height="100"
                             alt="product"
@@ -33,12 +32,9 @@
                     <td class="product-name">
                       <div class="product-name-section">
                         <a href="product-simple.html"
-                          >Converse Training Shoes</a
+                          >{{item.name}}</a
                         >
                       </div>
-                    </td>
-                    <td class="product-subtotal">
-                      <span class="amount">$129.99</span>
                     </td>
                     <td class="product-quantity">
                       <div class="input-group">
@@ -53,55 +49,7 @@
                       </div>
                     </td>
                     <td class="product-price">
-                      <span class="amount">$129.99</span>
-                    </td>
-                    <td class="product-close">
-                      <a
-                        href="#"
-                        class="product-remove"
-                        title="Remove this product"
-                      >
-                        <i class="fas fa-times"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="product-thumbnail">
-                      <figure>
-                        <a href="product-simple.html">
-                          <img
-                            src="images/products/product19.jpg"
-                            width="100"
-                            height="100"
-                            alt="product"
-                          />
-                        </a>
-                      </figure>
-                    </td>
-                    <td class="product-name">
-                      <div class="product-name-section">
-                        <a href="product-simple.html"
-                          >Women Beautiful Headgear</a
-                        >
-                      </div>
-                    </td>
-                    <td class="product-subtotal">
-                      <span class="amount">$98.00</span>
-                    </td>
-                    <td class="product-quantity">
-                      <div class="input-group">
-                        <button class="quantity-minus d-icon-minus"></button>
-                        <input
-                          class="quantity form-control"
-                          type="number"
-                          min="1"
-                          max="1000000"
-                        />
-                        <button class="quantity-plus d-icon-plus"></button>
-                      </div>
-                    </td>
-                    <td class="product-price">
-                      <span class="amount">$98.00</span>
+                      <span class="amount">${{item.price}}</span>
                     </td>
                     <td class="product-close">
                       <a
@@ -167,97 +115,17 @@
                         <p class="summary-subtotal-price">$426.99</p>
                       </td>
                     </tr>
-                    <tr class="sumnary-shipping shipping-row-last">
-                      <td colspan="2">
-                        <h4 class="summary-subtitle">Calculate Shipping</h4>
-                        <ul>
-                          <li>
-                            <div class="custom-radio">
-                              <input
-                                type="radio"
-                                id="flat_rate"
-                                name="shipping"
-                                class="custom-control-input"
-                                checked
-                              />
-                              <label
-                                class="custom-control-label"
-                                for="flat_rate"
-                                >Flat rate</label
-                              >
-                            </div>
-                          </li>
-                          <li>
-                            <div class="custom-radio">
-                              <input
-                                type="radio"
-                                id="free-shipping"
-                                name="shipping"
-                                class="custom-control-input"
-                              />
-                              <label
-                                class="custom-control-label"
-                                for="free-shipping"
-                                >Free shipping</label
-                              >
-                            </div>
-                          </li>
-
-                          <li>
-                            <div class="custom-radio">
-                              <input
-                                type="radio"
-                                id="local_pickup"
-                                name="shipping"
-                                class="custom-control-input"
-                              />
-                              <label
-                                class="custom-control-label"
-                                for="local_pickup"
-                                >Local pickup</label
-                              >
-                            </div>
-                          </li>
-                        </ul>
+                  </table>
+                  <table class="shipping">
+                    <tr class="summary-subtotal">
+                      <td>
+                        <h4 class="summary-subtitle">Discount</h4>
+                      </td>
+                      <td>
+                        <p class="summary-subtotal-price">$426.99</p>
                       </td>
                     </tr>
                   </table>
-                  <div class="shipping-address">
-                    <label>Shipping to <strong>CA.</strong></label>
-                    <div class="select-box">
-                      <select name="country" class="form-control">
-                        <option value="us" selected>United States (US)</option>
-                        <option value="uk">United Kingdom</option>
-                        <option value="fr">France</option>
-                        <option value="aus">Austria</option>
-                      </select>
-                    </div>
-                    <div class="select-box">
-                      <select name="country" class="form-control">
-                        <option value="us" selected>California</option>
-                        <option value="uk">Alaska</option>
-                        <option value="fr">Delaware</option>
-                        <option value="aus">Hawaii</option>
-                      </select>
-                    </div>
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="code"
-                      placeholder="Town / City"
-                    />
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="code"
-                      placeholder="ZIP"
-                    />
-                    <a
-                      href="#"
-                      class="btn btn-md btn-dark btn-rounded btn-outline"
-                      >Update totals</a
-                    >
-                  </div>
                   <table class="total">
                     <tr class="summary-subtotal">
                       <td>
@@ -269,7 +137,7 @@
                     </tr>
                   </table>
                   <a
-                    href="checkout.html"
+                    href="/checkout"
                     class="btn btn-dark btn-rounded btn-checkout"
                     >Proceed to checkout</a
                   >
@@ -296,9 +164,7 @@
           <div class="main-content">
             <i class="d-icon-bag cart-icon"></i>
             <h2 class="cart-descri">No products added to the cart</h2>
-            <a class="btn btn-primary btn-rounded" href="shop.html">
-              GO SHOP
-            </a>
+            <a class="btn btn-primary btn-rounded" href="/shops"> GO SHOP </a>
           </div>
         </div>
       </div>
@@ -306,30 +172,63 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
 
-export default Vue.extend({
-  head() {
-    return {
-      title: "cart",
-      meta: [
-        {
-          name: "description",
-          hid: "description",
-          content: "description",
-        },
-      ],
-    };
+<script>
+export default {
+  mounted() {},
+  async fetch() {
+    await this.fetchData();
   },
   async asyncData() {
     return;
   },
   data() {
-    return {
-      cartList: [{}],
-    };
+    return {};
   },
-  methods: {},
-});
+  computed: {
+    cartList() {
+      return this.$store.state.cart;
+    },
+    all_total_price() {
+      return this.$store.getters["cart/totalAmount"];
+    },
+    totalCart() {
+      return this.$store.getters["cart/totalCart"];
+    },
+  },
+  methods: {
+    addCart() {
+      this.$axios
+        .post("accounts/cart/create/", this.cart)
+        .then((response) => {
+          if (response.status == 201) {
+            this.$toast.success("Successful", { duration: 3000 });
+            this.fetchData();
+          } else {
+            this.$toast.error("Error", { duration: 3000 });
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+          this.$toast.error("Error", { duration: 3000 });
+        });
+    },
+    removeCart(id) {
+      this.$axios
+        .delete("accounts/cart/delete/", this.cart)
+        .then((response) => {
+          if (response.status == 201) {
+            this.$toast.success("Successful", { duration: 3000 });
+          } else {
+            this.$toast.error("Error", { duration: 3000 });
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+          this.$toast.error("Error", { duration: 3000 });
+        });
+    },
+  },
+};
 </script>
+

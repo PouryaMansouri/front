@@ -5,117 +5,7 @@
       <div class="page-content mb-10">
         <div class="container-fluid">
           <div class="row gutter-lg">
-            <aside
-              class="
-                col-lg-3 col-xxl-2
-                right-sidebar
-                sidebar-fixed
-                sticky-sidebar-wrapper
-              "
-            >
-              <div class="sidebar-overlay">
-                <a class="sidebar-close" href="#"
-                  ><i class="d-icon-times"></i
-                ></a>
-              </div>
-              <a href="#" class="sidebar-toggle"
-                ><i class="fas fa-chevron-left"></i
-              ></a>
-              <div class="sidebar-content">
-                <div class="sticky-sidebar">
-                  <div class="service-list mb-4">
-                    <div class="icon-box icon-box-side icon-box3">
-                      <span class="icon-box-icon">
-                        <i class="d-icon-secure"></i>
-                      </span>
-                      <div class="icon-box-content">
-                        <h4 class="icon-box-title">Secured Payment</h4>
-                        <p>We ensure secure payment!</p>
-                      </div>
-                    </div>
-                    <div class="icon-box icon-box-side icon-box1">
-                      <span class="icon-box-icon">
-                        <i class="d-icon-truck"></i>
-                      </span>
-                      <div class="icon-box-content">
-                        <h4 class="icon-box-title">Free Shipping</h4>
-                        <p>On all US orders above $99</p>
-                      </div>
-                    </div>
-                    <div class="icon-box icon-box-side icon-box2">
-                      <span class="icon-box-icon">
-                        <i class="d-icon-money"></i>
-                      </span>
-                      <div class="icon-box-content">
-                        <h4 class="icon-box-title">Money Back guarantee</h4>
-                        <p>Any back within 30 days</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="
-                      product-banner
-                      banner banner-fixed
-                      overlay-zoom overlay-dark
-                      mb-4
-                    "
-                  >
-                    <figure>
-                      <img
-                        src="/images/demos/demo7/product/banner.jpg"
-                        width="280"
-                        height="312"
-                        alt="banner"
-                      />
-                    </figure>
-                    <div
-                      class="
-                        banner-price-info
-                        font-weight-bold
-                        text-white text-uppercase
-                        ls-m
-                      "
-                    >
-                      20-22<sup>th</sup> April
-                    </div>
-                    <div class="banner-content text-center mt-1">
-                      <h4
-                        class="
-                          banner-subtitle
-                          d-inline-block
-                          bg-primary
-                          text-uppercase
-                          ls-m
-                          font-weight-semi-bold
-                          text-dark
-                          mb-0
-                        "
-                      >
-                        Ultimate Sale
-                      </h4>
-                      <h3
-                        class="
-                          banner-title
-                          ls-l
-                          text-uppercase text-white
-                          font-weight-bold
-                          mb-0
-                        "
-                      >
-                        Up to 70%
-                      </h3>
-                      <p class="mb-4 font-primary text-white lh-1 ls-m">
-                        Discount Selected Items
-                      </p>
-                      <a href="#" class="btn btn-white btn-link btn-underline"
-                        >Shop now<i class="d-icon-arrow-right"></i
-                      ></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </aside>
-            <div class="col-lg-9 col-xxl-10">
+            <div class="col-lg-12 col-xxl-10">
               <div class="product product-single row mb-4">
                 <div class="col-lg-7">
                   <div class="product-gallery row cols-sm-2">
@@ -142,10 +32,7 @@
                     <h1 class="product-name pt-lg-2">
                       {{ product.name }}
                     </h1>
-                    <div class="product-meta mb-3">
-                      SKU: <span class="product-sku">12345670</span> BRAND:
-                      <span class="product-brand">The Northland</span>
-                    </div>
+
                     <div class="product-price">${{ productPrice }}</div>
                     <div class="ratings-container">
                       <div class="ratings-full">
@@ -224,9 +111,6 @@
                         </div>
                       </div>
                     </div>
-                    <!-- <div>
-                      <span>{{ productPrice }}</span>
-                    </div> -->
 
                     <hr class="product-divider" />
 
@@ -249,28 +133,13 @@
                             class="quantity-plus d-icon-plus"
                           ></button>
                         </div>
-                        <!-- {{this.shopSelected}} -->
-                        <button
-                          @click="addToCart"
-                          class="btn-product btn-cart"
-                        >
+                        <button @click="addToCart" class="btn-product btn-cart">
                           <i class="d-icon-bag"></i>Add To Cart
                         </button>
                       </div>
                     </div>
 
                     <hr class="product-divider mb-3" />
-
-                    <!-- <div class="product-footer">
-                      <div class="product-action">
-                        <div
-                          @click="addToWishlist"
-                          class="btn-product btn-wishlist"
-                        >
-                          <i class="d-icon-heart"></i>Add To Wishlist
-                        </div>
-                      </div>
-                    </div> -->
 
                     <div class="accordion accordion-simple mb-4">
                       <div class="card border-no card-description">
@@ -595,108 +464,41 @@
                   </div>
                 </div>
               </div>
-
-              <section v-if="product.related_products.length !== 0">
-                <h2
-                  class="title title-simple title-center text-capitalize mb-4"
-                >
-                  Related Products
-                </h2>
-
+              <section
+                v-if="product.related_products.length !== 0"
+                class="pt-7 pb-1"
+              >
+                <h2 class="title title-simple ls-m">Related Products</h2>
                 <div
                   class="
-                    owl-carousel owl-theme owl-nav-full
+                    owl-carousel owl-theme
                     row
-                    cols-2 cols-md-3 cols-lg-4
+                    owl-nav-full
+                    cols-lg-4 cols-md-3 cols-2
                   "
                   data-owl-options="{
-								'items': 5,
-								'nav': false,
-								'loop': false,
-								'dots': true,
-								'margin': 20,
-								'responsive': {
-									'0': {
-										'items': 2
-									},
-									'768': {
-										'items': 3
-									},
-									'992': {
-										'items': 4,
-										'dots': false
-									}
-								}
-							}"
+                            'items': 4,
+                            'nav': false,
+                            'dots': true,
+                            'loop': false,
+                            'margin': 20,
+                            'responsive': {
+                                '0': {
+                                    'items': 2
+                                },
+                                '768': {
+                                    'items': 3
+                                },
+                                '992': {
+                                    'items': 4,
+                                    'dots': false,
+                                    'nav': true
+                                }
+                            }
+                        }"
                 >
-                  <div
-                    v-for="(item, index) in relatedProductsList"
-                    :key="index"
-                  >
-                    <div class="product text-center">
-                      <router-link :to="'/product/' + item.id">
-                        <figure class="product-media">
-                          <a>
-                            <img
-                              :src="item.image"
-                              alt="product"
-                              width="280"
-                              height="315"
-                            />
-                          </a>
-                          <!-- <div class="product-label-group">
-                            <label class="product-label label-new">new</label>
-                          </div> -->
-                          <div class="product-action-vertical">
-                            <a
-                              class="btn-product-icon btn-cart"
-                              data-toggle="modal"
-                              data-target="#addCartModal"
-                              title="Add to cart"
-                              ><i class="d-icon-bag"></i
-                            ></a>
-                            <a
-                              class="btn-product-icon btn-wishlist"
-                              title="Add to wishlist"
-                              ><i class="d-icon-heart"></i
-                            ></a>
-                          </div>
-                          <div class="product-action">
-                            <a
-                              class="btn-product btn-quickview"
-                              title="Quick View"
-                              >Quick View</a
-                            >
-                          </div>
-                        </figure>
-                      </router-link>
-
-                      <div class="product-details">
-                        <div class="product-cat">
-                          <a :href="item.category.slug">{{
-                            item.category.name
-                          }}</a>
-                        </div>
-                        <h3 class="product-name">
-                          <a>{{ item.name }}</a>
-                        </h3>
-                        <div class="product-price">
-                          <span class="price">{{ item.min_price }}</span>
-                        </div>
-                        <div class="ratings-container">
-                          <div class="ratings-full">
-                            <span
-                              class="ratings"
-                              :style="'width: ' + item.star * 20 + '%'"
-                            ></span>
-                            <span class="tooltiptext tooltip-top"></span>
-                          </div>
-                          <a class="rating-reviews"
-                            >( {{ comments.length }} reviews )</a
-                          >
-                        </div>
-                      </div>
-                    </div>
+                  <div v-for="item in relatedProductsList" :key="item.id">
+                    <product-component :product="item" />
                   </div>
                 </div>
               </section>
@@ -705,68 +507,12 @@
         </div>
       </div>
     </main>
-    <!-- Root element of PhotoSwipe. Must have class pswp. -->
-    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-      <!-- Background of PhotoSwipe. It's a separate element as animating opacity is faster than rgba(). -->
-      <div class="pswp__bg"></div>
-
-      <!-- Slides wrapper with overflow:hidden. -->
-      <div class="pswp__scroll-wrap">
-        <!-- Container that holds slides.
-			PhotoSwipe keeps only 3 of them in the DOM to save memory.
-			Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-          <div class="pswp__item"></div>
-          <div class="pswp__item"></div>
-          <div class="pswp__item"></div>
-        </div>
-
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-          <div class="pswp__top-bar">
-            <!--  Controls are self-explanatory. Order can be changed. -->
-
-            <div class="pswp__counter"></div>
-
-            <button
-              class="pswp__button pswp__button--close"
-              aria-label="Close (Esc)"
-            ></button>
-            <button
-              class="pswp__button pswp__button--zoom"
-              aria-label="Zoom in/out"
-            ></button>
-
-            <div class="pswp__preloader">
-              <div class="loading-spin"></div>
-            </div>
-          </div>
-
-          <div
-            class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"
-          >
-            <div class="pswp__share-tooltip"></div>
-          </div>
-
-          <button
-            class="pswp__button--arrow--left"
-            aria-label="Previous (arrow left)"
-          ></button>
-          <button
-            class="pswp__button--arrow--right"
-            aria-label="Next (arrow right)"
-          ></button>
-
-          <div class="pswp__caption">
-            <div class="pswp__caption__center"></div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 <script>
+import ProductComponent from "~/components/ProductComponent.vue";
 export default {
+  components: { ProductComponent },
   computed: {},
   head() {
     return {
@@ -784,9 +530,9 @@ export default {
   },
   data() {
     return {
-      stockId: 0,
+      stock: {},
       product: { stock_detail: {}, min_price: 0 },
-      shop: { quantirty: 0 },
+      shop: { quantity: 0 },
       productQuantity: null,
       productSize: [],
       productShop: [],
@@ -816,8 +562,7 @@ export default {
   },
   computed: {
     addToCartDisabled() {
-      // console.log(!this.shopSelected);
-      // return !this.shopSelected;
+      return this.stock;
     },
   },
   methods: {
@@ -833,17 +578,13 @@ export default {
         this.productPick = this.productPick - 1;
     },
     colorSelect(color) {
-      // this.shopSelected = false;
-
-      this.shop = { quantirty: 0 };
+      this.shop = { quantity: 0 };
       this.productShop = [];
       const detail = this.product.stock_detail[color.name].color_data.data;
       this.productSize = Object.values(detail);
       this.productSize.color = color;
     },
     sizeSelect(sizeName, colorName) {
-      // this.shopSelected = false;
-
       const detail =
         this.product.stock_detail[colorName].color_data.data[sizeName.name]
           .shop_data;
@@ -853,12 +594,10 @@ export default {
       this.shop = shop;
       this.productPrice = shop.price;
       this.productQuantity = shop.quantity;
-      // this.shopSelected = true;
     },
     addToWishlist() {},
     addToCart() {
-      console.log(this.productPick);
-      // this.$store.dispatch('cart/addProductToCart',this.product)
+      this.$store.dispatch("cart/addProductToCart", { id: 2, price: 33 });
     },
     submitComment() {
       // this.$axios
