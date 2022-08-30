@@ -88,7 +88,7 @@
                       >I agree to the privacy policy</label
                     >
                   </div>
-                  <nuxt-link style="font-weight: bold" to="/auth/register"
+                  <nuxt-link style="font-weight: bold" to="/auth"
                     >login</nuxt-link
                   >
                 </div>
