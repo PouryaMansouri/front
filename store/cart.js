@@ -21,6 +21,9 @@ export const mutations = {
             maxAge: 60 * 60 * 24 * 7
         })
     },
+    SET_CARTS_ONLINE(state, carts) {
+        state.carts = [...carts]
+    },
     RESET_CART(state) {
         state.carts = []
 
@@ -43,7 +46,7 @@ export const mutations = {
             .then((response) => {
                 if (response.status == 200) {
                     commit('RESET_CART')
-                    commit('SET_CART', response.data.items)
+                    commit('SET_CART_ONLINE', response.data.items)
                     if (response.data.messages.length != 0)
                         Object.keys(response.data.messages).forEach((element) => {
                             this.$toast.error(e.response.data[element], { duration: 4000 });
@@ -112,15 +115,9 @@ export const mutations = {
     },
     REMOVE_CART_ONLINE(state, item) {
         this.$axios
-            .post("cart/create-from-guest-to-login-user/", {
-                items: [
-                    ...carts
-                ],
-                status: 0,
-                affiliate_code: null
-            })
+            .delete(`cart/delete-cart-item/${item}/`)
             .then((response) => {
-                if (response.status == 201) {
+                if (response.status == 200) {
                     commit('RESET_CART')
                     commit('SET_CART', response.data.items)
                     if (response.data.messages.length != 0)
@@ -134,45 +131,25 @@ export const mutations = {
             });
     },
     ADD_PRODUCT_TO_CART_ONLINE(state, product) {
-        const carts = [...state.carts]
-        const cartIndex = carts.findIndex((cart) => cart.item === product.item)
+        this.$axios
+            .post("cart/create-update-one-cart-item/", {
+                item: product.item,
+                quantity: product.quantity
+            })
+            .then((response) => {
+                if (response.status == 200) {
+                    commit('RESET_CART')
+                    commit('SET_CART', response.data.items)
+                    if (response.data.messages.length != 0)
+                        Object.keys(response.data.messages).forEach((element) => {
+                            this.$toast.error(e.response.data[element], { duration: 4000 });
+                        });
+                }
+            })
+            .catch((e) => {
+                console.log(e);
+            });
 
-        if (cartIndex !== -1) {
-            if (product.count > 1) {
-                const c = carts[cartIndex].quantity
-                carts[cartIndex].quantity = c + product.count
-            }
-            else {
-
-            }
-
-        } else {
-            carts.push({ ...product, quantity: product.count })
-        }
-
-        state.carts = [...carts]
-
-        this.$cookies.set('carts', state.carts, {
-            path: '/',
-            maxAge: 60 * 60 * 24 * 7
-        })
-
-    },
-    REMOVE_PRODUCT_FROM_CART_ONLINE(state, product) {
-        const carts = [...state.carts]
-        const cartIndex = carts.findIndex((cart) => cart.item === product.item)
-
-        if (cartIndex !== -1) {
-            const item = carts[cartIndex]
-
-            if (item.quantity === 1) {
-                carts.splice(cartIndex, 1)
-            } else {
-                carts[cartIndex].quantity--
-            }
-        }
-
-        state.carts = [...carts]
     },
 };
 
@@ -184,13 +161,13 @@ export const actions = {
             commit('ADD_PRODUCT_TO_CART', product)
         }
     },
-    async removeProductFromCart({ commit }, productId) {
-        if (await this.$auth.loggedIn) {
-            commit('REMOVE_PRODUCT_FROM_CART_ONLINE', productId)
-        } else {
-            commit('REMOVE_PRODUCT_FROM_CART', productId)
-        }
-    },
+    // async removeProductFromCart({ commit }, productId) {
+    //     if (await this.$auth.loggedIn) {
+    //         commit('REMOVE_PRODUCT_FROM_CART_ONLINE', productId)
+    //     } else {
+    //         commit('REMOVE_PRODUCT_FROM_CART', productId)
+    //     }
+    // },
     async addToCartWhenLogin({ commit }) {
         commit('ADD_TO_CART_WHEN_LOGIN')
     },
@@ -198,6 +175,10 @@ export const actions = {
         commit('RESET_CART')
     },
     async removeCart({ commit }, item) {
-        commit('REMOVE_CART', item)
+        if (await this.$auth.loggedIn) {
+            commit('REMOVE_CART_ONLINE', item)
+        } else {
+            commit('REMOVE_CART', item)
+        }
     },
 };

@@ -623,7 +623,6 @@ export default {
         });
         return;
       }
-      console.log(this.shop);
       this.$store.dispatch("cart/addProductToCart", {
         item: this.shop.stock_id_for_cart,
         price: this.shop.price,
@@ -633,7 +632,7 @@ export default {
         shop: this.shop.shop_name,
         count: this.productPick,
       });
-      this.$toast.success("Product Successfully Added To Cart", {
+      this.$toast.success("Cart Updated", {
         duration: 3000,
       });
     },
