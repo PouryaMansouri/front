@@ -498,6 +498,13 @@ export default Vue.extend({
       ],
     };
   },
+  mounted(){
+    if (!this.$auth.loggedIn) {
+      this.$router.push({
+        name: "auth",
+      });
+    }
+  },
   async asyncData() {
     return;
   },

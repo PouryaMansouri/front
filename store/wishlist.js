@@ -3,20 +3,28 @@ export const state = () => ({
 });
 
 export const getters = {
-    totalCart: (state) => state.wishlist.reduce((currentQuantiy, cart) => currentQuantiy + cart.quantity, 0),
-    totalAmount: (state) => state.wishlist.reduce((currentAmount, cart) => currentAmount + cart.quantity * cart.price, 0),
+    totalWishlist: (state) => state.wishlist.reduce((currentQuantiy, wishlist) => currentQuantiy + wishlist.quantity, 0),
+    totalAmount: (state) => state.wishlist.reduce((currentAmount, wishlist) => currentAmount + wishlist.quantity * wishlist.price, 0),
 };
 
 export const mutations = {
     SET_WISHLIST(state, wishlist) {
         state.wishlist = [...wishlist]
     },
-    ADD_PRODUCT_TO_CART(state, product) {
-        const wishlist = [...state.wishlist]
-        const cartIndex = wishlist.findIndex((cart) => cart.id === product.id)
+    RESET_WISHLIST(state) {
+        state.wishlist = []
 
-        if (cartIndex !== -1) {
-            wishlist[cartIndex].quantity++
+        this.$cookies.set('wishlist', state.wishlist, {
+            path: '/',
+            maxAge: 60 * 60 * 24 * 7
+        })
+    },
+    ADD_PRODUCT_TO_WISHLIST(state, product) {
+        const wishlist = [...state.wishlist]
+        const wishlistIndex = wishlist.findIndex((wishlist) => wishlist.id === product.id)
+
+        if (wishlistIndex !== -1) {
+            wishlist[wishlistIndex].quantity++
         } else {
             wishlist.push({ ...product, quantity: 1 })
         }
@@ -30,17 +38,17 @@ export const mutations = {
 
     },
 
-    REMOVE_PRODUCT_FROM_CART(state, product) {
+    REMOVE_PRODUCT_FROM_WISHLIST(state, product) {
         const wishlist = [...state.wishlist]
-        const cartIndex = wishlist.findIndex((cart) => cart.id === product.id)
+        const wishlistIndex = wishlist.findIndex((wishlist) => wishlist.id === product.id)
 
-        if (cartIndex !== -1) {
-            const item = wishlist[cartIndex]
+        if (wishlistIndex !== -1) {
+            const item = wishlist[wishlistIndex]
 
             if (item.quantity === 1) {
-                wishlist.splice(cartIndex, 1)
+                wishlist.splice(wishlistIndex, 1)
             } else {
-                wishlist[cartIndex].quantity--
+                wishlist[wishlistIndex].quantity--
             }
         }
 
@@ -49,10 +57,10 @@ export const mutations = {
 };
 
 export const actions = {
-    async addProductToCart({ commit }, product) {
-        commit('ADD_PRODUCT_TO_CART', product)
+    async addProductToWishlist({ commit }, product) {
+        commit('ADD_PRODUCT_TO_WISHLIST', product)
     },
-    async removeProductFromCart({ commit }, productId) {
-        commit('REMOVE_PRODUCT_FROM_CART', productId)
+    async removeProductFromWishlist({ commit }, productId) {
+        commit('REMOVE_PRODUCT_FROM_WISHLIST', productId)
     },
 };

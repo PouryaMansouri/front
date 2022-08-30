@@ -11,25 +11,29 @@
     </a>
     <div class="dropdown-box">
       <div class="products scrollable">
-        <div v-for="item in list" :key="item.id" class="product product-cart">
+        <div
+          v-for="element in list"
+          :key="element.item"
+          class="product product-cart"
+        >
           <figure class="product-media">
-            <a :href="'product/' + item.slug">
-              <img :src="item.image" alt="product" width="80" height="88" />
-            </a>
+            <nuxt-link :to="'/product/' + element.slug"
+              ><img :src="element.image" alt="product" width="80" height="88"
+            /></nuxt-link>
+
             <button
-              @click="removeFromCart(item.id)"
+              @click="removeFromCart(element.item)"
               class="btn btn-link btn-close"
             >
               <i class="fas fa-times"></i><span class="sr-only">Close</span>
             </button>
           </figure>
           <div class="product-detail">
-            <a :href="'product/' + item.product_slug" class="product-name">{{
-              item.name
-            }}</a>
+            <a class="product-name">{{ element.name }}</a>
+            <a class="product-name">shop:{{ element.shop }}</a>
             <div class="price-box">
-              <span class="product-quantity">{{ item.quantity }}</span>
-              <span class="product-price">${{ item.price }}</span>
+              <span class="product-quantity">{{ element.quantity }}</span>
+              <span class="product-price">${{ element.price }}</span>
             </div>
           </div>
         </div>
@@ -41,7 +45,15 @@
       </div>
       <!-- End of Cart Total -->
       <div class="cart-action">
-        <NuxtLink to="/cart" class="btn btn-dark btn-link">View Cart</NuxtLink>
+        <NuxtLink
+          v-if="this.$auth.loggedIn"
+          to="/cart"
+          class="btn btn-dark btn-link"
+          >View Cart</NuxtLink
+        >
+        <NuxtLink v-else to="/auth" class="btn btn-dark btn-link"
+          >Login</NuxtLink
+        >
       </div>
       <!-- End of Cart Action -->
     </div>
@@ -59,14 +71,12 @@ export default {
     };
   },
   methods: {
-    removeFromCart(id) {
-      console.log(id);
-      this.$store.dispatch("cart/removeProductFromCart", id);
+    removeFromCart(item) {
+      this.$store.dispatch("cart/removeCart", item);
     },
   },
   computed: {
     list() {
-      console.log(this.$store.state.cart.carts);
       return this.$store.state.cart.carts;
     },
     all_total_price() {

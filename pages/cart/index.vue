@@ -16,7 +16,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="item in cartList" :key="item.id" >
+                  <tr v-for="item in cartList" :key="item.id">
                     <td class="product-thumbnail">
                       <figure>
                         <a href="product-simple.html">
@@ -31,9 +31,7 @@
                     </td>
                     <td class="product-name">
                       <div class="product-name-section">
-                        <a href="product-simple.html"
-                          >{{item.name}}</a
-                        >
+                        <a href="product-simple.html">{{ item.name }}</a>
                       </div>
                     </td>
                     <td class="product-quantity">
@@ -49,7 +47,7 @@
                       </div>
                     </td>
                     <td class="product-price">
-                      <span class="amount">${{item.price}}</span>
+                      <span class="amount">${{ item.price }}</span>
                     </td>
                     <td class="product-close">
                       <a
@@ -175,7 +173,13 @@
 
 <script>
 export default {
-  mounted() {},
+  mounted() {
+    if (!this.$auth.loggedIn) {
+      this.$router.push({
+        name: "auth",
+      });
+    }
+  },
   async fetch() {
     await this.fetchData();
   },

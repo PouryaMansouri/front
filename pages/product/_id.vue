@@ -84,9 +84,7 @@
                               'padding: 5px; border: 1px solid; border-color:' +
                               productSize.color.code
                             "
-                          >
-                            {{ size.name }}
-                          </button>
+                          ></button>
                         </div>
                       </div>
                     </div>
@@ -517,12 +515,14 @@
                             }
                         }"
                 >
-                  <div v-for="item in relatedProductsList" :key="item.id">
+                  <div
+                    v-for="(item, index) in relatedProductsList"
+                    :key="index"
+                  >
                     <product-component :product="item" />
                   </div>
                 </div>
               </section>
-              {{ shop }}
             </div>
           </div>
         </div>
@@ -534,11 +534,6 @@
 import ProductComponent from "~/components/ProductComponent.vue";
 export default {
   components: { ProductComponent },
-  computed: {
-    addToCartDisabled() {
-      return "h";
-    },
-  },
   head() {
     return {
       title: this.product.name,
@@ -568,7 +563,7 @@ export default {
         },
       ],
       productPrice: 0,
-      productPick: 1,
+      productPick: 0,
       averageRating: {
         total: 0,
         star5: 0,
@@ -585,11 +580,7 @@ export default {
       },
     };
   },
-  computed: {
-    addToCartDisabled() {
-      return this.stock;
-    },
-  },
+  computed: {},
   methods: {
     changeProductPick(type) {
       if (
@@ -632,12 +623,14 @@ export default {
         });
         return;
       }
+      console.log(this.shop);
       this.$store.dispatch("cart/addProductToCart", {
-        id: this.shop.stock_id_for_cart,
+        item: this.shop.stock_id_for_cart,
         price: this.shop.price,
         image: this.product.image,
         slug: this.product.slug,
         name: this.product.name,
+        shop: this.shop.shop_name,
         count: this.productPick,
       });
       this.$toast.success("Product Successfully Added To Cart", {

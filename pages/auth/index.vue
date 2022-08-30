@@ -124,6 +124,7 @@ export default Vue.extend({
           password: this.password,
         },
       });
+      this.$store.dispatch("cart/addToCartWhenLogin");
     },
     registerClick() {
       this.$axios
