@@ -133,7 +133,7 @@ export const mutations = {
         this.$axios
             .post("cart/create-update-one-cart-item/", {
                 item: product.item,
-                quantity: product.quantity
+                quantity: product.count
             })
             .then((response) => {
                 if (response.status == 200) {
