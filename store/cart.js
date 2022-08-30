@@ -15,7 +15,6 @@ export const mutations = {
     SET_CARTS(state, carts) {
         state.carts = [...carts]
 
-        console.log(state.carts);
         this.$cookies.set('carts', state.carts, {
             path: '/',
             maxAge: 60 * 60 * 24 * 7
@@ -46,7 +45,7 @@ export const mutations = {
             .then((response) => {
                 if (response.status == 200) {
                     commit('RESET_CART')
-                    commit('SET_CART_ONLINE', response.data.items)
+                    commit('SET_CARTS_ONLINE', response.data.items)
                     if (response.data.messages.length != 0)
                         Object.keys(response.data.messages).forEach((element) => {
                             this.$toast.error(e.response.data[element], { duration: 4000 });
@@ -119,7 +118,7 @@ export const mutations = {
             .then((response) => {
                 if (response.status == 200) {
                     commit('RESET_CART')
-                    commit('SET_CART', response.data.items)
+                    commit('SET_CARTS', response.data.items)
                     if (response.data.messages.length != 0)
                         Object.keys(response.data.messages).forEach((element) => {
                             this.$toast.error(e.response.data[element], { duration: 4000 });
@@ -139,7 +138,7 @@ export const mutations = {
             .then((response) => {
                 if (response.status == 200) {
                     commit('RESET_CART')
-                    commit('SET_CART', response.data.items)
+                    commit('SET_CARTS', response.data.items)
                     if (response.data.messages.length != 0)
                         Object.keys(response.data.messages).forEach((element) => {
                             this.$toast.error(e.response.data[element], { duration: 4000 });
