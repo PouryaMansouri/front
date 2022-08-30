@@ -38,7 +38,11 @@
                       <div class="ratings-full">
                         <span
                           class="ratings"
-                          :style="'width: ' + product.star * 20 + '%'"
+                          :style="
+                            'width: ' +
+                            Math.floor(averageRating.total) * 20 +
+                            '%'
+                          "
                         ></span>
                         <span class="tooltiptext tooltip-top"></span>
                       </div>
@@ -69,26 +73,20 @@
                     <div class="product-form product-size">
                       <label>Size:</label>
                       <div class="product-form-group">
-                        <div class="product-variations">
-                          <b-row class="match-height">
-                            <b-col
-                              cols="6"
-                              v-for="size in productSize"
-                              :key="size.id"
-                            >
-                              <button
-                                @click="
-                                  sizeSelect(size, productSize.color.name)
-                                "
-                                :style="
-                                  'border: 1px solid; background-color:' +
-                                  productSize.color.code
-                                "
-                              >
-                                {{ size.name }}
-                              </button>
-                            </b-col>
-                          </b-row>
+                        <div
+                          style="padding: 5px"
+                          v-for="size in productSize"
+                          :key="size.id"
+                        >
+                          <button
+                            @click="sizeSelect(size, productSize.color.name)"
+                            :style="
+                              'padding: 5px; border: 1px solid; border-color:' +
+                              productSize.color.code
+                            "
+                          >
+                            {{ size.name }}
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -96,18 +94,20 @@
                     <div class="product-form product-size">
                       <label>Shop:</label>
                       <div class="product-form-group">
-                        <div class="product-variations">
-                          <b-row>
-                            <b-col
-                              cols="12"
-                              v-for="shop in productShop"
-                              :key="shop.id"
-                            >
-                              <button @click="shopSelect(shop)">
-                                {{ shop.shop_name }}
-                              </button>
-                            </b-col>
-                          </b-row>
+                        <div
+                          style="padding: 5px"
+                          v-for="shop in productShop"
+                          :key="shop.id"
+                        >
+                          <button
+                            @click="shopSelect(shop)"
+                            :style="
+                              'padding: 5px; border: 1px solid; border-color:' +
+                              productSize.color.code
+                            "
+                          >
+                            {{ shop.shop_name }}
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -133,8 +133,30 @@
                             class="quantity-plus d-icon-plus"
                           ></button>
                         </div>
-                        <button @click="addToCart" class="btn-product btn-cart">
-                          <i class="d-icon-bag"></i>Add To Cart
+                        <button @click="addToCart" class="btn btn-rounded">
+                          <i class="d-icon-bag"></i> Add To Cart
+                        </button>
+                      </div>
+                    </div>
+
+                    <hr class="product-divider mb-3" />
+
+                    <div class="product-footer">
+                      <div>
+                        <button
+                          @click="addToWishlist"
+                          style="border: transparent"
+                          class="btn-product btn-compare"
+                        >
+                          <i class="d-icon-heart"></i>Add To Wishlist
+                        </button>
+                        <span class="divider"></span>
+                        <button
+                          @click="addToCompare"
+                          style="border: transparent"
+                          class="btn-product btn-compare"
+                        >
+                          <i class="d-icon-random"></i>Add To Compare
                         </button>
                       </div>
                     </div>
@@ -187,7 +209,9 @@
                           <div class="row">
                             <div class="col-12 mb-6">
                               <div class="avg-rating-container">
-                                <mark>{{ averageRating.total }}</mark>
+                                <mark>{{
+                                  Math.floor(averageRating.total)
+                                }}</mark>
                                 <div class="avg-rating">
                                   <span class="avg-rating-title"
                                     >Average Rating</span
@@ -197,7 +221,9 @@
                                       <span
                                         class="ratings"
                                         :style="
-                                          'width: ' + averageRating * 20 + '%'
+                                          'width: ' +
+                                          Math.floor(averageRating.total) * 20 +
+                                          '%'
                                         "
                                       ></span>
                                       <span
@@ -311,9 +337,11 @@
                                 <li v-for="item in comments" :key="item.id">
                                   <div class="comment">
                                     <figure class="comment-media">
-                                      <a href="#">
-                                        <img :src="item.avatar" alt="avatar" />
-                                      </a>
+                                      <img
+                                        v-if="item.avatar"
+                                        :src="item.avatar"
+                                        alt="avatar"
+                                      />
                                     </figure>
                                     <div class="comment-body">
                                       <div
@@ -347,7 +375,11 @@
                                               font-weight-semi-bold
                                               text-dark
                                             "
-                                            >{{ item.created_at }}</span
+                                            >{{
+                                              new Date(item.created_at)
+                                                .toString()
+                                                .split("GMT")[0]
+                                            }}</span
                                           ></span
                                         >
                                       </div>
@@ -361,36 +393,6 @@
                                   </div>
                                 </li>
                               </ul>
-                              <nav
-                                class="
-                                  toolbox toolbox-pagination
-                                  justify-content-end
-                                "
-                              >
-                                <ul class="pagination">
-                                  <li class="page-item disabled">
-                                    <a
-                                      class="page-link page-link-prev"
-                                      href="#"
-                                      aria-label="Previous"
-                                      tabindex="-1"
-                                      aria-disabled="true"
-                                    >
-                                      <i class="d-icon-arrow-left"></i>Prev
-                                    </a>
-                                  </li>
-
-                                  <li class="page-item">
-                                    <a
-                                      class="page-link page-link-next"
-                                      href="#"
-                                      aria-label="Next"
-                                    >
-                                      Next<i class="d-icon-arrow-right"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </nav>
                             </div>
                           </div>
                           <!-- End Comments -->
@@ -439,6 +441,24 @@
                                 </select>
                               </div>
                               <div>
+                                <input
+                                  v-model="comment.email"
+                                  id="email"
+                                  cols="30"
+                                  rows="6"
+                                  class="form-control mb-4"
+                                  placeholder="Email *"
+                                  required
+                                />
+                                <input
+                                  v-model="comment.nickname"
+                                  id="nickname"
+                                  cols="30"
+                                  rows="6"
+                                  class="form-control mb-4"
+                                  placeholder="Nick Name *"
+                                  required
+                                />
                                 <textarea
                                   v-model="comment.body"
                                   id="reply-message"
@@ -502,6 +522,7 @@
                   </div>
                 </div>
               </section>
+              {{ shop }}
             </div>
           </div>
         </div>
@@ -513,7 +534,11 @@
 import ProductComponent from "~/components/ProductComponent.vue";
 export default {
   components: { ProductComponent },
-  computed: {},
+  computed: {
+    addToCartDisabled() {
+      return "h";
+    },
+  },
   head() {
     return {
       title: this.product.name,
@@ -579,12 +604,17 @@ export default {
     },
     colorSelect(color) {
       this.shop = { quantity: 0 };
+      this.productPick = 0;
+
       this.productShop = [];
       const detail = this.product.stock_detail[color.name].color_data.data;
       this.productSize = Object.values(detail);
       this.productSize.color = color;
     },
     sizeSelect(sizeName, colorName) {
+      this.shop = { quantity: 0 };
+      this.productPick = 0;
+
       const detail =
         this.product.stock_detail[colorName].color_data.data[sizeName.name]
           .shop_data;
@@ -595,22 +625,44 @@ export default {
       this.productPrice = shop.price;
       this.productQuantity = shop.quantity;
     },
-    addToWishlist() {},
     addToCart() {
-      this.$store.dispatch("cart/addProductToCart", { id: 2, price: 33 });
+      if (this.shop.quantity == 0 || this.productPick == 0) {
+        this.$toast.error("Quantity Is Zero", {
+          duration: 3000,
+        });
+        return;
+      }
+      this.$store.dispatch("cart/addProductToCart", {
+        id: this.shop.stock_id_for_cart,
+        price: this.shop.price,
+        image: this.product.image,
+        slug: this.product.slug,
+        name: this.product.name,
+        count: this.productPick,
+      });
+      this.$toast.success("Product Successfully Added To Cart", {
+        duration: 3000,
+      });
+    },
+    addToCompare() {
+      // this.$store.dispatch("cart/addProductTo", { id: 2, price: 33 });
+    },
+    addToWishlist() {
+      // this.$store.dispatch("cart/addProductToCart", { id: 2, price: 33 });
     },
     submitComment() {
-      // this.$axios
-      //   .post("comments/create-product/", this.comment)
-      //   .then((response) => {
-      //     if (response.status == 201) {
-      //       window.location.reload();
-      //     }
-      //     console.log("error", "comment not submit");
-      //   })
-      //   .catch((e) => {
-      //     console.log(e);
-      //   });
+      this.comment.object_id = this.product.id;
+      this.$axios
+        .post("comments/create-product/", this.comment)
+        .then((response) => {
+          if (response.status == 201) {
+            this.$toast.success("Successful", { duration: 3000 });
+            window.location.reload();
+          }
+        })
+        .catch((e) => {
+          this.$toast.error("Not Submited", { duration: 3000 });
+        });
     },
   },
   async asyncData({ params, $axios }) {

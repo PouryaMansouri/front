@@ -234,7 +234,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script >
 import Vue from "vue";
 
 export default Vue.extend({
@@ -262,6 +262,13 @@ export default Vue.extend({
       lastName: "",
     };
   },
+  mounted() {
+    if (this.$auth.loggedIn) {
+      this.$router.push({
+        name: "account",
+      });
+    }
+  },
   methods: {
     async loginClick() {
       let response = await this.$auth.loginWith("local", {
@@ -270,23 +277,30 @@ export default Vue.extend({
           password: this.password,
         },
       });
-
-      console.log(response);
-      
-
-      // this.$store.dispatch("auth/login", {
-      //   email: this.email,
-      //   password: this.password,
-      // });
     },
     registerClick() {
-      this.$store.dispatch("auth/register", {
-        email: this.email,
-        phone_number: this.phoneNumber,
-        first_name: this.firstName,
-        last_name: this.lastName,
-        password: this.password,
-      });
+      this.$axios
+        .post("/accounts/register/", {
+          email: this.email,
+          phone_number: this.phoneNumber,
+          first_name: this.firstName,
+          last_name: this.lastName,
+          password: this.password,
+        })
+        .then((response) => {
+          if (response.status == 201) {
+            this.$toast.success("Successful", { duration: 3000 });
+            this.$auth.loginWith("local", {
+              data: {
+                email: this.email,
+                password: this.password,
+              },
+            });
+          }
+        })
+        .catch((e) => {
+          this.$toast.error("Not Registred", { duration: 3000 });
+        });
     },
   },
 });

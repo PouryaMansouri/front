@@ -187,7 +187,7 @@ export default {
   },
   computed: {
     cartList() {
-      return this.$store.state.cart;
+      return this.$store.state.cart.carts;
     },
     all_total_price() {
       return this.$store.getters["cart/totalAmount"];

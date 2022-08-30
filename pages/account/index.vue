@@ -104,6 +104,7 @@ export default Vue.extend({
     async logout() {
       this.$nuxt.$loading.start();
       await this.$auth.logout();
+      this.$store.dispatch("cart/resetCart");
       this.$nuxt.$loading.finish();
     },
   },

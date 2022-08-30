@@ -17,10 +17,12 @@
             <a href="#">#{{ item.id }}</a>
           </td>
           <td class="order-date">
-            <span>{{ item.created_at }}</span>
+            <span>{{
+              new Date(item.created_at).toString().split("GMT")[0]
+            }}</span>
           </td>
           <td class="order-status">
-            <span>{{ status(item.status) }}</span>
+            <span>{{ getStatus(item.status) }}</span>
           </td>
           <td class="order-total">
             <span
@@ -29,7 +31,11 @@
             >
           </td>
           <td class="order-action">
-            <a href="#" class="btn btn-primary btn-link btn-underline">View</a>
+            <a
+              :href="'/order-details/' + item.id"
+              class="btn btn-primary btn-link btn-underline"
+              >View</a
+            >
           </td>
         </tr>
       </tbody>
@@ -55,6 +61,12 @@ export default {
     async fetchData() {
       const { data } = await this.$axios.get("orders/user-orders/");
       this.orderList = data;
+    },
+    getStatus(status) {
+      if (status == 0) return "Pending";
+      if (status == 1) return "Completed";
+      if (status == 2) return "Cancel By User";
+      if (status == 3) return "Expire";
     },
   },
 };

@@ -8,7 +8,6 @@
           background-color: #3c63a4;
         "
       >
-        <h3 class="page-subtitle">Riode</h3>
         <h1 class="page-title">shop</h1>
         <!-- <ul class="breadcrumb">
           <li>

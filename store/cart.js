@@ -11,14 +11,23 @@ export const mutations = {
     SET_CARTS(state, carts) {
         state.carts = [...carts]
     },
+    RESET_CART(state) {
+        state.carts = []
+
+        this.$cookies.set('carts', state.carts, {
+            path: '/',
+            maxAge: 60 * 60 * 24 * 7
+        })
+    },
     ADD_PRODUCT_TO_CART(state, product) {
         const carts = [...state.carts]
         const cartIndex = carts.findIndex((cart) => cart.id === product.id)
 
         if (cartIndex !== -1) {
-            carts[cartIndex].quantity++
+            const c = carts[cartIndex].quantity
+            carts[cartIndex].quantity = c + product.count
         } else {
-            carts.push({ ...product, quantity: 1 })
+            carts.push({ ...product, quantity: product.count })
         }
 
         state.carts = [...carts]
@@ -54,5 +63,8 @@ export const actions = {
     },
     async removeProductFromCart({ commit }, productId) {
         commit('REMOVE_PRODUCT_FROM_CART', productId)
+    },
+    async resetCart({ commit }) {
+        commit('RESET_CART')
     },
 };

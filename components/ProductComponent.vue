@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="product">
     <figure class="product-media">
       <a :href="'/product/' + product.slug">
         <img
@@ -20,14 +20,14 @@
           >Hot</label
         >
       </div>
-      <div class="product-action-vertical">
+      <!-- <div class="product-action-vertical">
         <a
           @click="addToWishList(product.id)"
           class="btn-product-icon btn-wishlist"
           title="Add to wishlist"
           ><i class="d-icon-heart"></i
         ></a>
-      </div>
+      </div> -->
     </figure>
     <div class="product-details">
       <div class="product-cat">

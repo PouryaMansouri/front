@@ -5,6 +5,7 @@
       <div class="main demo2-cls">
         <div class="page-content">
           <div class="container">
+            
             <section class="intro-section">
               <div class="row">
                 <div class="col-12 mb-4">
@@ -282,7 +283,8 @@
                         }"
               >
                 <div v-for="item in suggestedList" :key="item.id">
-                  <product-component :product="item" />
+                  <!-- <product-component :product="item" /> -->
+                  <ProductComponent :product="item" />
                 </div>
               </div>
             </section>
@@ -295,7 +297,7 @@
 
 <script>
 import Vue from "vue";
-import ProductComponent from "~/components/ProductComponent.vue";
+// import ProductComponent from "~/components/ProductComponent.vue";
 
 export default Vue.extend({
   computed: {
@@ -308,7 +310,7 @@ export default Vue.extend({
       this.$toast.show("added");
     },
   },
-  components: { ProductComponent },
+  // components: { ProductComponent },
   head() {
     return {
       title: "main",

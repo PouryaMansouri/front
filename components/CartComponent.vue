@@ -13,10 +13,13 @@
       <div class="products scrollable">
         <div v-for="item in list" :key="item.id" class="product product-cart">
           <figure class="product-media">
-            <a :href="'product/' + item.product_slug">
+            <a :href="'product/' + item.slug">
               <img :src="item.image" alt="product" width="80" height="88" />
             </a>
-            <button class="btn btn-link btn-close">
+            <button
+              @click="removeFromCart(item.id)"
+              class="btn btn-link btn-close"
+            >
               <i class="fas fa-times"></i><span class="sr-only">Close</span>
             </button>
           </figure>
@@ -39,9 +42,6 @@
       <!-- End of Cart Total -->
       <div class="cart-action">
         <NuxtLink to="/cart" class="btn btn-dark btn-link">View Cart</NuxtLink>
-        <NuxtLink to="/checkout" class="btn btn-dark">
-          Go To Checkout
-        </NuxtLink>
       </div>
       <!-- End of Cart Action -->
     </div>
@@ -58,9 +58,16 @@ export default {
       // all_total_price: 0,
     };
   },
+  methods: {
+    removeFromCart(id) {
+      console.log(id);
+      this.$store.dispatch("cart/removeProductFromCart", id);
+    },
+  },
   computed: {
     list() {
-      return this.$store.state.cart;
+      console.log(this.$store.state.cart.carts);
+      return this.$store.state.cart.carts;
     },
     all_total_price() {
       return this.$store.getters["cart/totalAmount"];
