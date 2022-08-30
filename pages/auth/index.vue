@@ -33,7 +33,7 @@
                   </li>
                 </ul>
                 <div class="tab-content">
-                  <div class="tab-pane active" id="signin">
+                  <div class="tab-pane" id="signin">
                     <div>
                       <div class="form-group mb-3">
                         <input
