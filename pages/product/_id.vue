@@ -84,7 +84,9 @@
                               'padding: 5px; border: 1px solid; border-color:' +
                               productSize.color.code
                             "
-                          ></button>
+                          >
+                          {{size.name}}
+                          </button>
                         </div>
                       </div>
                     </div>
