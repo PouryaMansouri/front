@@ -61,47 +61,23 @@
                   <i class="fas fa-times"></i>
                 </div>
               </td>
+              <td class="product-close">
+                <div
+                  @click="setItem(item)"
+                  class="product-remove"
+                  title="Edit this address"
+                >
+                  edit
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
-        <div class="cart-coupon-box mt-8">
+        <div v-if="createTab" class="cart-coupon-box mt-8">
           <h4 class="title coupon-title text-uppercase ls-m">
             Add New Address
           </h4>
           <div class="form">
-            <div class="row">
-              <div class="col-sm-4">
-                <label>First Name *</label>
-                <input
-                  v-model="address.user.first_name"
-                  type="text"
-                  class="form-control"
-                  name="first_name"
-                  required=""
-                />
-              </div>
-              <div class="col-sm-4">
-                <label>Last Name *</label>
-                <input
-                  v-model="address.user.last_name"
-                  type="text"
-                  class="form-control"
-                  name="last_name"
-                  required=""
-                />
-              </div>
-              <div class="col-sm-4">
-                <label>Phone *</label>
-                <input
-                  v-model="address.user.phone_number"
-                  type="text"
-                  class="form-control"
-                  name="phone_number"
-                  required=""
-                />
-              </div>
-            </div>
-
             <div class="row">
               <div class="col-sm-4">
                 <label>Country *</label>
@@ -181,9 +157,97 @@
           >
             Add Address
           </button>
+        </div>
+        <div v-else class="cart-coupon-box mt-8">
+          <h4 class="title coupon-title text-uppercase ls-m">Edit Address</h4>
+          <div class="form">
+            <div class="row">
+              <div class="col-sm-4">
+                <label>Country *</label>
+                <div>
+                  <select
+                    v-model="address.country"
+                    name="country"
+                    class="form-control"
+                    @change="countryChange"
+                  >
+                    <option
+                      v-for="item in countries"
+                      :key="item.id"
+                      :value="item.id"
+                    >
+                      {{ item.name }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <label>City *</label>
+                <div>
+                  <select
+                    v-model="address.city"
+                    name="city"
+                    class="form-control"
+                  >
+                    <option
+                      v-for="item in cities"
+                      :key="item.id"
+                      :value="item.id"
+                    >
+                      {{ item.name }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <label>Zip Code *</label>
+                <input
+                  v-model="address.zip_code"
+                  type="text"
+                  class="form-control"
+                  name="zip_code"
+                  required=""
+                />
+              </div>
+            </div>
 
-          <button class="btn btn-md btn-dark btn-rounded btn-outline">
+            <div class="row">
+              <div class="col-sm-6">
+                <label>Street *</label>
+                <input
+                  v-model="address.street"
+                  type="text"
+                  class="form-control"
+                  name="street"
+                  required=""
+                />
+              </div>
+              <div class="col-sm-6">
+                <label>Street Number *</label>
+                <input
+                  v-model="address.street_number"
+                  type="text"
+                  class="form-control"
+                  name="street_number"
+                  required=""
+                />
+              </div>
+            </div>
+          </div>
+          <button
+            @click="editAddress"
+            class="btn btn-md btn-dark btn-rounded btn-outline"
+          >
             Edit Address
+          </button>
+          <button
+            @click="
+              createTab = true;
+              address = blankAddress;
+            "
+            class="btn btn-md btn-dark btn-rounded btn-outline"
+          >
+            Cancel
           </button>
         </div>
       </div>
@@ -202,16 +266,19 @@ export default {
   },
   data() {
     return {
+      createTab: true,
       selectedItem: 0,
       addressList: [],
       countries: [],
       cities: [],
       address: {
-        user: {
-          first_name: "",
-          last_name: "",
-          phone_number: "",
-        },
+        street: "",
+        city: 0,
+        zip_code: "",
+        street_number: "",
+        country: 0,
+      },
+      blankAddress: {
         street: "",
         city: 0,
         zip_code: "",
@@ -228,13 +295,20 @@ export default {
       this.addressList = address.data;
       this.countries = country.data;
     },
-    isSelectItem(id) {
-      if (this.selectedItem == id) return true;
-      return false;
-    },
-    setSelectItem(item) {
-      this.selectedItem = item.id;
-      this.address = item;
+    setItem(item) {
+      this.createTab = false;
+      this.address = {
+        aid: item.id,
+        street: item.street,
+        city: item.city.id,
+        zip_code: item.zip_code,
+        street_number: item.street_number,
+        country: item.city.country,
+      };
+
+      this.cities = this.countries.filter(
+        (item) => item.id == this.address.country
+      )[0].cities;
     },
     countryChange(event) {
       this.cities = this.countries.filter(
@@ -246,8 +320,28 @@ export default {
         .post("accounts/address/create/", this.address)
         .then((response) => {
           if (response.status == 201) {
+            this.address = this.blankAddress;
             this.$toast.success("Successful", { duration: 3000 });
             this.fetchData();
+            this.address = this.blankAddress;
+          } else {
+            this.$toast.error("Error", { duration: 3000 });
+          }
+        })
+        .catch((e) => {
+          Object.keys(e.response.data).forEach((element) => {
+            this.$toast.error(e.response.data[element], { duration: 3000 });
+          });
+        });
+    },
+    editAddress() {
+      this.$axios
+        .patch(`accounts/address/${this.address.aid}/update/`, this.address)
+        .then((response) => {
+          if (response.status == 200) {
+            this.$toast.success("Successful", { duration: 3000 });
+            this.fetchData();
+            this.address = this.blankAddress;
           } else {
             this.$toast.error("Error", { duration: 3000 });
           }
@@ -259,10 +353,11 @@ export default {
     },
     removeAddress(id) {
       this.$axios
-        .delete("accounts/address/delete/", this.address)
+        .delete(`accounts/address/${id}/`)
         .then((response) => {
-          if (response.status == 201) {
+          if (response.status == 204) {
             this.$toast.success("Successful", { duration: 3000 });
+            this.fetchData();
           } else {
             this.$toast.error("Error", { duration: 3000 });
           }
