@@ -30,6 +30,7 @@ export const mutations = {
             path: '/',
             maxAge: 60 * 60 * 24 * 7
         })
+        console.log('reset',this.$cookies.get('carts'));
     },
     ADD_TO_CART_WHEN_LOGIN(state) {
         const carts = [...state.carts]
@@ -118,7 +119,7 @@ export const mutations = {
             .then((response) => {
                 if (response.status == 200) {
                     commit('RESET_CART')
-                    commit('SET_CARTS', response.data.items)
+                    commit('SET_CARTS_ONLINE', response.data.items)
                     if (response.data.messages.length != 0)
                         Object.keys(response.data.messages).forEach((element) => {
                             this.$toast.error(e.response.data[element], { duration: 4000 });
@@ -130,15 +131,17 @@ export const mutations = {
             });
     },
     ADD_PRODUCT_TO_CART_ONLINE(state, product) {
+        console.log('product',product);
         this.$axios
             .post("cart/create-update-one-cart-item/", {
                 item: product.item,
                 quantity: product.count
             })
             .then((response) => {
+                console.log('res',response);
                 if (response.status == 200) {
                     commit('RESET_CART')
-                    commit('SET_CARTS', response.data.items)
+                    commit('SET_CARTS_ONLINE', response.data.items)
                     if (response.data.messages.length != 0)
                         Object.keys(response.data.messages).forEach((element) => {
                             this.$toast.error(e.response.data[element], { duration: 4000 });
