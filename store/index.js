@@ -16,9 +16,14 @@ export const mutations = {
 
 export const actions = {
   async nuxtServerInit({ state, commit, dispatch }) {
-    const carts = this.$cookies.get('carts');
-    if (carts) {
-      commit('cart/SET_CARTS', carts);
+    if(!this.$auth.loggedIn){
+      const carts = this.$cookies.get('carts');
+      if (carts) {
+        commit('cart/SET_CARTS', carts);
+      }
+    }
+    else{
+      commit('cart/addToCartWhenLogin');
     }
     const wishlist = this.$cookies.get('wishlist');
     if (wishlist) {
