@@ -34,7 +34,7 @@
                   <a>{{ element.name }}</a>
                 </td>
                 <td class="product-price">
-                  <span class="amount">${{ element.price }}</span>
+                  <span class="amount">${{ element.min_price }}</span>
                 </td>
                 <!-- <td class="product-stock-status">
                   <span class="wishlist-in-stock">{{

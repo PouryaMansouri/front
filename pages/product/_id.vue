@@ -156,13 +156,13 @@
                           <i class="d-icon-heart"></i>Add To Wishlist
                         </button>
                         <span class="divider"></span>
-                        <button
+                        <!-- <button
                           @click="addToCompare"
                           style="border: transparent"
                           class="btn-product btn-compare"
                         >
                           <i class="d-icon-random"></i>Add To Compare
-                        </button>
+                        </button> -->
                       </div>
                     </div>
 
