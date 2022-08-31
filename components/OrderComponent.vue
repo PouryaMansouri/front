@@ -230,7 +230,6 @@ export default {
           order_id: this.order.id,
         })
         .then((response) => {
-          console.log(response);
         });
       // /orders/check-and-go-to-payment/
     },

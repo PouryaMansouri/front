@@ -1,5 +1,6 @@
 <template>
-  <order-component :order="order" />
+<div></div>
+  <!-- <order-component :order="order" /> -->
 </template>
 
 <script>
@@ -24,6 +25,7 @@ export default Vue.extend({
     const responses = await Promise.all([
       await $axios.get(`orders/order-detail/${params.id}/`),
     ]);
+    console.log(responses[0].data);
     return {
       order: responses[0].data,
     };

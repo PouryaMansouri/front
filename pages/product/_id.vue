@@ -85,7 +85,7 @@
                               productSize.color.code
                             "
                           >
-                          {{size.name}}
+                            {{ size.name }}
                           </button>
                         </div>
                       </div>
@@ -119,18 +119,18 @@
                         <div class="input-group">
                           <button
                             @click="changeProductPick('minus')"
-                            class="quantity-minus d-icon-minus"
+                            class="d-icon-minus"
                           ></button>
                           <input
                             v-model="productPick"
-                            class="quantity form-control"
+                            class="form-control"
                             type="number"
                             min="1"
                             :max="shop.quantity"
                           />
                           <button
                             @click="changeProductPick('plus')"
-                            class="quantity-plus d-icon-plus"
+                            class="d-icon-plus"
                           ></button>
                         </div>
                         <button @click="addToCart" class="btn btn-rounded">
@@ -594,6 +594,8 @@ export default {
 
       if (type == "minus" && this.productPick > 1)
         this.productPick = this.productPick - 1;
+
+      console.log(this.productPick);
     },
     colorSelect(color) {
       this.shop = { quantity: 0 };

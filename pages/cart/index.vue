@@ -11,47 +11,86 @@
                   <tr>
                     <th><span>Image</span></th>
                     <th><span>Product</span></th>
-                    <th><span>quantity</span></th>
+                    <th><span>Shop</span></th>
+                    <th><span>Quantity</span></th>
+                    <th><span></span></th>
                     <th><span>Price</span></th>
+                    <th><span>Total</span></th>
+                    <th><span>Discount</span></th>
+                    <th><span>Finish</span></th>
+                    <th><span>Status</span></th>
+                    <th><span></span></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="item in cartList" :key="item.id">
+                  <tr v-for="element in cartList" :key="element.id">
                     <td class="product-thumbnail">
                       <figure>
-                        <a href="product-simple.html">
+                        <nuxt-link :to="'/product/'+element.slug">
                           <img
-                            :src="item.image"
+                            :src="element.image"
                             width="100"
                             height="100"
                             alt="product"
                           />
-                        </a>
+                        </nuxt-link>
                       </figure>
                     </td>
                     <td class="product-name">
                       <div class="product-name-section">
-                        <a href="product-simple.html">{{ item.name }}</a>
+                        <a>{{ element.name }}</a>
+                      </div>
+                    </td>
+                    <td class="product-name">
+                      <div class="product-name-section">
+                        <a>{{ element.shop }}</a>
                       </div>
                     </td>
                     <td class="product-quantity">
                       <div class="input-group">
-                        <button class="quantity-minus d-icon-minus"></button>
+                        <button
+                          @click="
+                            $store.commit('cart/editQuantityDown', element.item)
+                          "
+                          class="d-icon-minus"
+                        ></button>
                         <input
-                          class="quantity form-control"
+                          v-model="element.quantity"
+                          class="form-control"
                           type="number"
                           min="1"
-                          max="1000000"
                         />
-                        <button class="quantity-plus d-icon-plus"></button>
+                        <button
+                          @click="
+                            $store.commit('cart/editQuantityUp', element.item)
+                          "
+                          class="d-icon-plus"
+                        ></button>
                       </div>
                     </td>
+                    <td class="product-close">x</td>
                     <td class="product-price">
-                      <span class="amount">${{ item.price }}</span>
+                      <span class="amount">${{ element.price }}</span>
+                    </td>
+                    <td class="product-price">
+                      <span class="amount">${{ element.total_price }}</span>
+                    </td>
+                    <td class="product-price">
+                      <span class="amount">${{ element.total_discount }}</span>
+                    </td>
+                    <td class="product-price">
+                      <span class="amount">${{ element.final_price }}</span>
+                    </td>
+                    <td class="product-name">
+                      <div class="product-name-section">
+                        <a>{{ getStatus(element.status) }}</a>
+                      </div>
                     </td>
                     <td class="product-close">
                       <a
-                        href="#"
+                        @click="
+                          $store.dispatch('cart/removeCart', element.item)
+                        "
                         class="product-remove"
                         title="Remove this product"
                       >
@@ -62,17 +101,17 @@
                 </tbody>
               </table>
               <div class="cart-actions mb-6 pt-4">
-                <a
-                  href="shop.html"
+                <nuxt-link
+                  to="/shops"
                   class="
                     btn btn-dark btn-md btn-rounded btn-icon-left
                     mr-4
                     mb-4
                   "
-                  ><i class="d-icon-arrow-left"></i>Continue Shopping</a
+                  ><i class="d-icon-arrow-left"></i>Continue Shopping</nuxt-link
                 >
                 <button
-                  type="submit"
+                  @click="$store.dispatch('cart/updateCart')"
                   class="
                     btn btn-outline btn-dark btn-md btn-rounded btn-disabled
                   "
@@ -110,7 +149,7 @@
                         <h4 class="summary-subtitle">Subtotal</h4>
                       </td>
                       <td>
-                        <p class="summary-subtotal-price">$426.99</p>
+                        <p class="summary-subtotal-price">${{totals.total_price}}</p>
                       </td>
                     </tr>
                   </table>
@@ -120,7 +159,7 @@
                         <h4 class="summary-subtitle">Discount</h4>
                       </td>
                       <td>
-                        <p class="summary-subtotal-price">$426.99</p>
+                        <p class="summary-subtotal-price">${{totals.total_items_discount}}</p>
                       </td>
                     </tr>
                   </table>
@@ -130,7 +169,7 @@
                         <h4 class="summary-subtitle">Total</h4>
                       </td>
                       <td>
-                        <p class="summary-total-price ls-s">$426.99</p>
+                        <p class="summary-total-price ls-s">${{totals.final_price}}</p>
                       </td>
                     </tr>
                   </table>
@@ -180,9 +219,7 @@ export default {
       });
     }
   },
-  async fetch() {
-    await this.fetchData();
-  },
+  async fetch() {},
   async asyncData() {
     return;
   },
@@ -190,6 +227,9 @@ export default {
     return {};
   },
   computed: {
+    totals() {
+      return this.$store.state.cart.totals;
+    },
     cartList() {
       return this.$store.state.cart.carts;
     },
@@ -201,36 +241,10 @@ export default {
     },
   },
   methods: {
-    addCart() {
-      this.$axios
-        .post("accounts/cart/create/", this.cart)
-        .then((response) => {
-          if (response.status == 201) {
-            this.$toast.success("Successful", { duration: 3000 });
-            this.fetchData();
-          } else {
-            this.$toast.error("Error", { duration: 3000 });
-          }
-        })
-        .catch((e) => {
-          console.log(e);
-          this.$toast.error("Error", { duration: 3000 });
-        });
-    },
-    removeCart(id) {
-      this.$axios
-        .delete("accounts/cart/delete/", this.cart)
-        .then((response) => {
-          if (response.status == 201) {
-            this.$toast.success("Successful", { duration: 3000 });
-          } else {
-            this.$toast.error("Error", { duration: 3000 });
-          }
-        })
-        .catch((e) => {
-          console.log(e);
-          this.$toast.error("Error", { duration: 3000 });
-        });
+    getStatus(status) {
+      if (status == 0) return "Pending";
+      if (status == 1) return "Confirmed";
+      if (status == 2) return "Canceled";
     },
   },
 };

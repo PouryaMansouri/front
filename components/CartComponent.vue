@@ -20,7 +20,6 @@
             <nuxt-link :to="'/product/' + element.slug"
               ><img :src="element.image" alt="product" width="80" height="88"
             /></nuxt-link>
-{{element}}
             <button
               @click="removeFromCart(element.item)"
               class="btn btn-link btn-close"

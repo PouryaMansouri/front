@@ -1,5 +1,6 @@
 export const state = () => ({
     carts: [],
+    totals: {}
 });
 
 export const getters = {
@@ -9,9 +10,37 @@ export const getters = {
     totalAmount: (state) => {
         return state.carts.reduce((currentAmount, cart) => currentAmount + cart.quantity * cart.price, 0)
     },
+    totals: (state) => {
+        return state.totals
+    },
 };
 
 export const mutations = {
+    SET_TOTALS(state, totals) {
+        state.totals = { ...totals }
+
+        this.$cookies.set('totals', state.totals, {
+            path: '/',
+            maxAge: 60 * 60 * 24 * 7
+        })
+    },
+    GET_SET_TOTALS(state) {
+        this.$axios
+            .get("cart/user-cart-detail/")
+            .then((response) => {
+                if (response.status == 200) {
+                    state.totals = { ...response.data }
+
+                    this.$cookies.set('totals', state.totals, {
+                        path: '/',
+                        maxAge: 60 * 60 * 24 * 7
+                    })
+                }
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    },
     SET_CARTS(state, carts) {
         state.carts = [...carts]
 
@@ -20,8 +49,31 @@ export const mutations = {
             maxAge: 60 * 60 * 24 * 7
         })
     },
-    SET_CARTS_ONLINE(state, carts) {
+    editQuantityDown(state, item) {
+        const carts = [...state.carts]
+        const cartIndex = carts.findIndex((cart) => cart.item === item)
+
+        if (carts[cartIndex].quantity > 0) {
+            carts[cartIndex].quantity--
+            state.carts = [...carts]
+
+            this.$cookies.set('carts', state.carts, {
+                path: '/',
+                maxAge: 60 * 60 * 24 * 7
+            })
+        }
+    },
+    editQuantityUp(state, item) {
+        const carts = [...state.carts]
+        const cartIndex = carts.findIndex((cart) => cart.item === item)
+
+        carts[cartIndex].quantity++
         state.carts = [...carts]
+
+        this.$cookies.set('carts', state.carts, {
+            path: '/',
+            maxAge: 60 * 60 * 24 * 7
+        })
     },
     RESET_CART(state) {
         state.carts = []
@@ -30,11 +82,9 @@ export const mutations = {
             path: '/',
             maxAge: 60 * 60 * 24 * 7
         })
-        console.log('reset',this.$cookies.get('carts'));
     },
     ADD_TO_CART_WHEN_LOGIN(state) {
         const carts = [...state.carts]
-
         this.$axios
             .post("cart/create-from-guest-to-login-user/", {
                 items: [
@@ -45,8 +95,13 @@ export const mutations = {
             })
             .then((response) => {
                 if (response.status == 200) {
-                    commit('RESET_CART')
-                    commit('SET_CARTS_ONLINE', response.data.items)
+                    this.commit('cart/RESET_CART')
+                    this.commit('cart/SET_CARTS', response.data.items)
+                    this.commit('cart/SET_TOTALS', {
+                        total_price: response.data.total_price,
+                        total_items_discount: response.data.total_items_discount,
+                        final_price: response.data.final_price
+                    })
                     if (response.data.messages.length != 0)
                         Object.keys(response.data.messages).forEach((element) => {
                             this.$toast.error(e.response.data[element], { duration: 4000 });
@@ -56,30 +111,6 @@ export const mutations = {
             .catch((e) => {
                 console.log(e);
             });
-    },
-    ADD_PRODUCT_TO_CART(state, product) {
-        const carts = [...state.carts]
-        const cartIndex = carts.findIndex((cart) => cart.item === product.item)
-
-        if (cartIndex !== -1) {
-            if (product.count > 1) {
-                const c = carts[cartIndex].quantity
-                carts[cartIndex].quantity = c + product.count
-            }
-            else {
-                carts[cartIndex].quantity++
-            }
-
-        } else {
-            carts.push({ ...product, quantity: product.count })
-        }
-
-        state.carts = [...carts]
-
-        this.$cookies.set('carts', state.carts, {
-            path: '/',
-            maxAge: 60 * 60 * 24 * 7
-        })
     },
     REMOVE_PRODUCT_FROM_CART(state, product) {
         const carts = [...state.carts]
@@ -118,8 +149,13 @@ export const mutations = {
             .delete(`cart/delete-cart-item/${item}/`)
             .then((response) => {
                 if (response.status == 200) {
-                    commit('RESET_CART')
-                    commit('SET_CARTS_ONLINE', response.data.items)
+                    this.commit('cart/RESET_CART')
+                    this.commit('cart/SET_CARTS', response.data.items)
+                    this.commit('cart/SET_TOTALS', {
+                        total_price: response.data.total_price,
+                        total_items_discount: response.data.total_items_discount,
+                        final_price: response.data.final_price
+                    })
                     if (response.data.messages.length != 0)
                         Object.keys(response.data.messages).forEach((element) => {
                             this.$toast.error(e.response.data[element], { duration: 4000 });
@@ -130,18 +166,45 @@ export const mutations = {
                 console.log(e);
             });
     },
+    ADD_PRODUCT_TO_CART(state, product) {
+        const carts = [...state.carts]
+        const cartIndex = carts.findIndex((cart) => cart.item === product.item)
+
+        if (cartIndex !== -1) {
+            if (product.count > 1) {
+                const c = carts[cartIndex].quantity
+                carts[cartIndex].quantity = c + product.count
+            }
+            else {
+                carts[cartIndex].quantity++
+            }
+
+        } else {
+            carts.push({ ...product, quantity: product.count })
+        }
+
+        state.carts = [...carts]
+
+        this.$cookies.set('carts', state.carts, {
+            path: '/',
+            maxAge: 60 * 60 * 24 * 7
+        })
+    },
     ADD_PRODUCT_TO_CART_ONLINE(state, product) {
-        console.log('product',product);
         this.$axios
             .post("cart/create-update-one-cart-item/", {
                 item: product.item,
                 quantity: product.count
             })
             .then((response) => {
-                console.log('res',response);
                 if (response.status == 200) {
-                    commit('RESET_CART')
-                    commit('SET_CARTS_ONLINE', response.data.items)
+                    this.commit('cart/RESET_CART')
+                    this.commit('cart/SET_CARTS', response.data.items)
+                    this.commit('cart/SET_TOTALS', {
+                        total_price: response.data.total_price,
+                        total_items_discount: response.data.total_items_discount,
+                        final_price: response.data.final_price
+                    })
                     if (response.data.messages.length != 0)
                         Object.keys(response.data.messages).forEach((element) => {
                             this.$toast.error(e.response.data[element], { duration: 4000 });
@@ -156,13 +219,6 @@ export const mutations = {
 };
 
 export const actions = {
-    async addProductToCart({ commit }, product) {
-        if (await this.$auth.loggedIn) {
-            commit('ADD_PRODUCT_TO_CART_ONLINE', product)
-        } else {
-            commit('ADD_PRODUCT_TO_CART', product)
-        }
-    },
     // async removeProductFromCart({ commit }, productId) {
     //     if (await this.$auth.loggedIn) {
     //         commit('REMOVE_PRODUCT_FROM_CART_ONLINE', productId)
@@ -173,6 +229,9 @@ export const actions = {
     async addToCartWhenLogin({ commit }) {
         commit('ADD_TO_CART_WHEN_LOGIN')
     },
+    async updateCart({ commit }) {
+        commit('ADD_TO_CART_WHEN_LOGIN')
+    },
     async resetCart({ commit }) {
         commit('RESET_CART')
     },
@@ -181,6 +240,13 @@ export const actions = {
             commit('REMOVE_CART_ONLINE', item)
         } else {
             commit('REMOVE_CART', item)
+        }
+    },
+    async addProductToCart({ commit }, product) {
+        if (await this.$auth.loggedIn) {
+            commit('ADD_PRODUCT_TO_CART_ONLINE', product)
+        } else {
+            commit('ADD_PRODUCT_TO_CART', product)
         }
     },
 };
