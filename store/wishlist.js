@@ -1,66 +1,204 @@
-// export const state = () => ({
-//     wishlist: [],
-// });
+export const state = () => ({
+    wishlist: [{
+        "id": 36,
+        "name": "NADIA",
+        "description": "Naida green dress will breathe new life into your style with its modern shoulder and sleeve design and zippered slit.",
+        "status": 1,
+        "color": [
+            {
+                "id": 920,
+                "name": "Black Bean",
+                "code": "#3d0c02"
+            },
+            {
+                "id": 890,
+                "name": "Army Green",
+                "code": "#4b5320"
+            },
+            {
+                "id": 870,
+                "name": "Alice Blue",
+                "code": "#f0f8ff"
+            }
+        ],
+        "size": [
+            {
+                "id": 32,
+                "name": "38"
+            },
+            {
+                "id": 33,
+                "name": "40"
+            },
+            {
+                "id": 34,
+                "name": "34"
+            },
+            {
+                "id": 35,
+                "name": "42"
+            },
+            {
+                "id": 36,
+                "name": "44"
+            },
+            {
+                "id": 37,
+                "name": "46"
+            },
+            {
+                "id": 38,
+                "name": "48"
+            },
+            {
+                "id": 31,
+                "name": "36"
+            }
+        ],
+        "min_price": 13.0,
+        "image": "http://crmkashefan.com/media/products/nadia-elbise-klasik-duz-elbise-sarar-woman-20183-96-B.jpg",
+        "category": {
+            "id": 88,
+            "name": "Classic Straight dress",
+            "slug": "classic-straight-dress"
+        },
+        "slug": "NADIA",
+        "gallery": [
+            {
+                "id": 135,
+                "image": "http://crmkashefan.com/media/gallery_products/nadia-elbise-klasik-duz-elbise-sarar-woman-20212-96-B.jpg"
+            },
+            {
+                "id": 136,
+                "image": "http://crmkashefan.com/media/gallery_products/nadia-elbise-klasik-duz-elbise-sarar-woman-20157-96-B.jpg"
+            },
+            {
+                "id": 137,
+                "image": "http://crmkashefan.com/media/gallery_products/nadia-elbise-klasik-duz-elbise-sarar-woman-20158-96-B.jpg"
+            }
+        ],
+        "product_type": 2,
+        "star": 2
+    }, {
+        "id": 38,
+        "name": "NADIA",
+        "description": "Naida green dress will breathe new life into your style with its modern shoulder and sleeve design and zippered slit.",
+        "status": 1,
+        "color": [
+            {
+                "id": 920,
+                "name": "Black Bean",
+                "code": "#3d0c02"
+            },
+            {
+                "id": 890,
+                "name": "Army Green",
+                "code": "#4b5320"
+            },
+            {
+                "id": 870,
+                "name": "Alice Blue",
+                "code": "#f0f8ff"
+            }
+        ],
+        "size": [
+            {
+                "id": 32,
+                "name": "38"
+            },
+            {
+                "id": 33,
+                "name": "40"
+            },
+            {
+                "id": 34,
+                "name": "34"
+            },
+            {
+                "id": 35,
+                "name": "42"
+            },
+            {
+                "id": 36,
+                "name": "44"
+            },
+            {
+                "id": 37,
+                "name": "46"
+            },
+            {
+                "id": 38,
+                "name": "48"
+            },
+            {
+                "id": 31,
+                "name": "36"
+            }
+        ],
+        "min_price": 13.0,
+        "image": "http://crmkashefan.com/media/products/nadia-elbise-klasik-duz-elbise-sarar-woman-20183-96-B.jpg",
+        "category": {
+            "id": 88,
+            "name": "Classic Straight dress",
+            "slug": "classic-straight-dress"
+        },
+        "slug": "NADIA",
+        "gallery": [
+            {
+                "id": 135,
+                "image": "http://crmkashefan.com/media/gallery_products/nadia-elbise-klasik-duz-elbise-sarar-woman-20212-96-B.jpg"
+            },
+            {
+                "id": 136,
+                "image": "http://crmkashefan.com/media/gallery_products/nadia-elbise-klasik-duz-elbise-sarar-woman-20157-96-B.jpg"
+            },
+            {
+                "id": 137,
+                "image": "http://crmkashefan.com/media/gallery_products/nadia-elbise-klasik-duz-elbise-sarar-woman-20158-96-B.jpg"
+            }
+        ],
+        "product_type": 2,
+        "star": 2
+    }],
+});
 
-// export const getters = {
-//     totalWishlist: (state) => state.wishlist.reduce((currentQuantiy, wishlist) => currentQuantiy + wishlist.quantity, 0),
-//     totalAmount: (state) => state.wishlist.reduce((currentAmount, wishlist) => currentAmount + wishlist.quantity * wishlist.price, 0),
-// };
+export const getters = {
+};
 
-// export const mutations = {
-//     SET_WISHLIST(state, wishlist) {
-//         state.wishlist = [...wishlist]
-//     },
-//     RESET_WISHLIST(state) {
-//         state.wishlist = []
+export const mutations = {
+    ADD_PRODUCT_TO_WISHLIST(state, product) {
+        const wishlist = [...state.wishlist]
+        const wishlistLength = wishlist.filter((wishlist) => wishlist.id === product.id).length
 
-//         this.$cookies.set('wishlist', state.wishlist, {
-//             path: '/',
-//             maxAge: 60 * 60 * 24 * 7
-//         })
-//     },
-//     ADD_PRODUCT_TO_WISHLIST(state, product) {
-//         const wishlist = [...state.wishlist]
-//         const wishlistIndex = wishlist.findIndex((wishlist) => wishlist.id === product.id)
+        if (wishlistLength === 0) {
+            wishlist.push({ ...product })
 
-//         if (wishlistIndex !== -1) {
-//             wishlist[wishlistIndex].quantity++
-//         } else {
-//             wishlist.push({ ...product, quantity: 1 })
-//         }
+            state.wishlist = [...wishlist]
 
-//         state.wishlist = [...wishlist]
+            this.$cookies.set('wishlist', state.wishlist, {
+                path: '/',
+                maxAge: 60 * 60 * 24 * 7
+            })
+        }
+    },
+    REMOVE_PRODUCT_FROM_WISHLIST(state, id) {
+        const wishlist = [...state.wishlist]
+        const filteredData = wishlist.filter((wishlist) => wishlist.id !== id)
 
-//         this.$cookies.set('wishlist', state.wishlist, {
-//             path: '/',
-//             maxAge: 60 * 60 * 24 * 7
-//         })
+        state.wishlist = [...filteredData]
 
-//     },
+        this.$cookies.set('wishlist', state.wishlist, {
+            path: '/',
+            maxAge: 60 * 60 * 24 * 7
+        })
+    }
+};
 
-//     REMOVE_PRODUCT_FROM_WISHLIST(state, product) {
-//         const wishlist = [...state.wishlist]
-//         const wishlistIndex = wishlist.findIndex((wishlist) => wishlist.id === product.id)
-
-//         if (wishlistIndex !== -1) {
-//             const item = wishlist[wishlistIndex]
-
-//             if (item.quantity === 1) {
-//                 wishlist.splice(wishlistIndex, 1)
-//             } else {
-//                 wishlist[wishlistIndex].quantity--
-//             }
-//         }
-
-//         state.wishlist = [...wishlist]
-//     },
-// };
-
-// export const actions = {
-//     async addProductToWishlist({ commit }, product) {
-//         commit('ADD_PRODUCT_TO_WISHLIST', product)
-//     },
-//     async removeProductFromWishlist({ commit }, productId) {
-//         commit('REMOVE_PRODUCT_FROM_WISHLIST', productId)
-//     },
-// };
+export const actions = {
+    async addProductToWishlist({ commit }, product) {
+        commit('ADD_PRODUCT_TO_WISHLIST', product)
+    },
+    async removeProductFromWishlist({ commit }, id) {
+        commit('REMOVE_PRODUCT_FROM_WISHLIST', id)
+    },
+};

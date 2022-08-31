@@ -144,7 +144,12 @@
                     <div class="product-footer">
                       <div>
                         <button
-                          @click="addToWishlist"
+                          @click="
+                            $store.dispatch(
+                              'wishlist/addProductToWishlist',
+                              product
+                            )
+                          "
                           style="border: transparent"
                           class="btn-product btn-compare"
                         >
