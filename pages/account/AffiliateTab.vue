@@ -118,7 +118,7 @@ export default {
     },
     addAffiliate() {
       this.$axios
-        .post("accounts/affiliate/", this.affiliate)
+        .post("affiliate/", this.affiliate)
         .then((response) => {
           if (response.status == 201) {
             this.$toast.success("Successful", { duration: 3000 });
