@@ -3,6 +3,9 @@
     <li class="active">
       <a href="/">Home</a>
     </li>
+    <li>
+      <a href="/shops">Shops</a>
+    </li>
     <li v-for="item in navbarMenuList" :key="item.id">
       <a :href="'/category/' + item.slug">{{ item.name }}</a>
       <div class="megamenu">
