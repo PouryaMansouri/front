@@ -33,7 +33,9 @@ export default Vue.extend({
     return;
   },
   data() {
-    return {};
+    return {
+      success: false,
+    };
   },
   computed: {},
   methods: {},
@@ -43,6 +45,7 @@ export default Vue.extend({
       .post("callback-gateway/", { tc })
       .then((response) => {
         if (response.status == 200) {
+          this.success = true;
           const { id } = response.data;
           this.$router.push({ name: "order-details-id", params: { id } });
         }
