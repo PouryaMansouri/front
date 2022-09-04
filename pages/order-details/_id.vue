@@ -1,9 +1,7 @@
 <template>
-<div>
-
-  <order-component :order="order" />
-
-</div>
+  <div>
+    <order-component :order="order" />
+  </div>
 </template>
 
 <script>

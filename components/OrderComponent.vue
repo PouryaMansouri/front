@@ -230,8 +230,19 @@ export default {
         .post(`/orders/check-and-go-to-payment/`, {
           order_id: this.order.id,
         })
-        .then((response) => {});
-      // /orders/check-and-go-to-payment/
+        .then((response) => {
+          if (response.status == 200) {
+            this.$toast.success("Successful", { duration: 3000 });
+            const { url } = response.data;
+            window.location.replace(url);
+          } else {
+            this.$toast.error("Error", { duration: 3000 });
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+          this.$toast.error("Error", { duration: 3000 });
+        });
     },
   },
   async fetch() {},
