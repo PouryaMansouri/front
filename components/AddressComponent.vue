@@ -11,7 +11,11 @@
       <p class="card-text">zip code: {{ address.zip_code }}</p>
     </div>
 
-    <button style="width: 200px" class="btn btn-dark btn-rounded btn-order">
+    <button
+      @click="createOrder(address.id)"
+      style="width: 200px"
+      class="btn btn-dark btn-rounded btn-order"
+    >
       Checkout
     </button>
   </div>
@@ -22,7 +26,30 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    createOrder(id) {
+      this.$axios
+        .post("orders/create/", {
+          address: id,
+          affiliate_code: this.$cookies.get("affiliate_code"),
+        })
+        .then((response) => {
+          if (response.status == 200) {
+            this.$store.dispatch("cart/resetCart");
+            this.$toast.success("Successful", { duration: 3000 });
+            const { id } = response.data;
+            this.$router.push({ name: "order-details-id", params: { id } });
+          } else {
+            this.$toast.error("Error", { duration: 3000 });
+          }
+        })
+        .catch((e) => {
+          Object.keys(e.response.data).forEach((element) => {
+            this.$toast.error(e.response.data[element], { duration: 3000 });
+          });
+        });
+    },
+  },
   async fetch() {},
 };
 </script>

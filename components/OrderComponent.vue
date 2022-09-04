@@ -130,7 +130,7 @@
                 <td>
                   <h4 class="summary-subtitle">Coupon:</h4>
                 </td>
-                <td class="summary-subtotal-price">{{ order.coupon.code }}</td>
+                <td class="summary-subtotal-price">{{ order.coupon }}</td>
               </tr>
               <tr class="summary-subtotal">
                 <td>
