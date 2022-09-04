@@ -26,7 +26,7 @@
                   <tr v-for="element in cartList" :key="element.id">
                     <td class="product-thumbnail">
                       <figure>
-                        <nuxt-link :to="'/product/'+element.slug">
+                        <nuxt-link :to="'/product/' + element.slug">
                           <img
                             :src="element.image"
                             width="100"
@@ -44,6 +44,8 @@
                     <td class="product-name">
                       <div class="product-name-section">
                         <a>{{ element.shop }}</a>
+                        <span class="amount">{{ element.color.name }}</span>
+                        <span class="amount">{{ element.size.name }}</span>
                       </div>
                     </td>
                     <td class="product-quantity">
@@ -128,11 +130,11 @@
                   name="coupon_code"
                   class="input-text form-control text-grey ls-m mb-4"
                   id="coupon_code"
-                  value=""
+                  v-model="coupon"
                   placeholder="Enter coupon code here..."
                 />
                 <button
-                  type="submit"
+                  @click="setCoupon"
                   class="btn btn-md btn-dark btn-rounded btn-outline"
                 >
                   Apply Coupon
@@ -149,7 +151,9 @@
                         <h4 class="summary-subtitle">Subtotal</h4>
                       </td>
                       <td>
-                        <p class="summary-subtotal-price">${{totals.total_price}}</p>
+                        <p class="summary-subtotal-price">
+                          ${{ totals.total_price }}
+                        </p>
                       </td>
                     </tr>
                   </table>
@@ -159,7 +163,21 @@
                         <h4 class="summary-subtitle">Discount</h4>
                       </td>
                       <td>
-                        <p class="summary-subtotal-price">${{totals.total_items_discount}}</p>
+                        <p class="summary-subtotal-price">
+                          ${{ totals.total_items_discount }}
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                  <table class="shipping">
+                    <tr class="summary-subtotal">
+                      <td>
+                        <h4 class="summary-subtitle">Coupon Discount</h4>
+                      </td>
+                      <td>
+                        <p class="summary-subtotal-price">
+                          ${{ totals.coupon_discount }}
+                        </p>
                       </td>
                     </tr>
                   </table>
@@ -169,7 +187,9 @@
                         <h4 class="summary-subtitle">Total</h4>
                       </td>
                       <td>
-                        <p class="summary-total-price ls-s">${{totals.final_price}}</p>
+                        <p class="summary-total-price ls-s">
+                          ${{ totals.final_price }}
+                        </p>
                       </td>
                     </tr>
                   </table>
@@ -224,7 +244,9 @@ export default {
     return;
   },
   data() {
-    return {};
+    return {
+      coupon: "",
+    };
   },
   computed: {
     totals() {
@@ -241,6 +263,21 @@ export default {
     },
   },
   methods: {
+    setCoupon() {
+      this.$axios
+        .post("cart/set-coupon/", { code: this.coupon })
+        .then((response) => {
+          if (response.status == 200) {
+            this.$toast.success("Successfuly Add Coupon", { duration: 3000 });
+          } else {
+            this.$toast.error("Error", { duration: 3000 });
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+          this.$toast.error("Error", { duration: 3000 });
+        });
+    },
     getStatus(status) {
       if (status == 0) return "Pending";
       if (status == 1) return "Confirmed";

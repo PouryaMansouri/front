@@ -6,13 +6,12 @@
         <table class="order-table">
           <thead>
             <tr>
-              <th><span>count_clicks</span></th>
-              <th><span>count_sales</span></th>
-              <th><span>link</span></th>
-              <th><span>created_at</span></th>
-              <th>affiliate_link</th>
-              <th>unique_code</th>
-              <th>action</th>
+              <th><span>Clicks</span></th>
+              <th><span>Sales</span></th>
+              <th><span>Link</span></th>
+              <th><span>Created At</span></th>
+              <th>Affiliate Link</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -34,19 +33,19 @@
               </td>
               <td class="product-quantity">
                 <div class="product-name-section">
-                  <span>{{ item.created_at }}</span>
+                  <span>{{ new Date(item.created_at) }}</span>
                 </div>
               </td>
               <td class="product-quantity">
                 <div class="product-name-section">
-                  <span>{{ item.affiliate_link }}</span>
+                  <span><a :href="item.affiliate_link">link</a>  </span>
                 </div>
               </td>
-              <td class="product-quantity">
+              <!-- <td class="product-quantity">
                 <div class="product-name-section">
                   <span>{{ item.unique_code }}</span>
                 </div>
-              </td>
+              </td> -->
               <td class="product-close">
                 <div
                   @click="removeAffiliate(item.id)"
@@ -82,10 +81,6 @@
             class="btn btn-md btn-dark btn-rounded btn-outline"
           >
             Add Affiliate
-          </button>
-
-          <button class="btn btn-md btn-dark btn-rounded btn-outline">
-            Edit Affiliate
           </button>
         </div>
       </div>
@@ -134,10 +129,11 @@ export default {
     },
     removeAffiliate(id) {
       this.$axios
-        .delete("accounts/affiliate/delete/", this.affiliate)
+        .delete(`affiliate/${id}/`)
         .then((response) => {
-          if (response.status == 201) {
+          if (response.status == 204) {
             this.$toast.success("Successful", { duration: 3000 });
+            this.fetchData();
           } else {
             this.$toast.error("Error", { duration: 3000 });
           }

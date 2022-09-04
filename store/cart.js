@@ -30,6 +30,7 @@ export const mutations = {
             .then((response) => {
                 if (response.status == 200) {
                     state.totals = { ...response.data }
+                    console.log(response.data);
 
                     this.$cookies.set('totals', state.totals, {
                         path: '/',
@@ -100,7 +101,8 @@ export const mutations = {
                     this.commit('cart/SET_TOTALS', {
                         total_price: response.data.total_price,
                         total_items_discount: response.data.total_items_discount,
-                        final_price: response.data.final_price
+                        final_price: response.data.final_price,
+                        coupon_discount: response.data.coupon_discount,
                     })
                     if (response.data.messages.length != 0)
                         Object.keys(response.data.messages).forEach((element) => {
@@ -154,7 +156,8 @@ export const mutations = {
                     this.commit('cart/SET_TOTALS', {
                         total_price: response.data.total_price,
                         total_items_discount: response.data.total_items_discount,
-                        final_price: response.data.final_price
+                        final_price: response.data.final_price,
+                        coupon_discount: response.data.coupon_discount,
                     })
                     if (response.data.messages.length != 0)
                         Object.keys(response.data.messages).forEach((element) => {
@@ -203,7 +206,8 @@ export const mutations = {
                     this.commit('cart/SET_TOTALS', {
                         total_price: response.data.total_price,
                         total_items_discount: response.data.total_items_discount,
-                        final_price: response.data.final_price
+                        final_price: response.data.final_price,
+                        coupon_discount: response.data.coupon_discount,
                     })
                     if (response.data.messages.length != 0)
                         Object.keys(response.data.messages).forEach((element) => {

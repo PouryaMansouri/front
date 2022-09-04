@@ -599,8 +599,6 @@ export default {
 
       if (type == "minus" && this.productPick > 1)
         this.productPick = this.productPick - 1;
-
-      console.log(this.productPick);
     },
     colorSelect(color) {
       this.shop = { quantity: 0 };

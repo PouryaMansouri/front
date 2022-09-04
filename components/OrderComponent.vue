@@ -166,16 +166,17 @@
           </table>
         </div>
         <h2 class="title title-simple text-left pt-10 mb-2">Address</h2>
-        <div class="address-info pb-8 mb-6">
-          <p class="address-detail pb-2">
-            {{ order.first_name }} {{ order.last_name }}<br />
-            {{ order.phone }}<br />
-            {{ order.email }}<br />
-            {{ order.address.country.name }}<br />
-            {{ order.address.city.name }}<br />
-            {{ order.address.street }}<br />
-            {{ order.address.zip_code }}<br />
+        <div class="address-info mb-6">
+          <p class="address-detail"></p>
+          <p class="card-text">
+            name: {{ order.first_name }} {{ order.last_name }}
           </p>
+          <p>phone: {{ order.phone }}</p>
+          <p>email: {{ order.email }}</p>
+          <p>country: {{ order.country }}</p>
+          <p>city: {{ order.city }}</p>
+          <p>street : {{ order.street }}</p>
+          <p>zip code: {{ order.zip_code }}</p>
         </div>
       </div>
       <button
@@ -229,8 +230,7 @@ export default {
         .post(`/orders/check-and-go-to-payment/`, {
           order_id: this.order.id,
         })
-        .then((response) => {
-        });
+        .then((response) => {});
       // /orders/check-and-go-to-payment/
     },
   },

@@ -19,7 +19,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="#affiliate">Affiliates</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item m-5">
                 <button class="nav-link" @click="logout">Logout</button>
               </li>
             </ul>
