@@ -125,31 +125,7 @@ export default Vue.extend({
         },
       });
       this.$store.dispatch("cart/addToCartWhenLogin");
-    },
-    registerClick() {
-      this.$axios
-        .post("/accounts/register/", {
-          email: this.email,
-          phone_number: this.phoneNumber,
-          first_name: this.firstName,
-          last_name: this.lastName,
-          password: this.password,
-        })
-        .then((response) => {
-          if (response.status == 201) {
-            this.$toast.success("Successful", { duration: 3000 });
-            this.$auth.loginWith("local", {
-              data: {
-                email: this.email,
-                password: this.password,
-              },
-            });
-          }
-        })
-        .catch((e) => {
-          this.$toast.error("Not Registred", { duration: 3000 });
-        });
-    },
+    }
   },
 });
 </script>

@@ -105,8 +105,8 @@ export const mutations = {
                         coupon_discount: response.data.coupon_discount,
                     })
                     if (response.data.messages.length != 0)
-                        Object.keys(response.data.messages).forEach((element) => {
-                            this.$toast.error(e.response.data[element], { duration: 4000 });
+                        response.data.messages.forEach((element) => {
+                            this.$toast.error(element, { duration: 4000 });
                         });
                 }
             })

@@ -143,14 +143,6 @@ export default Vue.extend({
     }
   },
   methods: {
-    async loginClick() {
-      let response = await this.$auth.loginWith("local", {
-        data: {
-          email: this.email,
-          password: this.password,
-        },
-      });
-    },
     registerClick() {
       this.$axios
         .post("/accounts/register/", {
@@ -160,15 +152,16 @@ export default Vue.extend({
           last_name: this.lastName,
           password: this.password,
         })
-        .then((response) => {
+        .then(async (response) => {
           if (response.status == 201) {
             this.$toast.success("Successful", { duration: 3000 });
-            this.$auth.loginWith("local", {
+            let response = await this.$auth.loginWith("local", {
               data: {
                 email: this.email,
                 password: this.password,
               },
             });
+            this.$store.dispatch("cart/addToCartWhenLogin");
           }
         })
         .catch((e) => {
