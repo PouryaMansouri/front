@@ -38,11 +38,7 @@
                       <div class="ratings-full">
                         <span
                           class="ratings"
-                          :style="
-                            'width: ' +
-                            Math.floor(averageRating.total) * 20 +
-                            '%'
-                          "
+                          :style="'width: ' + averageRating.total * 20 + '%'"
                         ></span>
                         <span class="tooltiptext tooltip-top"></span>
                       </div>
@@ -229,7 +225,7 @@
                             <div class="col-12 mb-6">
                               <div class="avg-rating-container">
                                 <mark>{{
-                                  Math.floor(averageRating.total)
+                                  averageRating.total.toFixed(1)
                                 }}</mark>
                                 <div class="avg-rating">
                                   <span class="avg-rating-title"
@@ -241,7 +237,7 @@
                                         class="ratings"
                                         :style="
                                           'width: ' +
-                                          Math.floor(averageRating.total) * 20 +
+                                          averageRating.total * 20 +
                                           '%'
                                         "
                                       ></span>
@@ -269,9 +265,15 @@
                                     </div>
                                   </div>
                                   <div class="rating-percent">
-                                    <span style="width: 100%"></span>
+                                    <span
+                                      :style="
+                                        'width: ' + averageRating.star5 + '%'
+                                      "
+                                    ></span>
                                   </div>
-                                  <div class="progress-value">100%</div>
+                                  <div class="progress-value">
+                                    {{ averageRating.star5 }}%
+                                  </div>
                                 </div>
                                 <div class="ratings-item">
                                   <div class="ratings-container mb-0">
@@ -286,9 +288,15 @@
                                     </div>
                                   </div>
                                   <div class="rating-percent">
-                                    <span style="width: 0%"></span>
+                                    <span
+                                      :style="
+                                        'width: ' + averageRating.star4 + '%'
+                                      "
+                                    ></span>
                                   </div>
-                                  <div class="progress-value">0%</div>
+                                  <div class="progress-value">
+                                    {{ averageRating.star4 }}%
+                                  </div>
                                 </div>
                                 <div class="ratings-item">
                                   <div class="ratings-container mb-0">
@@ -303,9 +311,15 @@
                                     </div>
                                   </div>
                                   <div class="rating-percent">
-                                    <span style="width: 0%"></span>
+                                    <span
+                                      :style="
+                                        'width: ' + averageRating.star3 + '%'
+                                      "
+                                    ></span>
                                   </div>
-                                  <div class="progress-value">0%</div>
+                                  <div class="progress-value">
+                                    {{ averageRating.star3 }}%
+                                  </div>
                                 </div>
                                 <div class="ratings-item">
                                   <div class="ratings-container mb-0">
@@ -320,9 +334,15 @@
                                     </div>
                                   </div>
                                   <div class="rating-percent">
-                                    <span style="width: 0%"></span>
+                                    <span
+                                      :style="
+                                        'width: ' + averageRating.star2 + '%'
+                                      "
+                                    ></span>
                                   </div>
-                                  <div class="progress-value">0%</div>
+                                  <div class="progress-value">
+                                    {{ averageRating.star2 }}%
+                                  </div>
                                 </div>
                                 <div class="ratings-item">
                                   <div class="ratings-container mb-0">
@@ -337,9 +357,15 @@
                                     </div>
                                   </div>
                                   <div class="rating-percent">
-                                    <span style="width: 0%"></span>
+                                    <span
+                                      :style="
+                                        'width: ' + averageRating.star1 + '%'
+                                      "
+                                    ></span>
                                   </div>
-                                  <div class="progress-value">0%</div>
+                                  <div class="progress-value">
+                                    {{ averageRating.star1 }}%
+                                  </div>
                                 </div>
                               </div>
                               <a
@@ -347,7 +373,6 @@
                                   btn btn-dark btn-rounded
                                   submit-review-toggle
                                 "
-                                href="#"
                                 >Submit Review</a
                               >
                             </div>
@@ -429,35 +454,32 @@
                                 </h3>
                                 <p>
                                   Your email address will not be published.
-                                  Required fields are marked *
+                                  Required fields are marked
                                 </p>
                               </div>
                               <div class="rating-form">
                                 <label for="rating" class="text-dark"
-                                  >Your rating *
+                                  >Your rating
                                 </label>
                                 <span class="rating-stars selected">
-                                  <a class="star-1 active">1</a>
-                                  <a class="star-2">2</a>
-                                  <a class="star-3">3</a>
-                                  <a class="star-4">4</a>
-                                  <a class="star-5">5</a>
+                                  <a
+                                    @click="comment.rate = 1"
+                                    class="star-1 active"
+                                    >1</a
+                                  >
+                                  <a @click="comment.rate = 2" class="star-2"
+                                    >2</a
+                                  >
+                                  <a @click="comment.rate = 3" class="star-3"
+                                    >3</a
+                                  >
+                                  <a @click="comment.rate = 4" class="star-4"
+                                    >4</a
+                                  >
+                                  <a @click="comment.rate = 5" class="star-5"
+                                    >5</a
+                                  >
                                 </span>
-
-                                <select
-                                  v-model="comment.rate"
-                                  name="rating"
-                                  id="rating"
-                                  required=""
-                                  style="display: none"
-                                >
-                                  <option value="">Rate…</option>
-                                  <option value="5">Perfect</option>
-                                  <option value="4">Good</option>
-                                  <option value="3">Average</option>
-                                  <option value="2">Not that bad</option>
-                                  <option value="1">Very poor</option>
-                                </select>
                               </div>
                               <div>
                                 <input
@@ -466,7 +488,7 @@
                                   cols="30"
                                   rows="6"
                                   class="form-control mb-4"
-                                  placeholder="Email *"
+                                  placeholder="Email"
                                   required
                                 />
                                 <input
@@ -475,7 +497,7 @@
                                   cols="30"
                                   rows="6"
                                   class="form-control mb-4"
-                                  placeholder="Nick Name *"
+                                  placeholder="Nick Name"
                                   required
                                 />
                                 <textarea
@@ -484,7 +506,7 @@
                                   cols="30"
                                   rows="6"
                                   class="form-control mb-4"
-                                  placeholder="Comment *"
+                                  placeholder="Comment"
                                   required
                                 ></textarea>
                                 <button
@@ -617,14 +639,6 @@ export default {
       ],
       productPrice: 0,
       productPick: 0,
-      averageRating: {
-        total: 0,
-        star5: 0,
-        star4: 0,
-        star3: 0,
-        star2: 0,
-        star1: 0,
-      },
       comment: {
         object_id: 0,
         nickname: "",
@@ -680,7 +694,6 @@ export default {
       return this.sizeId == id;
     },
     shopClick(id) {
-      console.log(id);
       this.shopId = id;
     },
     shopClicked(id) {
@@ -745,7 +758,9 @@ export default {
           }
         })
         .catch((e) => {
-          this.$toast.error("Not Submited", { duration: 3000 });
+          this.$toast.error(JSON.stringify(e.response.data), {
+            duration: 3000,
+          });
         });
     },
   },
@@ -759,15 +774,33 @@ export default {
 
     const product = responses[0].data;
     const comments = product.comments;
-    let averageRating = {};
 
-    if (comments != []) {
+
+    let averageRating = {};
+    averageRating.total = 0;
+    averageRating.star5 = 0;
+    averageRating.star4 = 0;
+    averageRating.star3 = 0;
+    averageRating.star2 = 0;
+    averageRating.star1 = 0;
+
+    if (comments.length != 0) {
       var rateSum = 0;
       for (let i = 0; i < comments.length; i++) {
         const element = comments[i];
         rateSum += element.rate;
+        if (element.rate == 1) averageRating.star1++;
+        if (element.rate == 2) averageRating.star2++;
+        if (element.rate == 3) averageRating.star3++;
+        if (element.rate == 4) averageRating.star4++;
+        if (element.rate == 5) averageRating.star5++;
       }
       averageRating.total = rateSum / comments.length;
+      averageRating.star1 = (averageRating.star1 / comments.length) * 100;
+      averageRating.star2 = (averageRating.star2 / comments.length) * 100;
+      averageRating.star3 = (averageRating.star3 / comments.length) * 100;
+      averageRating.star4 = (averageRating.star4 / comments.length) * 100;
+      averageRating.star5 = (averageRating.star5 / comments.length) * 100;
     }
 
     return {
