@@ -26,8 +26,14 @@
                     <!-- <span class="featured-label">Featured</span> -->
                   </h2>
                   <div class="ratings-container">
-                    <span class="ratings-full" title="Rated 4.65 out of 5">
-                      <span class="ratings" style="width: 87%"></span>
+                    <span
+                      class="ratings-full"
+                      :title="'Rated ' + item.rate.toFixed(1) + ' out of 5'"
+                    >
+                      <span
+                        class="ratings"
+                        :style="'width:' + item.rate * 20 + '%'"
+                      ></span>
                     </span>
                   </div>
                   <p>
@@ -90,8 +96,28 @@ export default Vue.extend({
   async asyncData({ $axios }) {
     const responses = await Promise.all([await $axios.get("shops/")]);
 
+    const shops = responses[0].data;
+
+    if (shops.length != 0) {
+      shops.forEach((element) => {
+        if (element.shop_products.length != 0) {
+          let res = 0;
+          let count = 0;
+          element.shop_products.forEach((shp) => {
+            if (shp.star != 0) {
+              count++;
+              res += shp.star;
+            }
+          });
+          element.rate = isNaN(res / count) ? 0 : res / count;
+        } else element.rate = 0;
+      });
+    }
+
+    console.log(shops);
+
     return {
-      shops: responses[0].data,
+      shops: shops,
     };
   },
   data() {
