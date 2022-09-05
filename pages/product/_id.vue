@@ -57,12 +57,13 @@
                     </p>
                     <div class="product-form product-color">
                       <label>Color:</label>
-                      <div class="product-variations">
+                      <div id="step0" class="product-variations">
                         <a
+                          :class="colorClicked(color.id) ? 'active' : ''"
                           v-for="color in product.color"
                           :key="color.id"
                           @click="colorSelect(color)"
-                          class="color"
+                          class="color element"
                           data-src="/images/demos/demo7/products/big1.jpg"
                           :style="
                             'border: 1px solid; background-color: ' + color.code
@@ -72,8 +73,11 @@
                     </div>
                     <div class="product-form product-size">
                       <label>Size:</label>
-                      <div class="product-form-group">
+                      <div id="step1" class="product-form-group">
                         <div
+                          class="element"
+                          :class="sizeClicked(size.id) ? 'active' : ''"
+                          @click="sizeClick(size.id)"
                           style="padding: 5px"
                           v-for="size in productSize"
                           :key="size.id"
@@ -93,11 +97,14 @@
 
                     <div class="product-form product-size">
                       <label>Shop:</label>
-                      <div class="product-form-group">
+                      <div id="step2" class="product-form-group">
                         <div
+                          class="element"
+                          :class="shopClicked(shop.shop_id) ? 'active' : ''"
+                          @click="shopClick(shop.shop_id)"
                           style="padding: 5px"
                           v-for="shop in productShop"
-                          :key="shop.id"
+                          :key="shop.shop_id"
                         >
                           <button
                             @click="shopSelect(shop)"
@@ -133,7 +140,12 @@
                             class="d-icon-plus"
                           ></button>
                         </div>
-                        <button @click="addToCart" class="btn btn-rounded">
+                        <button
+                          id="step3"
+                          @click="addToCart"
+                          :class="addToCartActive ? 'btn-dark' : ''"
+                          class="btn btn-rounded cart"
+                        >
                           <i class="d-icon-bag"></i> Add To Cart
                         </button>
                       </div>
@@ -535,6 +547,7 @@
         </div>
       </div>
     </main>
+    <v-tour name="myTour" :steps="steps" :options="myOptions"></v-tour>
   </div>
 </template>
 <script>
@@ -557,6 +570,36 @@ export default {
   },
   data() {
     return {
+      addToCartActive: false,
+      sizeId: 0,
+      colorId: 0,
+      shopId: 0,
+      myOptions: {
+        labels: {
+          buttonSkip: "Skip",
+          buttonPrevious: "Previous",
+          buttonNext: "Next",
+          buttonStop: "Finish",
+        },
+      },
+      steps: [
+        {
+          target: "#step0",
+          content: `Choose <strong>Color</strong> First`,
+        },
+        // {
+        //   target: "#step1",
+        //   content: `Then choose <strong>Size</strong>`,
+        // },
+        // {
+        //   target: "#step2",
+        //   content: `Then choose <strong>Shop</strong>`,
+        // },
+        // {
+        //   target: "#step3",
+        //   content: `At last <strong>Add To Cart</strong>`,
+        // },
+      ],
       stock: {},
       product: { stock_detail: {}, min_price: 0 },
       shop: { quantity: 0 },
@@ -589,6 +632,9 @@ export default {
   },
   computed: {},
   methods: {
+    startTour() {
+      this.$tours["myTour"].start();
+    },
     changeProductPick(type) {
       if (
         type == "plus" &&
@@ -601,17 +647,39 @@ export default {
         this.productPick = this.productPick - 1;
     },
     colorSelect(color) {
+      this.colorId = color.id;
       this.shop = { quantity: 0 };
+      this.shopId = 0;
+      this.sizeId = 0;
       this.productPick = 0;
+      this.addToCartActive = false;
 
       this.productShop = [];
       const detail = this.product.stock_detail[color.name].color_data.data;
       this.productSize = Object.values(detail);
       this.productSize.color = color;
     },
+    colorClicked(id) {
+      return this.sizeId == id;
+    },
+    sizeClick(id) {
+      this.sizeId = id;
+    },
+    sizeClicked(id) {
+      return this.sizeId == id;
+    },
+    shopClick(id) {
+      console.log(id);
+      this.shopId = id;
+    },
+    shopClicked(id) {
+      return this.shopId == id;
+    },
     sizeSelect(sizeName, colorName) {
       this.shop = { quantity: 0 };
+      this.shopId = 0;
       this.productPick = 0;
+      this.addToCartActive = false;
 
       const detail =
         this.product.stock_detail[colorName].color_data.data[sizeName.name]
@@ -619,29 +687,33 @@ export default {
       this.productShop = Object.values(detail);
     },
     shopSelect(shop) {
+      this.addToCartActive = true;
       this.shop = shop;
       this.productPrice = shop.price;
       this.productQuantity = shop.quantity;
     },
     addToCart() {
-      if (this.shop.quantity == 0 || this.productPick == 0) {
+      if (this.shopId == 0) {
+        this.startTour();
+      } else if (this.shop.quantity == 0 || this.productPick == 0) {
         this.$toast.error("Quantity Is Zero", {
           duration: 3000,
         });
         return;
+      } else {
+        this.$store.dispatch("cart/addProductToCart", {
+          item: this.shop.stock_id_for_cart,
+          price: this.shop.price,
+          image: this.product.image,
+          slug: this.product.slug,
+          name: this.product.name,
+          shop: this.shop.shop_name,
+          count: this.productPick,
+        });
+        this.$toast.success("Cart Updated", {
+          duration: 3000,
+        });
       }
-      this.$store.dispatch("cart/addProductToCart", {
-        item: this.shop.stock_id_for_cart,
-        price: this.shop.price,
-        image: this.product.image,
-        slug: this.product.slug,
-        name: this.product.name,
-        shop: this.shop.shop_name,
-        count: this.productPick,
-      });
-      this.$toast.success("Cart Updated", {
-        duration: 3000,
-      });
     },
     addToCompare() {
       // this.$store.dispatch("cart/addProductTo", { id: 2, price: 33 });
@@ -663,6 +735,9 @@ export default {
           this.$toast.error("Not Submited", { duration: 3000 });
         });
     },
+  },
+  mounted() {
+    // this.$tours["myTour"].start();
   },
   async asyncData({ params, $axios }) {
     const responses = await Promise.all([
@@ -692,3 +767,14 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.element:hover,
+.element.active {
+  box-shadow: 0 0.5em 0.5em -0.4em;
+  background-color: rgb(200, 200, 200);
+}
+.cart.active {
+  color: blue;
+}
+</style>
