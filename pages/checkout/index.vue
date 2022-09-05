@@ -1,7 +1,7 @@
 <template>
   <div class="page-wrapper">
     <main class="main checkout">
-      <div class="page-content pt-7 pb-10 mb-10">
+      <div v-if="show" class="page-content pt-7 pb-10 mb-10">
         <BuyProcessWizardTab :active="'checkout'" />
         <div class="container mt-7">
           <div class="col-lg-12 main-content">
@@ -11,6 +11,31 @@
                   <AddressComponent :address="item" />
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div v-else class="main cart-page">
+        <div class="page-content cart-empty">
+          <div class="container">
+            <div class="main-content">
+              <i class="d-icon-bag cart-icon"></i>
+              <h2 class="cart-descri">
+                Cart is empty, First add some products to cart
+              </h2>
+              <a class="btn btn-primary btn-rounded" href="/shops"> GO SHOP </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div v-if="addresses.length == 0" class="main cart-page">
+        <div class="page-content cart-empty">
+          <div class="container">
+            <div class="main-content">
+              <h2 class="cart-descri">
+                First add some Address to your account
+              </h2>
+              <a class="btn btn-primary btn-rounded" href="/address"> Add Address </a>
             </div>
           </div>
         </div>
@@ -90,6 +115,9 @@ export default Vue.extend({
         name: "auth",
       });
     }
+    if (this.$store.state.cart.carts.length == 0) {
+      this.show = false;
+    }
   },
   async asyncData() {
     return;
@@ -97,6 +125,7 @@ export default Vue.extend({
   data() {
     return {
       addresses: [],
+      show: true,
     };
   },
   async fetch() {

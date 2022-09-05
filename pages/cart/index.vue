@@ -52,7 +52,11 @@
                       <div class="input-group">
                         <button
                           @click="
-                            $store.commit('cart/editQuantityDown', element.item)
+                            $store.commit(
+                              'cart/editQuantityDown',
+                              element.item
+                            );
+                            $store.dispatch('cart/updateCart');
                           "
                           class="d-icon-minus"
                         ></button>
@@ -64,7 +68,8 @@
                         />
                         <button
                           @click="
-                            $store.commit('cart/editQuantityUp', element.item)
+                            $store.commit('cart/editQuantityUp', element.item);
+                            $store.dispatch('cart/updateCart');
                           "
                           class="d-icon-plus"
                         ></button>
@@ -91,7 +96,8 @@
                     <td class="product-close">
                       <a
                         @click="
-                          $store.dispatch('cart/removeCart', element.item)
+                          $store.dispatch('cart/removeCart', element.item);
+                          $store.dispatch('cart/updateCart');
                         "
                         class="product-remove"
                         title="Remove this product"
@@ -248,6 +254,9 @@ export default {
       coupon: "",
     };
   },
+  mounted() {
+    this.$store.dispatch("cart/updateCart");
+  },
   computed: {
     totals() {
       return this.$store.state.cart.totals;
@@ -277,6 +286,7 @@ export default {
           console.log(e);
           this.$toast.error("Error", { duration: 3000 });
         });
+      this.$store.dispatch("cart/updateCart");
     },
     getStatus(status) {
       if (status == 0) return "Pending";

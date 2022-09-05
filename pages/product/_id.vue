@@ -73,8 +73,9 @@
                     </div>
                     <div class="product-form product-size">
                       <label>Size:</label>
-                      <div id="step1" class="product-form-group">
+                      <div class="product-form-group">
                         <div
+                          id="step1"
                           class="element"
                           :class="sizeClicked(size.id) ? 'active' : ''"
                           @click="sizeClick(size.id)"
@@ -97,8 +98,9 @@
 
                     <div class="product-form product-size">
                       <label>Shop:</label>
-                      <div id="step2" class="product-form-group">
+                      <div class="product-form-group">
                         <div
+                          id="step2"
                           class="element"
                           :class="shopClicked(shop.shop_id) ? 'active' : ''"
                           @click="shopClick(shop.shop_id)"
@@ -582,23 +584,24 @@ export default {
           buttonStop: "Finish",
         },
       },
-      steps: [
+      steps: [],
+      steps0: [
         {
           target: "#step0",
           content: `Choose <strong>Color</strong> First`,
         },
-        // {
-        //   target: "#step1",
-        //   content: `Then choose <strong>Size</strong>`,
-        // },
-        // {
-        //   target: "#step2",
-        //   content: `Then choose <strong>Shop</strong>`,
-        // },
-        // {
-        //   target: "#step3",
-        //   content: `At last <strong>Add To Cart</strong>`,
-        // },
+      ],
+      steps1: [
+        {
+          target: "#step1",
+          content: `Choose <strong>Size</strong>`,
+        },
+      ],
+      steps2: [
+        {
+          target: "#step2",
+          content: `Choose <strong>Shop</strong>`,
+        },
       ],
       stock: {},
       product: { stock_detail: {}, min_price: 0 },
@@ -632,10 +635,18 @@ export default {
   },
   computed: {},
   methods: {
-    startTour() {
+    setStep(id) {
+      if (id == 0) this.steps = this.steps0;
+      if (id == 1) this.steps = this.steps1;
+      if (id == 2) this.steps = this.steps2;
       this.$tours["myTour"].start();
     },
     changeProductPick(type) {
+      if (this.shopId == 0) {
+        if (this.colorId == 0) this.setStep(0);
+        else if (this.sizeId == 0) this.setStep(1);
+        else this.setStep(2);
+      }
       if (
         type == "plus" &&
         this.shop.quantity > 0 &&
@@ -694,7 +705,9 @@ export default {
     },
     addToCart() {
       if (this.shopId == 0) {
-        this.startTour();
+        if (this.colorId == 0) this.setStep(0);
+        else if (this.sizeId == 0) this.setStep(1);
+        else this.setStep(2);
       } else if (this.shop.quantity == 0 || this.productPick == 0) {
         this.$toast.error("Quantity Is Zero", {
           duration: 3000,

@@ -180,6 +180,7 @@
         </div>
       </div>
       <button
+        v-if="order.status == 0"
         @click="goToPayment"
         class="
           btn btn-icon-left btn-dark btn-back btn-rounded btn-md
