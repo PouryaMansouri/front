@@ -150,10 +150,17 @@ export default {
     },
     strategies: {
       local: {
+        cookie: {
+          prefix: 'auth.',
+          options: { 
+            path: '/',
+            domain: 'crmkashefan.com'
+          }
+        },
         scheme: 'refresh',
         token: {
           property: 'access',
-          maxAge: 1800,
+          maxAge: 60 * 60 * 24 * 30,
           global: true,
           // type: 'Bearer'
         },
