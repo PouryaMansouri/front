@@ -80,7 +80,7 @@
           <div class="form">
             <div class="row">
               <div class="col-sm-4">
-                <label>Country</label>
+                <label>Country *</label>
                 <div>
                   <select
                     v-model="address.country"
@@ -99,7 +99,7 @@
                 </div>
               </div>
               <div class="col-sm-4">
-                <label>City</label>
+                <label>City *</label>
                 <div>
                   <select
                     v-model="address.city"
@@ -117,7 +117,7 @@
                 </div>
               </div>
               <div class="col-sm-4">
-                <label>Zip Code</label>
+                <label>Zip Code *</label>
                 <input
                   v-model="address.zip_code"
                   type="text"
@@ -130,7 +130,7 @@
 
             <div class="row">
               <div class="col-sm-6">
-                <label>Street</label>
+                <label>Street *</label>
                 <input
                   v-model="address.street"
                   type="text"
@@ -140,7 +140,7 @@
                 />
               </div>
               <div class="col-sm-6">
-                <label>Street Number</label>
+                <label>Street Number *</label>
                 <input
                   v-model="address.street_number"
                   type="text"
@@ -157,13 +157,20 @@
           >
             Add Address
           </button>
+          <button
+            v-if="this.addressList.length !=0 && this.$store.getters['cart/totalCart'] != 0"
+            @click="$router.push({name:'checkout'})"
+            class="btn btn-md btn-dark btn-rounded btn-outline"
+          >
+            Continue Checkout
+          </button>
         </div>
         <div v-else class="cart-coupon-box mt-8">
           <h4 class="title coupon-title text-uppercase ls-m">Edit Address</h4>
           <div class="form">
             <div class="row">
               <div class="col-sm-4">
-                <label>Country</label>
+                <label>Country *</label>
                 <div>
                   <select
                     v-model="address.country"
@@ -182,7 +189,7 @@
                 </div>
               </div>
               <div class="col-sm-4">
-                <label>City</label>
+                <label>City *</label>
                 <div>
                   <select
                     v-model="address.city"
@@ -200,7 +207,7 @@
                 </div>
               </div>
               <div class="col-sm-4">
-                <label>Zip Code</label>
+                <label>Zip Code *</label>
                 <input
                   v-model="address.zip_code"
                   type="text"
@@ -213,7 +220,7 @@
 
             <div class="row">
               <div class="col-sm-6">
-                <label>Street</label>
+                <label>Street *</label>
                 <input
                   v-model="address.street"
                   type="text"
@@ -223,7 +230,7 @@
                 />
               </div>
               <div class="col-sm-6">
-                <label>Street Number</label>
+                <label>Street Number *</label>
                 <input
                   v-model="address.street_number"
                   type="text"
