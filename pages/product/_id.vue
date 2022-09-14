@@ -644,6 +644,7 @@ export default {
         nickname: "",
         rate: 1,
         body: "",
+        email: "",
       },
     };
   },
