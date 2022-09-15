@@ -13,7 +13,7 @@
                     <th><span>Product</span></th>
                     <th><span>Shop</span></th>
                     <th><span>Quantity</span></th>
-                    <th><span></span></th>
+                    <!-- <th><span></span></th> -->
                     <th><span>Price</span></th>
                     <th><span>Total</span></th>
                     <th><span>Discount</span></th>
@@ -75,7 +75,7 @@
                         ></button>
                       </div>
                     </td>
-                    <td class="product-close">x</td>
+                    <!-- <td class="product-close">x</td> -->
                     <td class="product-price">
                       <span class="amount">${{ element.price }}</span>
                     </td>
@@ -278,15 +278,16 @@ export default {
         .then((response) => {
           if (response.status == 200) {
             this.$toast.success("Successfuly Add Coupon", { duration: 3000 });
+            this.$store.dispatch("cart/updateCart");
           } else {
-            this.$toast.error("Error", { duration: 3000 });
+            this.$toast.error("Coupon not added, try again", { duration: 3000 });
           }
         })
         .catch((e) => {
-          console.log(e);
-          this.$toast.error("Error", { duration: 3000 });
+          this.$toast.error(JSON.stringify(e.response.data), {
+            duration: 3000,
+          });
         });
-      this.$store.dispatch("cart/updateCart");
     },
     getStatus(status) {
       if (status == 0) return "Pending";

@@ -286,9 +286,9 @@
                   <li>
                     <NuxtLink to="/cart">View Cart</NuxtLink>
                   </li>
-                  <li>
+                  <!-- <li>
                     <NuxtLink to="/order">Track My Order</NuxtLink>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
             </div>
@@ -300,10 +300,10 @@
                     <NuxtLink to="/shops">Shops</NuxtLink>
                   </li>
                   <li>
-                    <NuxtLink to="/search">Products</NuxtLink>
+                    <NuxtLink to="/faq">FAQ</NuxtLink>
                   </li>
                   <li>
-                    <NuxtLink to="/order">My Orders</NuxtLink>
+                    <NuxtLink to="/account">My Orders</NuxtLink>
                   </li>
                 </ul>
               </div>

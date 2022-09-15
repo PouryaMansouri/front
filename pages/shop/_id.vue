@@ -35,7 +35,7 @@
               <a class="sidebar-close" href="#"><i class="d-icon-times"></i></a>
               <div class="sidebar-content">
                 <div class="sticky-sidebar" data-sticky-options="{'top': 10}">
-                  <div class="widget widget-collapsible">
+                  <!-- <div class="widget widget-collapsible">
                     <h3 class="widget-title">All Categories</h3>
                     <ul class="widget-body filter-items search-ul">
                       <li v-for="item in filterData.categories" :key="item.id">
@@ -50,7 +50,7 @@
                         </ul>
                       </li>
                     </ul>
-                  </div>
+                  </div> -->
                   <div class="widget widget-collapsible">
                     <h3 class="widget-title">Filter by Price</h3>
                     <!-- <div class="widget-body mt-3">

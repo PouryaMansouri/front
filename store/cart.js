@@ -170,7 +170,9 @@ export const mutations = {
             });
     },
     ADD_PRODUCT_TO_CART(state, product) {
-        const carts = [...this.$cookies.get('carts')]
+        let carts = [...state.carts]
+        if (this.$cookies.get('carts') != undefined)
+            carts = [...this.$cookies.get('carts')]
         const cartIndex = carts.findIndex((cart) => cart.item === product.item)
 
         if (cartIndex !== -1) {

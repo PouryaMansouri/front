@@ -673,6 +673,7 @@ export default {
         this.productPick = this.productPick - 1;
     },
     colorSelect(color) {
+      console.log(this.product.stock_detail);
       this.colorId = color.id;
       this.shop = { quantity: 0 };
       this.shopId = 0;

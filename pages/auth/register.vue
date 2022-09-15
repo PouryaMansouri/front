@@ -113,7 +113,7 @@ import Vue from "vue";
 export default Vue.extend({
   head() {
     return {
-      title: "login",
+      title: "register",
       meta: [
         {
           name: "description",
