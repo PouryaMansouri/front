@@ -280,7 +280,9 @@ export default {
             this.$toast.success("Successfuly Add Coupon", { duration: 3000 });
             this.$store.dispatch("cart/updateCart");
           } else {
-            this.$toast.error("Coupon not added, try again", { duration: 3000 });
+            this.$toast.error("Coupon not added, try again", {
+              duration: 3000,
+            });
           }
         })
         .catch((e) => {
@@ -288,6 +290,7 @@ export default {
             duration: 3000,
           });
         });
+      this.$store.dispatch("cart/updateCart");
     },
     getStatus(status) {
       if (status == 0) return "Pending";
