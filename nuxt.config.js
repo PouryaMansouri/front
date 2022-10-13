@@ -1,7 +1,9 @@
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'server',
-
+  server: {
+    port: '8324'
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'front',
@@ -11,7 +13,7 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
     ],
     link: [
-      { rel: "icon", type: "image/png", href: "/images/icons/favicon.png" },
+      // { rel: "icon", type: "image/png", href: "/images/icons/favicon.png" },
       { rel: "preload", href: "/fonts/riode.ttf?5gap68", as: "font", type: "font/woff2", crossorigin: "anonymous" },
       {
         rel: "preload", href: "/vendor/fontawesome-free/webfonts/fa-solid-900.woff2", as: "font", type: "font/woff2",
@@ -40,20 +42,6 @@ export default {
         body: true
       },
       {
-        innerHTML: `WebFontConfig = {
-          google: { families: ['Poppins:300,400,500,600,700,800'] }
-        };
-        (function (d) {
-          var wf = d.createElement('script'), s = d.scripts[0];
-          wf.src = 'js/webfont.js';
-          wf.async = true;
-          s.parentNode.insertBefore(wf, s);
-        })(document);`,
-        body: true,
-        type: 'text/javascript',
-        __dangerouslyDisableSanitizers: ['script']
-      },
-      {
         src: "/vendor/imagesloaded/imagesloaded.pkgd.min.js",
         body: true
       },
@@ -79,6 +67,10 @@ export default {
       },
       {
         src: "/vendor/photoswipe/photoswipe.min.js",
+        body: true
+      },
+      {
+        src: "/vendor/compare/compare.min.js",
         body: true
       },
       {
@@ -114,12 +106,13 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
   ],
-
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/auth-vuex-persistedstate',
-    '~/plugins/cart-vuex-persistedstate',
-    '~/plugins/axios',
+    // '~/plugins/auth-vuex-persistedstate',
+    // '~/plugins/cart-vuex-persistedstate',
+    // '~/plugins/axios',
+    { src: '~/plugins/vue-avatar-cropper', ssr: false },
+    { src: '~/plugins/vue-tour', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -137,13 +130,78 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    // 'cookie-universal-nuxt',
+    '@nuxtjs/toast',
+    '@nuxtjs/auth-next',
     'cookie-universal-nuxt',
   ],
+
+
+  auth: {
+    token: {
+      prefix: '_token.',
+      global: true,
+    },
+    redirect: {
+      login: '/auth',
+      logout: '/',
+      callback: '/auth',
+      home: '/'
+    },
+    strategies: {
+      local: {
+        cookie: {
+          prefix: 'auth.',
+          options: { 
+            path: '/',
+            domain: 'crmkashefan.com'
+          }
+        },
+        scheme: 'refresh',
+        token: {
+          property: 'access',
+          maxAge: 60 * 60 * 24 * 30,
+          global: true,
+          // type: 'Bearer'
+        },
+        refreshToken: {
+          property: 'refresh',
+          data: 'refresh',
+          maxAge: 60 * 60 * 24 * 30
+        },
+        user: {
+          property: 'user',
+          // autoFetch: true
+        },
+        endpoints: {
+          login: { url: 'accounts/login/', method: 'post' },
+          refresh: { url: 'accounts/auth/token/refresh/', method: 'post' },
+          user: { url: 'accounts/profile/detail/', method: 'get' },
+          logout: { url: '/api/auth/logout', method: 'post' }
+        },
+        // autoLogout: false
+      }
+    }
+  },
+
+  toast: {
+    position: 'top-center',
+    register: [
+      {
+        name: 'my-error',
+        message: 'Oops...Something went wrong',
+        options: {
+          type: 'error',
+          duration: 5000
+        }
+      }
+    ]
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: 'http://crmkashefan.com/api/',
+    baseURL: process.env.BASE_URL || 'http://crmkashefan.com/api/',
     // baseURL: 'http://sarar-mansouri.fandogh.cloud/api/',
   },
 
@@ -156,5 +214,5 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
 }

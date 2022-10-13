@@ -9,103 +9,96 @@
               <table class="shop-table cart-table">
                 <thead>
                   <tr>
+                    <th><span>Image</span></th>
                     <th><span>Product</span></th>
-                    <th></th>
+                    <th><span>Shop</span></th>
+                    <th><span>Quantity</span></th>
+                    <!-- <th><span></span></th> -->
                     <th><span>Price</span></th>
-                    <th><span>quantity</span></th>
-                    <th>Subtotal</th>
+                    <th><span>Total</span></th>
+                    <th><span>Discount</span></th>
+                    <th><span>Finish</span></th>
+                    <th><span>Status</span></th>
+                    <th><span></span></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr v-for="element in cartList" :key="element.id">
                     <td class="product-thumbnail">
                       <figure>
-                        <a href="product-simple.html">
+                        <nuxt-link :to="'/product/' + element.slug">
                           <img
-                            src="images/products/product18.jpg"
+                            :src="element.image"
                             width="100"
                             height="100"
                             alt="product"
                           />
-                        </a>
+                        </nuxt-link>
                       </figure>
                     </td>
                     <td class="product-name">
                       <div class="product-name-section">
-                        <a href="product-simple.html"
-                          >Converse Training Shoes</a
-                        >
+                        <a>{{ element.name }}</a>
                       </div>
-                    </td>
-                    <td class="product-subtotal">
-                      <span class="amount">$129.99</span>
-                    </td>
-                    <td class="product-quantity">
-                      <div class="input-group">
-                        <button class="quantity-minus d-icon-minus"></button>
-                        <input
-                          class="quantity form-control"
-                          type="number"
-                          min="1"
-                          max="1000000"
-                        />
-                        <button class="quantity-plus d-icon-plus"></button>
-                      </div>
-                    </td>
-                    <td class="product-price">
-                      <span class="amount">$129.99</span>
-                    </td>
-                    <td class="product-close">
-                      <a
-                        href="#"
-                        class="product-remove"
-                        title="Remove this product"
-                      >
-                        <i class="fas fa-times"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="product-thumbnail">
-                      <figure>
-                        <a href="product-simple.html">
-                          <img
-                            src="images/products/product19.jpg"
-                            width="100"
-                            height="100"
-                            alt="product"
-                          />
-                        </a>
-                      </figure>
                     </td>
                     <td class="product-name">
                       <div class="product-name-section">
-                        <a href="product-simple.html"
-                          >Women Beautiful Headgear</a
-                        >
+                        <a>{{ element.shop }}</a>
+                        <span class="amount">{{ element.color.name }}</span>
+                        <span class="amount">{{ element.size.name }}</span>
                       </div>
-                    </td>
-                    <td class="product-subtotal">
-                      <span class="amount">$98.00</span>
                     </td>
                     <td class="product-quantity">
                       <div class="input-group">
-                        <button class="quantity-minus d-icon-minus"></button>
+                        <button
+                          @click="
+                            $store.commit(
+                              'cart/editQuantityDown',
+                              element.item
+                            );
+                            $store.dispatch('cart/updateCart');
+                          "
+                          class="d-icon-minus"
+                        ></button>
                         <input
-                          class="quantity form-control"
+                          v-model="element.quantity"
+                          class="form-control"
                           type="number"
                           min="1"
-                          max="1000000"
                         />
-                        <button class="quantity-plus d-icon-plus"></button>
+                        <button
+                          @click="
+                            $store.commit('cart/editQuantityUp', element.item);
+                            $store.dispatch('cart/updateCart');
+                          "
+                          class="d-icon-plus"
+                        ></button>
                       </div>
                     </td>
+                    <!-- <td class="product-close">x</td> -->
                     <td class="product-price">
-                      <span class="amount">$98.00</span>
+                      <span class="amount">${{ element.price }}</span>
+                    </td>
+                    <td class="product-price">
+                      <span class="amount">${{ element.total_price }}</span>
+                    </td>
+                    <td class="product-price">
+                      <span class="amount">${{ element.total_discount }}</span>
+                    </td>
+                    <td class="product-price">
+                      <span class="amount">${{ element.final_price }}</span>
+                    </td>
+                    <td class="product-name">
+                      <div class="product-name-section">
+                        <a>{{ getStatus(element.status) }}</a>
+                      </div>
                     </td>
                     <td class="product-close">
                       <a
-                        href="#"
+                        @click="
+                          $store.dispatch('cart/removeCart', element.item);
+                          $store.dispatch('cart/updateCart');
+                        "
                         class="product-remove"
                         title="Remove this product"
                       >
@@ -116,17 +109,17 @@
                 </tbody>
               </table>
               <div class="cart-actions mb-6 pt-4">
-                <a
-                  href="shop.html"
+                <nuxt-link
+                  to="/shops"
                   class="
                     btn btn-dark btn-md btn-rounded btn-icon-left
                     mr-4
                     mb-4
                   "
-                  ><i class="d-icon-arrow-left"></i>Continue Shopping</a
+                  ><i class="d-icon-arrow-left"></i>Continue Shopping</nuxt-link
                 >
                 <button
-                  type="submit"
+                  @click="$store.dispatch('cart/updateCart')"
                   class="
                     btn btn-outline btn-dark btn-md btn-rounded btn-disabled
                   "
@@ -143,11 +136,11 @@
                   name="coupon_code"
                   class="input-text form-control text-grey ls-m mb-4"
                   id="coupon_code"
-                  value=""
+                  v-model="coupon"
                   placeholder="Enter coupon code here..."
                 />
                 <button
-                  type="submit"
+                  @click="setCoupon"
                   class="btn btn-md btn-dark btn-rounded btn-outline"
                 >
                   Apply Coupon
@@ -164,112 +157,50 @@
                         <h4 class="summary-subtitle">Subtotal</h4>
                       </td>
                       <td>
-                        <p class="summary-subtotal-price">$426.99</p>
-                      </td>
-                    </tr>
-                    <tr class="sumnary-shipping shipping-row-last">
-                      <td colspan="2">
-                        <h4 class="summary-subtitle">Calculate Shipping</h4>
-                        <ul>
-                          <li>
-                            <div class="custom-radio">
-                              <input
-                                type="radio"
-                                id="flat_rate"
-                                name="shipping"
-                                class="custom-control-input"
-                                checked
-                              />
-                              <label
-                                class="custom-control-label"
-                                for="flat_rate"
-                                >Flat rate</label
-                              >
-                            </div>
-                          </li>
-                          <li>
-                            <div class="custom-radio">
-                              <input
-                                type="radio"
-                                id="free-shipping"
-                                name="shipping"
-                                class="custom-control-input"
-                              />
-                              <label
-                                class="custom-control-label"
-                                for="free-shipping"
-                                >Free shipping</label
-                              >
-                            </div>
-                          </li>
-
-                          <li>
-                            <div class="custom-radio">
-                              <input
-                                type="radio"
-                                id="local_pickup"
-                                name="shipping"
-                                class="custom-control-input"
-                              />
-                              <label
-                                class="custom-control-label"
-                                for="local_pickup"
-                                >Local pickup</label
-                              >
-                            </div>
-                          </li>
-                        </ul>
+                        <p class="summary-subtotal-price">
+                          ${{ totals.total_price }}
+                        </p>
                       </td>
                     </tr>
                   </table>
-                  <div class="shipping-address">
-                    <label>Shipping to <strong>CA.</strong></label>
-                    <div class="select-box">
-                      <select name="country" class="form-control">
-                        <option value="us" selected>United States (US)</option>
-                        <option value="uk">United Kingdom</option>
-                        <option value="fr">France</option>
-                        <option value="aus">Austria</option>
-                      </select>
-                    </div>
-                    <div class="select-box">
-                      <select name="country" class="form-control">
-                        <option value="us" selected>California</option>
-                        <option value="uk">Alaska</option>
-                        <option value="fr">Delaware</option>
-                        <option value="aus">Hawaii</option>
-                      </select>
-                    </div>
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="code"
-                      placeholder="Town / City"
-                    />
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="code"
-                      placeholder="ZIP"
-                    />
-                    <a
-                      href="#"
-                      class="btn btn-md btn-dark btn-rounded btn-outline"
-                      >Update totals</a
-                    >
-                  </div>
+                  <table class="shipping">
+                    <tr class="summary-subtotal">
+                      <td>
+                        <h4 class="summary-subtitle">Discount</h4>
+                      </td>
+                      <td>
+                        <p class="summary-subtotal-price">
+                          ${{ totals.total_items_discount }}
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                  <table class="shipping">
+                    <tr class="summary-subtotal">
+                      <td>
+                        <h4 class="summary-subtitle">Coupon Discount</h4>
+                      </td>
+                      <td>
+                        <p class="summary-subtotal-price">
+                          ${{ totals.coupon_discount }}
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
                   <table class="total">
                     <tr class="summary-subtotal">
                       <td>
                         <h4 class="summary-subtitle">Total</h4>
                       </td>
                       <td>
-                        <p class="summary-total-price ls-s">$426.99</p>
+                        <p class="summary-total-price ls-s">
+                          ${{ totals.final_price }}
+                        </p>
                       </td>
                     </tr>
                   </table>
                   <a
-                    href="checkout.html"
+                    href="/checkout"
                     class="btn btn-dark btn-rounded btn-checkout"
                     >Proceed to checkout</a
                   >
@@ -296,9 +227,7 @@
           <div class="main-content">
             <i class="d-icon-bag cart-icon"></i>
             <h2 class="cart-descri">No products added to the cart</h2>
-            <a class="btn btn-primary btn-rounded" href="shop.html">
-              GO SHOP
-            </a>
+            <a class="btn btn-primary btn-rounded" href="/shops"> GO SHOP </a>
           </div>
         </div>
       </div>
@@ -306,30 +235,69 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
 
-export default Vue.extend({
-  head() {
-    return {
-      title: "cart",
-      meta: [
-        {
-          name: "description",
-          hid: "description",
-          content: "description",
-        },
-      ],
-    };
+<script>
+export default {
+  mounted() {
+    if (!this.$auth.loggedIn) {
+      this.$router.push({
+        name: "auth",
+      });
+    }
   },
+  async fetch() {},
   async asyncData() {
     return;
   },
   data() {
     return {
-      cartList: [{}],
+      coupon: "",
     };
   },
-  methods: {},
-});
+  mounted() {
+    this.$store.dispatch("cart/updateCart");
+  },
+  computed: {
+    totals() {
+      return this.$store.state.cart.totals;
+    },
+    cartList() {
+      return this.$store.state.cart.carts;
+    },
+    all_total_price() {
+      return this.$store.getters["cart/totalAmount"];
+    },
+    totalCart() {
+      return this.$store.getters["cart/totalCart"];
+    },
+  },
+  methods: {
+    setCoupon() {
+      this.$axios
+        .post("cart/set-coupon/", { code: this.coupon })
+        .then((response) => {
+          if (response.status == 200) {
+            this.$toast.success("Successfuly Add Coupon", { duration: 3000 });
+            this.$store.dispatch("cart/updateCart");
+          } else {
+            this.$toast.error("Coupon not added, try again", {
+              duration: 3000,
+            });
+          }
+        })
+        .catch((e) => {
+          this.$toast.error(JSON.stringify(e.response.data), {
+            duration: 3000,
+          });
+        });
+      this.$store.dispatch("cart/updateCart");
+    },
+    getStatus(status) {
+      if (status == 0) return "Pending";
+      if (status == 1) return "Confirmed";
+      if (status == 2) return "Canceled";
+    },
+  },
+};
 </script>
+

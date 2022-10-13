@@ -12,12 +12,6 @@
     >
       <NuxtLink to="/checkout">2. Checkout</NuxtLink>
     </h3>
-    <h3
-      class="title title-simple title-step"
-      :class="active == 'order' ? 'active' : ''"
-    >
-      <NuxtLink to="/order">3. Order Complete</NuxtLink>
-    </h3>
   </div>
 </template>
 <script>

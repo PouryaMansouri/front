@@ -6,27 +6,33 @@
         <span class="cart-price">${{ all_total_price }}</span>
       </div>
       <i class="d-icon-bag"
-        ><span class="cart-count">{{ list.length }}</span></i
+        ><span class="cart-count">{{ totalCart }}</span></i
       >
     </a>
     <div class="dropdown-box">
       <div class="products scrollable">
-        <div v-for="item in list" :key="item.id" class="product product-cart">
+        <div
+          v-for="element in list"
+          :key="element.item"
+          class="product product-cart"
+        >
           <figure class="product-media">
-            <a :href="'product/' + item.product_slug">
-              <img :src="item.image" alt="product" width="80" height="88" />
-            </a>
-            <button class="btn btn-link btn-close">
+            <nuxt-link :to="'/product/' + element.slug"
+              ><img :src="element.image" alt="product" width="80" height="88"
+            /></nuxt-link>
+            <button
+              @click="removeFromCart(element.item)"
+              class="btn btn-link btn-close"
+            >
               <i class="fas fa-times"></i><span class="sr-only">Close</span>
             </button>
           </figure>
           <div class="product-detail">
-            <a :href="'product/' + item.product_slug" class="product-name">{{
-              item.name
-            }}</a>
+            <a class="product-name">{{ element.name }}</a>
+            <a class="product-name">shop:{{ element.shop }}</a>
             <div class="price-box">
-              <span class="product-quantity">{{ item.quantity }}</span>
-              <span class="product-price">${{ item.price }}</span>
+              <span class="product-quantity">{{ element.quantity }}</span>
+              <span class="product-price">${{ element.price }}</span>
             </div>
           </div>
         </div>
@@ -38,8 +44,15 @@
       </div>
       <!-- End of Cart Total -->
       <div class="cart-action">
-        <NuxtLink to="/cart" class="btn btn-dark btn-link">View Cart</NuxtLink>
-        <NuxtLink to="/checkout" class="btn btn-dark"> Go To Checkout </NuxtLink>
+        <NuxtLink
+          v-if="this.$auth.loggedIn"
+          to="/cart"
+          class="btn btn-dark btn-link"
+          >View Cart</NuxtLink
+        >
+        <NuxtLink v-else to="/auth" class="btn btn-dark btn-link"
+          >Login</NuxtLink
+        >
       </div>
       <!-- End of Cart Action -->
     </div>
@@ -47,12 +60,30 @@
   </div>
 </template>
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {
-      list: [],
-      all_total_price: 0,
+      // list: [],
+      // all_total_price: 0,
     };
+  },
+  methods: {
+    removeFromCart(item) {
+      this.$store.dispatch("cart/removeCart", item);
+    },
+  },
+  computed: {
+    list() {
+      return this.$store.state.cart.carts;
+    },
+    all_total_price() {
+      return this.$store.getters["cart/totalAmount"];
+    },
+    totalCart() {
+      return this.$store.getters["cart/totalCart"];
+    },
   },
   async fetch() {
     // const { data } = await this.$axios.get("cart/user-cart-detail/");

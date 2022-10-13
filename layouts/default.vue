@@ -1,11 +1,14 @@
 <template>
   <div>
+    <client-only>
+      <LoadSpinner v-if="showHideSpinner" />
+    </client-only>
     <HeaderComponent />
     <Nuxt />
     <StickyFooterComponent />
     <!-- Scroll Top -->
     <a
-      style="background-color: #558063"
+      style="background-color: #cceff0"
       id="scroll-top"
       href="#top"
       title="Top"
@@ -18,3 +21,19 @@
     <FooterComponent :version="1" />
   </div>
 </template>
+
+<script>
+export default {
+  beforeCreate() {
+    this.showHideSpinner = true;
+  },
+  mounted() {
+    this.showHideSpinner = false;
+  },
+  data() {
+    return {
+      showHideSpinner: true,
+    };
+  },
+};
+</script>

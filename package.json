@@ -6,23 +6,32 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "deploy": "npm install && nuxt build && nuxt start",
+    "dev:build": "nuxt build && nuxt start"
   },
   "dependencies": {
+    "@nuxtjs/auth-next": "5.0.0-1648802546.c9880dc",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/pwa": "^3.3.5",
-    "cookie-universal-nuxt": "^2.2.1",
+    "@nuxtjs/toast": "^3.3.1",
+    "cookie-universal-nuxt": "^2.2.2",
     "core-js": "^3.19.3",
     "nuxt": "^2.15.8",
     "vue": "^2.6.14",
+    "vue-avatar-cropper": "^1.0.9",
     "vue-server-renderer": "^2.6.14",
     "vue-slider-component": "^3.2.16",
     "vue-template-compiler": "^2.6.14",
+    "vue-tour": "^2.0.0",
     "vuex-persistedstate": "^4.1.0",
     "webpack": "^4.46.0"
   },
   "devDependencies": {
     "@nuxt/types": "^2.15.8",
-    "@nuxt/typescript-build": "^2.1.0"
+    "@nuxt/typescript-build": "^2.1.0",
+    "less-loader": "^7.3.0",
+    "sass": "1.32.*",
+    "sass-loader": "^10.1.0"
   }
 }

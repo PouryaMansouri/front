@@ -1,17 +1,6 @@
 <template>
   <div class="page-wrapper">
     <main class="main">
-      <nav class="breadcrumb-nav">
-        <div class="container">
-          <ul class="breadcrumb">
-            <li>
-              <a href="/"><i class="d-icon-home"></i></a>
-            </li>
-            <li><a href="shop">Sarar Shop</a></li>
-            <li>My Account</li>
-          </ul>
-        </div>
-      </nav>
       <div class="page-content mt-6 pb-2 mb-10">
         <div class="container">
           <div class="login-popup">
@@ -34,206 +23,53 @@
                       >Login</a
                     >
                   </li>
-                  <li class="delimiter">or</li>
-                  <li class="nav-item">
-                    <a
-                      class="nav-link border-no lh-1 ls-normal"
-                      href="#register"
-                      >Register</a
-                    >
-                  </li>
                 </ul>
-                <div class="tab-content">
-                  <div class="tab-pane active" id="signin">
-                    <div>
-                      <div class="form-group mb-3">
-                        <input
-                          v-model="email"
-                          type="text"
-                          class="form-control"
-                          id="singin-email"
-                          name="singin-email"
-                          placeholder="email or Email Address *"
-                          required
-                        />
-                      </div>
-                      <div class="form-group">
-                        <input
-                          v-model="password"
-                          type="password"
-                          class="form-control"
-                          id="singin-password"
-                          name="singin-password"
-                          placeholder="Password *"
-                          required
-                        />
-                      </div>
-                      <div class="form-footer">
-                        <div class="form-checkbox">
-                          <input
-                            type="checkbox"
-                            class="custom-checkbox"
-                            id="signin-remember"
-                            name="signin-remember"
-                          />
-                          <label
-                            class="form-control-label"
-                            for="signin-remember"
-                            >Remember me</label
-                          >
-                        </div>
-                        <!-- <a href="#" class="lost-link">Lost your password?</a> -->
-                      </div>
-                      <button
-                        class="btn btn-dark btn-block btn-rounded"
-                        @click="loginClick"
-                      >
-                        Login
-                      </button>
+                <div class="tab-pane active" id="signin">
+                  <div>
+                    <div class="form-group mb-3">
+                      <input
+                        v-model="email"
+                        type="text"
+                        class="form-control"
+                        id="singin-email"
+                        name="singin-email"
+                        placeholder="email or Email Address *"
+                        required
+                      />
                     </div>
-                    <!-- <div class="form-choice text-center">
-                        <label class="ls-m">or Login With</label>
-                        <div class="social-links">
-                          <a
-                            href="#"
-                            class="
-                              social-link social-google
-                              fab
-                              fa-google
-                              border-no
-                            "
-                          ></a>
-                          <a
-                            href="#"
-                            class="
-                              social-link social-facebook
-                              fab
-                              fa-facebook-f
-                              border-no
-                            "
-                          ></a>
-                          <a
-                            href="#"
-                            class="
-                              social-link social-twitter
-                              fab
-                              fa-twitter
-                              border-no
-                            "
-                          ></a>
-                        </div>
-                      </div> -->
-                  </div>
-                  <div class="tab-pane" id="register">
-                    <div>
-                      <div class="form-group">
-                        <input
-                          v-model="email"
-                          type="email"
-                          class="form-control"
-                          id="register-email"
-                          name="register-email"
-                          placeholder="Your Email address *"
-                          required
-                        />
-                      </div>
-                      <div class="form-group">
-                        <input
-                          v-model="phoneNumber"
-                          type="number"
-                          class="form-control"
-                          id="register-phoneNumber"
-                          name="register-phoneNumber"
-                          placeholder="Your Phone Number *"
-                          required
-                        />
-                      </div>
-                      <div class="form-group">
-                        <input
-                          v-model="firstName"
-                          type="text"
-                          class="form-control"
-                          id="register-firstname"
-                          name="register-firstname"
-                          placeholder="Your Firstname *"
-                          required
-                        />
-                      </div>
-                      <div class="form-group">
-                        <input
-                          v-model="lastName"
-                          type="text"
-                          class="form-control"
-                          id="register-lastname"
-                          name="register-lastname"
-                          placeholder="Your Lastname *"
-                          required
-                        />
-                      </div>
-                      <div class="form-group">
-                        <input
-                          v-model="password"
-                          type="password"
-                          class="form-control"
-                          id="register-password"
-                          name="register-password"
-                          placeholder="Password *"
-                          required
-                        />
-                      </div>
-                      <div class="form-footer">
-                        <div class="form-checkbox">
-                          <input
-                            type="checkbox"
-                            class="custom-checkbox"
-                            id="register-agree"
-                            name="register-agree"
-                            required
-                          />
-                          <label class="form-control-label" for="register-agree"
-                            >I agree to the privacy policy</label
-                          >
-                        </div>
-                      </div>
-                      <button
-                        class="btn btn-dark btn-block btn-rounded"
-                        @click="registerClick"
-                      >
-                        Register
-                      </button>
+                    <div class="form-group">
+                      <input
+                        v-model="password"
+                        type="password"
+                        class="form-control"
+                        id="singin-password"
+                        name="singin-password"
+                        placeholder="Password *"
+                        required
+                      />
                     </div>
-                    <!-- <div class="form-choice text-center">
-                        <label class="ls-m">or Register With</label>
-                        <div class="social-links">
-                          <a
-                            href="#"
-                            class="
-                              social-link social-google
-                              fab
-                              fa-google
-                              border-no
-                            "
-                          ></a>
-                          <a
-                            href="#"
-                            class="
-                              social-link social-facebook
-                              fab
-                              fa-facebook-f
-                              border-no
-                            "
-                          ></a>
-                          <a
-                            href="#"
-                            class="
-                              social-link social-twitter
-                              fab
-                              fa-twitter
-                              border-no
-                            "
-                          ></a>
-                        </div>
-                      </div> -->
+                    <div class="form-footer">
+                      <div class="form-checkbox">
+                        <input
+                          type="checkbox"
+                          class="custom-checkbox"
+                          id="signin-remember"
+                          name="signin-remember"
+                        />
+                        <label class="form-control-label" for="signin-remember"
+                          >Remember me</label
+                        >
+                      </div>
+                      <nuxt-link to="/auth/register"
+                        >create new account</nuxt-link
+                      >
+                    </div>
+                    <button
+                      class="btn btn-dark btn-block btn-rounded"
+                      @click="loginClick"
+                    >
+                      Login
+                    </button>
                   </div>
                 </div>
               </div>
@@ -245,7 +81,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script >
 import Vue from "vue";
 
 export default Vue.extend({
@@ -273,22 +109,23 @@ export default Vue.extend({
       lastName: "",
     };
   },
+  mounted() {
+    if (this.$auth.loggedIn) {
+      this.$router.push({
+        name: "account",
+      });
+    }
+  },
   methods: {
-    loginClick() {
-      this.$store.dispatch("auth/login", {
-        email: this.email,
-        password: this.password,
+    async loginClick() {
+      let response = await this.$auth.loginWith("local", {
+        data: {
+          email: this.email,
+          password: this.password,
+        },
       });
-    },
-    registerClick() {
-      this.$store.dispatch("auth/register", {
-        email: this.email,
-        phone_number: this.phoneNumber,
-        first_name: this.firstName,
-        last_name: this.lastName,
-        password: this.password,
-      });
-    },
+      this.$store.dispatch("cart/addToCartWhenLogin");
+    }
   },
 });
 </script>
